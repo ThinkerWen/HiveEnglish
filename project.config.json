@@ -37,7 +37,7 @@
     "minifyWXSS": true
   },
   "appid": "wx1edd81cd98793996",
-  "projectname": "English",
+  "projectname": "HiveEnglish",
   "libVersion": "2.14.1",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {

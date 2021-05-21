@@ -1,0 +1,74 @@
+.tagBall{
+      width: 750rpx;
+      height: 500rpx;
+      position: relative;
+      left: 350rpx;
+      top: 500rpx;
+  }
+  .tag,.tag-hover,.tag-center{
+      display: block;
+      position: absolute;
+      left: 0rpx;
+      top: 0rpx;
+      color: rgb(70, 70, 70);
+      text-decoration: none;
+      font-size: 32rpx;
+      font-family: "微软雅黑";
+      font-weight: bold;
+  }
+  .tag-hover{
+      color:rgb(48, 212, 171);
+  }
+  .tag-center{
+      color: rgb(255, 125, 74);
+  }
+
+.query-container{
+    width: 100%;
+    height: 250rpx;
+    position: fixed;
+    bottom: 0rpx;
+    overflow: hidden;
+    padding-top: 40rpx;
+    box-shadow: 0rpx 10rpx 50rpx rgb(22, 22, 22);
+    background: white;
+}
+
+.query-wordinfo-container{
+    margin-left: 40rpx;
+    overflow: hidden;
+}
+
+.query-name-text{
+    float: left;
+    color: rgb(49, 49, 49);
+    font-size: 50rpx;
+    font-weight: bold;
+}
+
+.query-soundmark-text{
+    display: block;
+    clear: both;
+    margin-top: 10rpx;
+    color: rgb(184, 184, 184);
+    font-size: 30rpx;
+}
+
+.query-meaning-text{
+    font-size: 31rpx;
+    display: block;
+    margin-top: 20rpx;
+    margin-right: 70rpx;
+    color: rgb(47, 47, 47);
+    overflow: hidden;
+    margin-left: 40rpx;
+}
+
+.icon-close-m{
+    width: 50rpx;
+    height: 50rpx;
+    float: right;
+    position: relative;
+    top: 30rpx;
+    right: 30rpx;
+}

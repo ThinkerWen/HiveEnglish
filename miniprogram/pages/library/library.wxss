@@ -1,0 +1,58 @@
+/* miniprogram/pages/library/library.wxss */
+
+.books-block{
+    width: 95%;
+    margin: auto;
+}
+
+.book-container{
+    padding-top: 30rpx;
+    width: 33.3%;
+    margin: auto;
+    margin-top: 25rpx;
+    /* background: rgb(255, 220, 220); */
+    overflow: hidden;
+    float: left;
+}
+
+.books-image-container{
+    position: relative;
+    margin: auto;
+    height: 248rpx;
+    width: 180rpx;
+    border-radius: 15rpx;
+}
+
+.books-image{
+    height: 100%;
+    width: 100%;
+    border-radius: 15rpx;
+}
+
+.books-star,.books-unstar{
+    position: absolute;
+    right: -10rpx;
+    top: -10rpx;
+    width: 30rpx;
+    height: 30rpx;
+    background: rgb(207, 255, 239);
+    border-radius: 44%;
+    border: solid;
+    border-color: rgb(35, 212, 159);
+}
+
+.books-unstar{
+    background: none;
+}
+
+.books-vocabulary{
+    background: rgb(35, 212, 159);
+    color: white;
+    font-size: 25rpx;
+    font-weight: bold;
+    position: absolute;
+    padding: 2rpx 15rpx 2rpx 10rpx;
+    left: 0rpx;
+    top: 70%;
+    border-radius: 0 15% 15% 0 / 0 50% 50% 0;
+}

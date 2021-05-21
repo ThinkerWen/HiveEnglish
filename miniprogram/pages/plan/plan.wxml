@@ -1,0 +1,42 @@
+<!--miniprogram/pages/plan/plan.wxml-->
+<view class="container">
+    <view class="plan-block">
+        <view class="plan-now-block">
+            <view class="plan-now-book-image-container">
+                <image class="plan-now-book-image" src="../../images/books/book1.png"/>
+            </view>
+            <view class="plan-now-book-info">
+                <view class="plan-now-book-name-text">六级考纲词汇</view>
+                <view class="plan-now-text-container">
+                    <text class="plan-now-text">2420词</text>
+                </view>
+                <view class="plan-now-bottom">
+                    <text class="plan-now-prediction-guide-text">预计完成时间</text>
+                    <text class="plan-now-prediction-time-text">2019年04月24日</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="set-block">
+        <view class="set-guide-container">
+            <text class="set-guide-left-text">每日学习任务</text>
+            <text class="set-guide-right-text">完成天数</text>
+        </view>
+        <picker-view indicator-class="set-picker-indicator" class="set-picker">
+            <picker-view-column>
+                <view class="set-picker-line" wx:for="{{pickerDataRaw}}">
+                    <view class="set-picker-left">
+                        <text class="set-picker-text">新词</text>
+                        <text class="set-picker-digit-text">5</text>
+                        <text class="set-picker-text">复习</text>
+                        <text class="set-picker-digit-text">7</text>
+                    </view>
+                    <view class="set-picker-right">
+                        <text class="set-picker-digit-text">484</text>
+                    </view>
+                </view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+    <view class="complete-button">完成设置</view>
+</view>

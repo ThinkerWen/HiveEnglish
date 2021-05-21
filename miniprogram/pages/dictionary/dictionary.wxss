@@ -1,0 +1,115 @@
+/* miniprogram/pages/dictionary/dictionary.wxss */
+.top-bar{
+    margin: auto;
+    margin-top: 20rpx;
+    width: 100%;
+    overflow: hidden;
+    border-bottom: solid;
+    border-width: 10rpx;
+    border-color: rgb(243, 243, 243);
+    padding-bottom: 20rpx;
+}
+
+.top-bar-element{
+    float: left;
+    width: 25%;
+    text-align: center;
+}
+
+.top-bar-element-text{
+    font-weight: bold;
+    font-size: 28rpx;
+    color: rgb(105, 105, 105);
+}
+
+.top-bar-bottom{
+    width: 25%;
+    margin: auto;
+    background: #2cc786;
+    height: 8rpx;
+    border-radius: 4rpx;
+    margin-top: 10rpx;
+}
+
+.summary-switch-container{
+    float: right;
+    margin-top: 10rpx;
+    margin-right: 55rpx;
+}
+
+.summary-switch-text{
+    font-size: 25rpx;
+    color: #bbbbbb;
+    margin-right: 15rpx;
+}
+
+.wx-switch-input{
+    width:60rpx !important;
+    height:36rpx !important;
+}
+/*白色样式（false的样式）*/
+.wx-switch-input::before{
+    width:60rpx !important;
+    height: 36rpx !important;
+}
+/*绿色样式（true的样式）*/
+.wx-switch-input::after{
+    width: 32rpx !important;
+    height: 32rpx !important;
+}
+/* words */
+
+.word{
+    width: 90%;
+    margin: auto;
+    margin-top: 20rpx;
+    border-bottom: solid;
+    border-width: 5rpx;
+    border-color: #f0f0f0;
+}
+
+.word-top{
+    overflow: hidden;
+}
+
+.word-text{
+    font-weight: bold;
+    float: left;
+    /* background: rebeccapurple; */
+    height: 60rpx;
+    line-height: 60rpx;
+}
+
+.word-icon-container{
+    width: 60rpx;
+    height: 60rpx;
+    float: right;
+}
+
+.word-icon{
+    height: 70%;
+    width: 80%;
+    margin-top: 15%;
+    margin-left: 10%;
+}
+
+.word-mask{
+    border: solid;
+    border-radius: 10rpx;
+    border-width: 1rpx;
+    border-color: #eeeeee;
+    background: #fafafa;
+    height: 50rpx;
+    width: 99%;
+    display: block;
+    margin-top: 10rpx;
+    margin-bottom: 20rpx;
+}
+
+.word-meaning{
+    margin-top: 10rpx;
+    font-size: 32rpx;
+    color: #959595;
+    letter-spacing: 0.05rem;
+    margin-bottom: 20rpx;
+}

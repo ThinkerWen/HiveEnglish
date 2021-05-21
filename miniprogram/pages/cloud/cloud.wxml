@@ -1,0 +1,3 @@
+<view>
+  <canvas style='width: 750rpx; height: 750rpx;margin-top: 300rpx;' canvas-id="cloud" bindtap='resetAngle'></canvas>
+</view>

@@ -1,0 +1,16 @@
+<!--miniprogram/pages/library/library.wxml-->
+<view class="books-block">
+    <view class="book-container" wx:for="{{booksList}}" wx:key="{{item.title}}">
+    <navigator url="../dictionary/dictionary?id={{item.id}}">
+        <view class="books-image-container">
+            <image class="books-image" src="{{item.cover}}" />
+            <view class="books-vocabulary">{{item.wordNum}}</view>
+            <view catchtap="star" data-index="{{index}}">
+                <view wx:if="{{item.star}}" class="books-star"/>
+                <view wx:else class="books-unstar"/>
+            </view>
+        </view>
+    </navigator>
+    </view>
+</view>
+

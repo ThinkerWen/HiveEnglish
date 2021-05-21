@@ -1,0 +1,121 @@
+/* miniprogram/pages/userCenter/userCenter.wxss */
+
+.userinfo-block{
+    /* background: red; */
+    margin-top: 100rpx;
+}
+
+.userinfo-avatar-container{
+    height: 130rpx;
+    width: 130rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto;
+}
+
+.userinfo-avatar-image{
+    height: 100%;
+    width: 100%;
+}
+
+.userinfo-nickname-text{
+    display: block;
+    text-align: center;
+    margin-top: 20rpx;
+    font-size: 35rpx;
+    font-weight: bold;
+    color: #383838;
+}
+
+.userinfo-userid-text{
+    display: block;
+    text-align: center;
+    font-size: 27rpx;
+    color: #a5a5a5;
+}
+
+.trisaction-block{
+    margin-top: 50rpx;
+    display: block;
+    width: 85%;
+    /* background: #ff9494; */
+    border-bottom: solid;
+    border-color: rgb(236, 236, 236);
+    border-width: 5rpx;
+    padding-bottom: 70rpx;
+}
+
+.trisaction{
+    width: 33.3%;
+    float: left;
+}
+
+.trisaction-top-container{
+    height: 90rpx;
+    width: 90rpx;
+    margin: auto;
+}
+
+.trisaction-top-icon{
+    height: 100%;
+    width: 100%;
+}
+
+.trisaction-bottom-text{
+    margin-top: 15rpx;
+    display: block;
+    text-align: center;
+    font-size: 25rpx;
+    color: #666666;
+}
+
+.options-block{
+    margin-top: 20rpx;
+    /* background: rgb(255, 189, 189); */
+    width: 85%;
+}
+
+.option{
+    /* background: rgb(144, 250, 144); */
+    margin-top: 50rpx;
+    margin-bottom: 60rpx;
+    height: 70rpx;
+}
+
+.option-text{
+    font-size: 30rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    margin-left: 20rpx;
+    color: #666666;
+}
+
+.option-icon-container{
+    height: 60rpx;
+    width: 60rpx;
+    float: left;
+    margin-top: 5rpx;
+    margin-left: 20rpx;
+}
+
+.option-icon-right-container{
+    float: right;
+    margin-top: 10rpx;
+    height: 50rpx;
+    width: 50rpx;
+    /* background: red; */
+}
+
+.option-icon{
+    position: relative;
+    height: 60rpx;
+    width: 60rpx;
+}
+
+.option-icon-right{
+    position: relative;
+    top: -10%;
+    left: 40%;
+    height: 50%;
+    width: 50%;
+}

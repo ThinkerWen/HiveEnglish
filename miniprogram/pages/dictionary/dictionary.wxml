@@ -1,0 +1,60 @@
+<!--miniprogram/pages/dictionary/dictionary.wxml-->
+<view class="top-bar">
+    <view wx:if="{{type == 0}}">
+        <view class="top-bar-element" bindtap="changeList" data-index="0">
+            <text class="top-bar-element-text">未学习</text>
+            <view wx:if="{{tabIndex==0}}" class="top-bar-bottom"/>
+        </view>
+        <view class="top-bar-element" bindtap="changeList" data-index="1">
+            <text class="top-bar-element-text">正在学</text>
+            <view wx:if="{{tabIndex==1}}" class="top-bar-bottom"/>
+        </view>
+        <view class="top-bar-element" bindtap="changeList" data-index="2">
+            <text class="top-bar-element-text">已掌握</text>
+            <view wx:if="{{tabIndex==2}}" class="top-bar-bottom"/>
+        </view>
+        <view class="top-bar-element" bindtap="changeList" data-index="3">
+            <text class="top-bar-element-text">简单词</text>
+            <view wx:if="{{tabIndex==3}}" class="top-bar-bottom"/>
+        </view>
+    </view>
+    <view wx:else>
+        <view class="top-bar-element" style="width:50%" bindtap="changeList" data-index="0">
+            <text class="top-bar-element-text">今日新词</text>
+            <view wx:if="{{tabIndex==0}}" class="top-bar-bottom"/>
+        </view>
+        <view class="top-bar-element" style="width:50%" bindtap="changeList" data-index="1">
+            <text class="top-bar-element-text">今日复习</text>
+            <view wx:if="{{tabIndex==1}}" class="top-bar-bottom"/>
+        </view>
+    </view>
+    <view class="summary-switch-container">
+        <text class="summary-switch-text">释义遮挡</text>
+        <switch  checked="{{isMask}}" color="#7bed9f" style="height: 30px;" bindchange="maskSwitchChange"/>
+    </view>
+</view>
+
+<!-- <view class="word" data-index="{{index}}"  wx:for="{{currentWordsList}}" wx:key="{{item.word}}">
+    <view class="word-top" catchtap="viewWordInfo" data-index="{{index}}">
+        <text class="word-text">{{item.name}}</text>
+        <view class="word-icon-container" catchtap="pronounce" data-index="{{index}}">
+            <image class="word-icon" src="../../images/icons/sound.png"/>
+        </view>
+    </view>
+    <view catchtap="wordMask" data-index="{{index}}">
+        <view wx:if="{{item.mask}}" class="word-mask" />
+        <view wx:else class="word-meaning">{{item.meaning[0]}}</view>
+    </view>
+</view> -->
+<view class="word" data-index="{{index}}"  wx:for="{{allWordList}}" wx:key="{{item.wordHead}}">
+    <view class="word-top" catchtap="viewWordInfo" data-index="{{index}}">
+        <text class="word-text">{{item.wordHead}}</text>
+        <view class="word-icon-container" data-word="{{item.ukspeech}}" catchtap="pronounce" data-index="{{index}}">
+            <image class="word-icon" src="../../images/icons/sound.png"/>
+        </view>
+    </view>
+    <view catchtap="wordMask" data-index="{{index}}">
+        <view wx:if="{{item.mask}}" class="word-mask" />
+        <view wx:else class="word-meaning">{{item.trans[0].pos}}. {{item.trans[0].tranCn}}</view>
+    </view>
+</view>

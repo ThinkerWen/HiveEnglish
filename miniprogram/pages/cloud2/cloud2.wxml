@@ -1,0 +1,19 @@
+
+<view class="tagBall">
+  <view wx:for="{{tagEle}}" wx:key="{{index}}">
+    <a wx:if="{{item.center}}" class="tag-center" style="opacity:{{item.o}};z-index:{{item.z}};left: {{item.x}}rpx;top: {{item.y}}rpx;transform: scale({{item.s}})">
+      {{item.title}}
+    </a>
+    <a wx:else catchtap="selectWord" data-index="{{index}}" class='{{item.selected?"tag-hover":"tag"}}' style="opacity:{{item.o}};z-index:{{item.z}};left: {{item.x}}rpx;top: {{item.y}}rpx;transform: scale({{item.s}})">
+      {{item.title}}
+    </a>
+  </view>
+</view>
+<view class="query-container" wx:if="{{isQuery}}">
+  <view class="query-wordinfo-container">
+      <text class="query-name-text">{{queryWordInfo.name}}</text>
+      <image bindtap="exitQuery" class="icon-close-m" src="../../images/icons/exit.png"/>
+      <text class="query-soundmark-text">{{queryWordInfo.soundmark}}</text>
+  </view>
+  <text class="query-meaning-text">{{queryWordInfo.meaning}}</text>
+</view>

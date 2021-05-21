@@ -1,0 +1,152 @@
+/* miniprogram/pages/calendar/calendar.wxss */
+
+page{
+    background: #f1f1f1;
+}
+/* header */
+.top-block{
+    height: 300rpx;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    position: absolute;
+    top: 0rpx;
+}
+
+.days-block{
+    position: relative;
+    text-align: center;
+    margin-top: 30rpx;
+    margin-bottom: 30rpx;
+}
+
+.days-text{
+    font-size: 120rpx;
+    color: #29bb96;
+}
+
+.days-assist-text{
+    font-size: 30rpx;
+    color: #3f3f3f;
+}
+
+/* picker */
+
+.indicator{
+    height: 700rpx;
+    /* background: red; */
+    opacity: 0.5;
+}
+
+.mask{
+    opacity: 0;
+}
+
+.picker-view{
+    height: 1300rpx;
+}
+
+/* calendar */
+
+.calendar-titles{
+    display: block;
+    width: 90%;
+    margin: auto;
+    margin-top: 30rpx;
+}
+
+.calendar-title-text{
+    display: block;
+    font-size: 42rpx;
+    color: rgb(202, 202, 202);
+    padding-bottom: 20rpx;
+    border-bottom: solid;
+    border-width: 5rpx;
+    border-color: rgb(207, 207, 207);
+}
+
+
+
+.calendar_title .icon image {
+    width: 60rpx;
+    height: 60rpx;
+    margin: 5rpx auto;
+}
+
+/* 日历 */
+
+.calendar {
+    width: 100%;
+    font-family: FZZhunYuan-M02S;
+}
+
+.header {
+    position: absolute;
+    font-size: 0;
+    width: 90%;
+    margin-left: 5%;
+    bottom: 0;
+}
+
+.header>view {
+    display: inline-block;
+    width: 14.285%;
+    color: rgb(202, 202, 202);
+    font-size: 30rpx;
+    text-align: center;
+    padding: 20rpx 0;
+}
+
+.weekMark {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.weekMark view {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 2px solid #69f;
+}
+
+.date-box {
+    font-size: 0;
+    padding: 10rpx 0;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.date-box>view {
+    position: relative;
+    display: inline-block;
+    width: 14.285%;
+    color: rgb(104, 104, 104);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.date-head {
+    margin-top: 30rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 12pt;
+}
+
+.nowDay .date-head {
+    width: 60rpx;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    background-color: #ff7944;
+    margin: 0 auto;
+}
+
+.signedDay .date-head {
+    width: 60rpx;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    margin: 0 auto;
+    background-color: #29bb96;
+}

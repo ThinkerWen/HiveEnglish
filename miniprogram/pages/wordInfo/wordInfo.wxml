@@ -1,0 +1,37 @@
+<!--miniprogram/pages/main/main.wxml-->
+
+<view style='width:94%;margin:auto;margin-top:20rpx;'>
+    <view class="memory-pattern">
+        <view class="wordinfo-container">
+            <text class="text-word-m">{{wordInfo.name}}</text>
+            <image catchtap='pronounce' class="icon-pronouncation-m" src="../../images/icons/sound.png/"/>
+            <text class="text-soundmark-m">{{wordInfo.soundmark}}</text>
+        </view>
+        <view class="dictionary-container">
+            <text class="text-title">词典释义</text>
+            <text wx:for="{{wordInfo.meaning}}" wx:key="{{}}" class="text-content">{{item}}</text>
+            <text class="text-title">例句</text>
+            <view class="text-content">
+                <view wx:for="{{wordInfo.magicSentence}}" wx:key="{{sentence.word}}">
+                    <text wx:if="{{item.type==0}}" class="text-content-sentence-word" data-index="{{index}}">{{item.word}}</text>
+                    <text wx:if="{{item.selected}}" class="text-content-sentence-word-selected" data-index="{{index}}" bindtap='selectWord'>{{item.word}}</text>
+                    <text wx:elif="{{item.type==1}}" class="text-content-sentence-word" data-index="{{index}}" bindtap='selectWord'>{{item.word}}</text>
+                    <text wx:elif="{{item.type==2}}" class="text-content-sentence-word-major" data-index="{{index}}" bindtap='selectWord'>{{item.word}}</text>
+                    <text class="text-content-sentence-word" decode='true'>&nbsp;</text>
+                </view>
+            </view>
+            <view class="text-content">{{wordInfo.sentenceMeaning}}</view>
+        </view>
+        <view class="blank"/>
+        <view class="button-next" bindtap="nextHandle">添加</view>
+    </view>
+</view>
+
+<view class="query-container" wx:if="{{isQuery}}" catchtap='viewQueryWordInfo'>
+    <view class="query-wordinfo-container">
+        <text class="query-name-text">{{queryWordInfo.name}}</text>
+        <image catchtap="exitQuery" class="icon-close-m" src="../../images/icons/exit.png"/>
+        <text class="query-soundmark-text">{{queryWordInfo.soundmark}}</text>
+    </view>
+    <text class="query-meaning-text">{{queryWordInfo.meaning[0]}}</text>
+</view>

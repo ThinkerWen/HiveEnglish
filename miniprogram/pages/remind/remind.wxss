@@ -1,0 +1,78 @@
+/* miniprogram/pages/remind/remind.wxss */
+.guide{
+    width: 85%;
+    margin: auto;
+    margin-top: 50rpx;
+    margin-bottom: 100rpx;
+}
+
+.guide-text{
+    font-size: 60rpx;
+    color: #505050;
+    float: left;
+}
+
+.switch-container{
+    float: left;
+    margin-top: 30rpx;
+    margin-left: 20rpx;
+}
+
+.guide-text-b{
+    display: block;
+    clear: both;
+    margin-top: 20rpx;
+    font-size: 30rpx;
+    color: #bbbbbb;
+}
+
+.wx-switch-input{
+    width:60rpx !important;
+    height:36rpx !important;
+}
+/*白色样式（false的样式）*/
+.wx-switch-input::before{
+    width:60rpx !important;
+    height: 36rpx !important;
+}
+/*绿色样式（true的样式）*/
+.wx-switch-input::after{
+    width: 32rpx !important;
+    height: 32rpx !important;
+}
+
+.switch-text{
+    font-size: 30rpx;
+    color: #bbbbbb;
+    margin-right: 15rpx;
+}
+.set-picker {
+    width: 80%;
+    margin:auto;
+    height: 800rpx;
+}
+
+.set-picker-indicator {
+    height: 150rpx;
+    width: 90%;
+    margin-left: 5%;
+    border: none;
+    background: #ececec;
+    opacity: 0.3;
+    border-radius: 10px;
+}
+
+.set-picker-line {
+    height: 150rpx;
+    line-height: 150rpx;
+    text-align: center;
+}
+
+.set-picker-left {
+    width: 100%;
+}
+
+.set-picker-text {
+    color: #505050;
+    font-size: 80rpx;
+}

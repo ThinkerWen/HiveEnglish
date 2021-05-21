@@ -1,0 +1,37 @@
+<!--miniprogram/pages/status/status.wxml-->
+<view class="top-container">
+    <text class="top-total-num-text">{{masterNum + studingNum + easyNum}}</text>
+    <text class="top-total-num-guide-text">单词总数</text>
+    <view class="top-trisection-container">
+        <view class="top-trisection">
+            <text class="top-trisection-top-text">{{masterNum}}</text>
+            <text class="top-trisection-bottom-text">已掌握</text>
+        </view>
+        <view class="top-trisection">
+            <text class="top-trisection-top-text">{{studingNum}}</text>
+            <text class="top-trisection-bottom-text">正在学</text>
+        </view>
+        <view class="top-trisection">
+            <text class="top-trisection-top-text">{{easyNum}}</text>
+            <text class="top-trisection-bottom-text">简单词</text>
+        </view>
+    </view>
+</view>
+<view class="separator"/>
+<view class="canvas-container">
+    <view class="canvas-guide-container">
+        <view class="canvas-guide-left" style="border-color:#1dd1a1;">进步曲线</view>
+        <view class="canvas-guide-right" style="border-color:#7bed9f; opacity:0.4;">单词总数</view>
+        <view class="canvas-guide-right" style="border-color:#2ed573; opacity:0.4;">已掌握</view>
+    </view>
+    <canvas canvas-id="canvas1" />
+</view>
+<view class="separator"/>
+<view class="canvas-container">
+    <view class="canvas-guide-container">
+        <view class="canvas-guide-left" style="border-color:#1dd1a1;">每日单词统计</view>
+        <view class="canvas-guide-right" style="border-color:#f3a683; opacity:0.4;">任务</view>
+        <view class="canvas-guide-right" style="border-color:#e15f41; opacity:0.4;">已学</view>
+    </view>
+    <canvas canvas-id="canvas2" />
+</view>

@@ -1,0 +1,70 @@
+<!--miniprogram/pages/userCenter/userCenter.wxml-->
+<view class="container">
+    <view class="userinfo-block">
+        <view class="userinfo-avatar-container">
+          <open-data class="userinfo-avatar-image" type="userAvatarUrl"></open-data>
+          <!-- <image class="userinfo-avatar-image" src="{{userInfo.avatarUrl}}" /> -->
+        </view>
+        <!-- <text class="userinfo-nickname-text">{{userInfo.nickName}}</text> -->
+        <open-data type="userNickName" class="userinfo-nickname-text"></open-data>
+        <open-data type="userCity" class="userinfo-userid-text"></open-data>
+    </view> 
+    <view class="trisaction-block">
+        <view class="trisaction" bindtap="toTaskPage">
+            <view class="trisaction-top-container">
+                <image  class="trisaction-top-icon" src="../../images/icons/book_uc.png"/>
+            </view>
+            <text class="trisaction-bottom-text">任务设置</text>
+        </view>
+        <view class="trisaction" bindtap="toCalendarPage">
+            <view class="trisaction-top-container">
+                <image  class="trisaction-top-icon" src="../../images/icons/calendar_uc.png"/>
+            </view>
+            <text class="trisaction-bottom-text">打卡记录</text>
+        </view>
+        <view class="trisaction">
+            <view class="trisaction-top-container" bindtap="toRemindPage">
+                <image  class="trisaction-top-icon" src="../../images/icons/message_uc.png"/>
+            </view>
+            <text class="trisaction-bottom-text">打卡提醒</text>
+        </view>
+    </view>
+    <view class="options-block">
+        <navigator url="./Feedback"><view class="option">
+            <view class="option-icon-container">
+                <image class="option-icon" src="../../images/icons/email.png"/>
+            </view>
+            <text class="option-text">问题反馈</text>
+            <view class="option-icon-right-container">
+                <image  class="option-icon-right" src="../../images/icons/right.png"/>
+            </view>
+        </view></navigator>
+        <view class="option">
+            <view class="option-icon-container">
+                <image class="option-icon" src="../../images/icons/file.png"/>
+            </view>
+            <text class="option-text">关于我们</text>
+            <view class="option-icon-right-container">
+                <image  class="option-icon-right" src="../../images/icons/right.png"/>
+            </view>
+        </view>
+        <view class="option">
+            <view class="option-icon-container">
+                <image class="option-icon" src="../../images/icons/star.png"/>
+            </view>
+            <text class="option-text">分享小程序</text>
+            <view class="option-icon-right-container">
+                <image  class="option-icon-right" src="../../images/icons/right.png"/>
+            </view>
+        </view>
+        <view class="option">
+            <view class="option-icon-container">
+                <image  class="option-icon" src="../../images/icons/exit.png"/>
+            </view>
+            <text class="option-text" bindtap="exitMiniprogram">退出小程序</text>
+            <view class="option-icon-right-container">
+                <image  class="option-icon-right" src="../../images/icons/right.png"/>
+            </view>
+        </view>
+    </view>
+</view>

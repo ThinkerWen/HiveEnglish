@@ -1,0 +1,160 @@
+/* miniprogram/pages/plan/plan.wxss */
+/* miniprogram/pages/task/task.wxss */
+page{
+    background: rgb(245, 245, 245);
+}
+
+.plan-block{
+    /* background: rgb(255, 234, 234); */
+    width: 100%;
+    padding-left: 100rpx;
+    padding-bottom: 60rpx;
+    padding-top: 30rpx;
+    background: white;
+}
+
+.plan-now-block{
+    margin-top: 30rpx;
+}
+
+.plan-now-book-image-container{
+    float: left;
+    height: 220rpx;
+    width: 160rpx;
+    border-radius: 15rpx;
+    overflow: hidden;
+}
+
+.plan-now-book-image{
+    height: 100%;
+    width: 100%;
+}
+
+.plan-now-book-info{
+    position: relative;
+    padding-left: 30rpx;
+    width: 435rpx;
+    float: left;
+    /* background: rgb(236, 255, 236); */
+}
+
+.plan-now-book-name-text{
+    font-size: 35rpx;
+    font-weight: bold;
+    color: #505050;
+}
+
+.plan-now-text-container{
+    clear: both;
+}
+
+.plan-now-text{
+    font-size: 27rpx;
+    height: 30rpx;
+    /* background: red; */
+    line-height: 30rpx;
+}
+
+.plan-now-bottom{
+    /* background: red; */
+    display: block;
+    position: relative;
+    top: 50rpx;
+}
+
+.plan-now-prediction-guide-text{
+    font-size: 28rpx;
+    background: rgb(35, 187, 116);
+    border-radius: 10rpx;
+    padding: 5rpx;
+    color: white;
+}
+
+.plan-now-prediction-time-text{
+    font-size: 30rpx;
+    margin-left: 15rpx;
+    color: #505050;
+}
+
+.set-block{
+    background: white;
+    width: 85%;
+    margin-top: 30rpx;
+    border-radius: 20rpx;
+    height: 600rpx;
+}
+
+.set-guide-container{
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.set-guide-right-text, .set-guide-left-text{
+    font-size: 28rpx;
+    text-align: center;
+    float: left;
+    color: #505050;
+}
+
+.set-guide-left-text{
+    width: 60%;
+}
+
+.set-guide-right-text{
+    width: 40%;
+}
+
+.set-picker{
+  width: 100%; 
+  height: 500rpx;
+}
+
+.set-picker-indicator{
+  height: 50px; 
+  width:90%;
+  margin-left:5%; 
+  border: none; 
+  background: #ececec; 
+  opacity:0.3; 
+  border-radius: 10px;
+}
+
+.set-picker-line{
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+}
+
+.set-picker-left{
+    width: 60%;
+    float: left;
+}
+
+.set-picker-right{
+    width: 40%;
+    float: left;
+}
+
+.set-picker-text{
+    color: #505050;
+    font-size: 28rpx;
+}
+
+.set-picker-digit-text{
+    font-size: 40rpx;
+    font-weight: bold;
+    margin-left: 10rpx;
+    margin-right: 10rpx;
+}
+
+.complete-button{
+    margin-top: 100rpx;
+    background-image: linear-gradient(-20deg, #00cdac 0%, #8dda85 100%);
+    width: 65%;
+    color: white;
+    text-align: center;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 35rpx;
+    border-radius: 8% / 50%;
+}

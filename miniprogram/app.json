@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/plan/plan",
+    "pages/task/task",
+    "pages/calendar/calendar",
+    "pages/main/main",
+    "pages/status/status",
+    "pages/dictionary/dictionary",
+    "pages/wordInfo/wordInfo",
+    "pages/remind/remind",
+    "pages/userCenter/userCenter",
+    "pages/userCenter/Feedback",
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/library/library",
+    "pages/cloud/cloud"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "蜂巢单词",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home_selected.png",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/status/status",
+        "iconPath": "images/icons/status.png",
+        "selectedIconPath": "images/icons/status_selected.png",
+        "text": "数据"
+      },
+      {
+        "pagePath": "pages/userCenter/userCenter",
+        "iconPath": "images/icons/mine.png",
+        "selectedIconPath": "images/icons/mine_selected.png",
+        "text": "用户"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

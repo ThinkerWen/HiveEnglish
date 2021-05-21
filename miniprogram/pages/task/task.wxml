@@ -1,0 +1,63 @@
+<!--miniprogram/pages/task/task.wxml-->
+<view class="container">
+    <view class="plan-block">
+        <text class="plan-guide-text-left">我的学习任务</text>
+        <text class="plan-guide-text-right">正在学</text>
+        <view class="plan-now-block">
+            <view class="plan-now-book-image-container" bindtap='toDictionary'>
+                <image class="plan-now-book-image" src="{{currentBookInfo.imgUrl}}"/>
+            </view>
+            <view class="plan-now-book-info">
+                <view class="plan-now-book-name-text">{{currentBookInfo.name}}</view>
+                <view class="plan-now-text-container">
+                    <text class="plan-now-text">每天</text>
+                    <text class="plan-now-text">{{currentBookInfo.plan.new}}</text>
+                    <text class="plan-now-text">新词</text>
+                </view>
+                <view class="plan-now-change-icon-container">
+                    <image class="plan-now-change-icon" src="../../images/icons/email.png" catchtap='toPlanPage'/>
+                </view>
+                <view class="plan-now-progress-text-container">
+                    <view class="plan-now-progress-text">
+                        <text >已完成：</text>
+                        <text >{{currentBookInfo.studiedNum}}</text>
+                        <text >/</text>
+                        <text >{{currentBookInfo.totalNum}}</text>
+                        <text >词</text>
+                    </view>
+                </view>
+                <view class="plan-now-progress-bar-container">
+                    <view class="plan-now-progress-bar"/>
+                    <view class="plan-now-progress-bar-mask"/>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="books-block" >
+        <view class="books-guide">
+            <text class="books-guide-text">我的单词书</text>
+            <view class="books-add-button" catchtap="toLibrary">添加新书</view>
+        </view>
+        <view class="books-container" wx:for="{{myBooksList}}" wx:key="{{item.name}}">
+            <view class="books-image-container" bindtap="toDictionary">
+                <image class="books-image" src="{{item.imgUrl}}" />
+            </view>
+            <view class="books-info-container">
+                <view class="books-name-text">{{item.name}}</view>
+                <view class="books-progress-text">
+                    <text >已完成：</text>
+                    <text >{{item.studiedNum}}</text>
+                    <text >/</text>
+                    <text >{{item.totalNum}}</text>
+                    <text >词</text>
+                </view>
+                <view class="books-info-bottom">
+                    <view class="books-delete-icon-container">
+                        <image class="books-delete-icon" src="../../images/icons/star.png" />
+                    </view>
+                    <view class="books-select-button">切换</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

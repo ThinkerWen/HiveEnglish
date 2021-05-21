@@ -1,0 +1,203 @@
+/* miniprogram/pages/task/task.wxss */
+page{
+    background: rgb(245, 245, 245);
+}
+
+.plan-block{
+    /* background: rgb(255, 234, 234); */
+    width: 100%;
+    padding-left: 100rpx;
+    padding-bottom: 60rpx;
+    padding-top: 30rpx;
+    background: white;
+}
+
+.plan-guide-text-left{
+    font-size: 45rpx;
+    color: #505050;
+}
+
+.plan-guide-text-right{
+    margin-left: 15rpx;
+    padding: 5rpx 10rpx 5rpx 10rpx;
+    border-radius: 15rpx;
+    font-size: 28rpx;
+    background: rgb(37, 209, 157);
+    color: white;
+}
+
+.plan-now-block{
+    margin-top: 30rpx;
+}
+
+.plan-now-book-image-container{
+    float: left;
+    height: 248rpx;
+    width: 180rpx;
+    border-radius: 15rpx;
+    overflow: hidden;
+}
+
+.plan-now-book-image{
+    height: 100%;
+    width: 100%;
+}
+
+.plan-now-book-info{
+    padding-left: 20rpx;
+    width: 435rpx;
+    float: left;
+    /* background: rgb(236, 255, 236); */
+}
+
+.plan-now-book-name-text{
+    font-size: 36rpx;
+    color: #505050;
+}
+
+.plan-now-text-container{
+    float: left;
+}
+
+.plan-now-text{
+    font-size: 30rpx;
+    height: 30rpx;
+    /* background: red; */
+    line-height: 30rpx;
+}
+
+.plan-now-change-icon-container{
+    margin-left: 10rpx;
+    float: left;
+    height: 30rpx;
+    width: 30rpx;
+}
+
+.plan-now-change-icon{
+    height: 100%;
+    width: 100%;
+}
+
+.plan-now-progress-text-container{
+    margin-top: 130rpx;
+    display: block;
+    clear: both;
+}
+
+.plan-now-progress-text{
+    font-size: 27rpx;
+    color: rgb(200, 200, 200);
+}
+
+.plan-now-progress-bar-container{
+    position: relative;
+    margin-top: 10rpx;
+}
+
+.plan-now-progress-bar,.plan-now-progress-bar-mask{
+    position: absolute;
+    height: 7rpx;
+    width: 100%;
+    background: rgb(206, 206, 206);
+}
+
+.plan-now-progress-bar-mask{
+    height: 7rpx;
+    width: 50%;
+    background: rgb(49, 221, 178);
+}
+
+.books-block{
+    margin-top: 40rpx;
+    width: 90%;
+}
+
+.books-guide{
+    display: block;
+    overflow: hidden;
+}
+
+.books-guide-text{
+    color: #333333;
+    font-size: 33rpx;
+    float: left;
+}
+
+.books-add-button{
+    padding: 2rpx 15rpx 2rpx 15rpx;
+    float: right;
+    font-size: 28rpx;
+    border: solid;
+    border-radius: 18%/50%;
+    border-width: 2rpx;
+    border-color: rgb(34, 196, 120);
+    color: rgb(42, 189, 133);
+    font-weight: bold;
+}
+
+.books-container{
+    display: block;
+    margin-top: 25rpx;
+    overflow: hidden;
+    background: white;
+    padding: 30rpx;
+    border-radius: 20rpx;
+}
+
+.books-image-container{
+    float: left;
+    height: 198rpx;
+    width: 144rpx;
+    border-radius: 10rpx;
+    overflow: hidden;
+}
+
+.books-image{
+    height: 100%;
+    width: 100%;
+}
+
+.books-info-container{
+    float: left;
+    margin-left: 20rpx;
+    width: 450rpx;
+}
+
+.books-name-text{
+    font-size: 35rpx;
+    color: #333333;
+}
+
+.books-progress-text{
+    margin-top:10rpx;
+    font-size: 28rpx;
+    color: #c8c8c8;
+}
+
+.books-info-bottom{
+    margin-top: 60rpx;
+}
+
+.books-delete-icon-container{
+    margin-left: 10rpx;
+    width: 40rpx;
+    height: 40rpx;
+    float: left;
+}
+
+.books-delete-icon{
+    width: 100%;
+    height: 100%;
+}
+
+.books-select-button{
+    height: 45rpx;
+    line-height: 45rpx;
+    font-size: 25rpx;
+    font-weight: bold;
+    color: rgb(45, 204, 130);
+    background: #c7fce4;
+    border-radius: 25%/50%;
+    padding: 0 20rpx 0 20rpx;
+    float: right;
+}

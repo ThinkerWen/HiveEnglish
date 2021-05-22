@@ -1,5 +1,6 @@
 // miniprogram/pages/library/library.js
 const db = wx.cloud.database()
+const app = getApp()
 Page({
   // const db = wx.cloud.database()
   // 2. 构造查询语句
@@ -20,9 +21,11 @@ Page({
    */
   onLoad: function (options) {
     // this.refresh()
-    if(!this.data.Databased){
-      this.getBook()
-    }
+    // if(!app.globalData.Databased.allBook){
+    this.getBook()
+      // getApp().globalData.Databased.allBook = true
+      // console.log("in")
+    // }
   },
 
   getBook: function() {
@@ -43,7 +46,6 @@ Page({
           })
         })
       }
-      console.log(this.data.booksList)
     })
   },
 

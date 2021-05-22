@@ -65,6 +65,18 @@
           "pathName": "pages/library/library",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/dictionary/dictionary",
+          "pathName": "pages/dictionary/dictionary",
+          "query": "id=CET4luan_1",
+          "scene": null
+        },
+        {
+          "name": "pages/dictionary/dictionary",
+          "pathName": "pages/dictionary/dictionary",
+          "query": "id=CET6luan_1",
+          "scene": null
         }
       ]
     }

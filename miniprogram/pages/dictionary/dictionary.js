@@ -83,26 +83,6 @@ Page({
       }
       console.log(this.data.allWordList)
     })
-
-    // db.collection(this.data.id).doc('todo-identifiant-aleatoire').get({
-    //   success: function(res) {
-    //     // res.data 包含该记录的数据
-    //     console.log(res.data)
-    //   }
-    // })
-  },
-
-  sound: function(e){
-    var url = API + "access&type=2"
-    wx.request({
-      url: url,
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success (res) {
-        console.log(res)
-      }
-    })
   },
 
   changeList: function(e){
@@ -169,23 +149,25 @@ Page({
       currentWordsList: currentWordsList
     })
   },
+
   wordMask: function(e){
-    var currentWordsList = that.data.currentWordsList
-    currentWordsList[e.currentTarget.dataset.index].mask = !currentWordsList[e.currentTarget.dataset.index].mask
+    var currentWordsList = that.data.allWordList
+    currentWordsList[e.currentTarget.dataset.index].mask = currentWordsList[e.currentTarget.dataset.index].mask==1 ? 0 : 1
     that.setData({
-      currentWordsList: currentWordsList
+      allWordList: currentWordsList
     })
   },
 
-  maskSwitchChange: function(e){
-    var currentWordsList = that.data.currentWordsList
+  maskSwitchChange: function(e){      //改变遮挡状态
+    var currentWordsList = that.data.allWordList
     var mask = e.detail.value
+    console.log(e)
     for( let i of currentWordsList){
       i.mask = mask
     }
     that.setData({
       isMask: mask,
-      currentWordsList: currentWordsList
+      allWordList: currentWordsList
     })
   },
 
@@ -257,21 +239,4 @@ Page({
 
   },
   
-  audioPlay: function () {
-    this.audioCtx.play()
-  },
-
-  test: function(e){
-    console.log(e)
-    const innerAudioContext = wx.createInnerAudioContext()
-    innerAudioContext.autoplay = true
-    innerAudioContext.src = 'https://dict.youdao.com/dictvoice?audio='+e.currentTarget.dataset.word
-    innerAudioContext.onPlay(() => {
-      console.log('开始播放')
-    })
-    innerAudioContext.onError((res) => {
-      console.log(res.errMsg)
-      console.log(res.errCode)
-    })
-  }
 })

@@ -10,9 +10,9 @@
 
 <picker-view indicator-class="set-picker-indicator" class="set-picker">
     <picker-view-column>
-        <view class="set-picker-line" wx:for="{{pickerData}}">
+        <view class="set-picker-line" wx:for="{{pickerData}}" wx:key="item">
             <view class="set-picker-left">
-                <text class="set-picker-text">{{item}}</text>
+                <text data-time="{{item}}" bindtap="bindTimeChange" class="set-picker-text">{{item}}</text>
             </view>
         </view>
     </picker-view-column>

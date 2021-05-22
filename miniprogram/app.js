@@ -5,7 +5,9 @@ App({
   globalData: {
     Databased: {
       allBook: false
-    }
+    },
+    userInfo: {},
+    hasUserInfo: false,
   },
 
   onLaunch: function () {

@@ -139,8 +139,17 @@
     font-size: 10pt;
     line-height: 100%;
     color: #999;
-    margin: 25rpx 20rpx 15rpx;
+    margin-top: 55px;
+    /* padding-top: 55rpx; */
+    /* margin: 25rpx 20rpx 15rpx; */
 }
+
+.tips{
+    text-align: center;
+    margin-top: 25rpx;
+    padding-bottom: 25rpx;
+}
+
 .issues-panel{
     display: flex;
     flex-direction: column;
@@ -310,4 +319,16 @@
 
 .hidden {
   display: none;
+}
+
+.start-button{
+    margin-top: 100rpx;
+    background-image: linear-gradient(-20deg, #00cdac 0%, #4f86d8 100%);
+    width: 65%;
+    color: white;
+    text-align: center;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 35rpx;
+    border-radius: 8% / 50%;
 }

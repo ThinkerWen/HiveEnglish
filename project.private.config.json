@@ -77,6 +77,18 @@
           "pathName": "pages/dictionary/dictionary",
           "query": "id=CET6luan_1",
           "scene": null
+        },
+        {
+          "name": "pages/userCenter/Feedback",
+          "pathName": "pages/userCenter/Feedback",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/remind/remind",
+          "pathName": "pages/remind/remind",
+          "query": "",
+          "scene": null
         }
       ]
     }

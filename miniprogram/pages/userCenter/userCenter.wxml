@@ -1,14 +1,27 @@
 <!--miniprogram/pages/userCenter/userCenter.wxml-->
 <view class="container">
-    <view class="userinfo-block">
+    <!-- <view class="userinfo-block">
         <view class="userinfo-avatar-container">
-          <open-data class="userinfo-avatar-image" type="userAvatarUrl"></open-data>
+          <open-data class="userinfo-avatar-image" type="userAvatarUrl"></open-data> -->
           <!-- <image class="userinfo-avatar-image" src="{{userInfo.avatarUrl}}" /> -->
-        </view>
+        <!-- </view> -->
         <!-- <text class="userinfo-nickname-text">{{userInfo.nickName}}</text> -->
-        <open-data type="userNickName" class="userinfo-nickname-text"></open-data>
+        <!-- <open-data type="userNickName" class="userinfo-nickname-text"></open-data>
         <open-data type="userCity" class="userinfo-userid-text"></open-data>
-    </view> 
+    </view>  -->
+    <view wx:if="{{!hasUserInfo}}" class="userinfo-block">
+        <view class="userinfo-avatar-container">
+          <image bindtap="getUserProfile" class="userinfo-avatar-image" src="../../images/icons/login.png" />
+          <text class="userinfo-nickname-text">sss</text>
+        </view>
+    </view>
+    <view wx:else class="userinfo-block">
+        <view class="userinfo-avatar-container">
+          <image class="userinfo-avatar-image" src="{{userInfo.avatarUrl}}" />
+        </view>
+        <text class="userinfo-nickname-text">{{userInfo.nickName}}</text>
+        <text class="userinfo-userid-text">{{userInfo.city}}</text>
+    </view>
     <view class="trisaction-block">
         <view class="trisaction" bindtap="toTaskPage">
             <view class="trisaction-top-container">

@@ -1,40 +1,8 @@
 <!--issues.wxml-->
-<view class="container">
+<!-- <view class="container"> -->
 
-  <view class="issues-list" wx:if="{{status}}">
-    <block>
-      <!--无反馈记录-->
-      <view wx:if="{{hasFeed == false}}">
-        <view class="imgitem">
-          <image src="/static/images/norecord1.png" class="empty_img"></image>
-        </view>
-        <view class="txtitem">
-          <text class="t28rpx">暂无您的反馈记录</text>
-        </view>
-      </view>
-      <view wx:if="{{hasFeed}}" wx:for="{{feedList}}" wx:key="id" class="issues-item {{index == itemopen ? '' : 'close'}}" data-index="{{index}}" bindtap="openItem">
-        <text class="btn-text">{{item.title}}</text>
-        <text class="item-status">{{item.pubtime}}</text>
-        <view class="btn-open" wx:if="{{index != itemopen}}">
-          <image class="btn-open-img" src="/static/images/more/down.png"></image>
-        </view>
-
-        <view class="item-bd" wx:else>
-          <view class="item-comment">
-            <image class="item-comment-img" src="{{item.feedpic}}"></image>
-            <view class="item-comment-bd">
-              <text>{{item.content}}</text>
-            </view>
-          </view>
-        </view>
-      </view>
-
-      <text class="issues-remind">若要了解更多反馈信息，请访问 —— http://together.demgo.me/。</text>
-    </block>
-  </view>
-
-  <block wx:else>
-    <text class="issues-label">我们会认真处理您的反馈，并将结果发送给您的邮箱</text>
+  <block class="test">
+    <view class="tips"><text class="issues-label">我们会认真处理您的反馈，并将结果发送给您的邮箱</text></view>
     <form bindsubmit="submitForm">
       <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{TopTips}}</view>
       <view class="issues-panel">
@@ -57,8 +25,8 @@
         </view>
       </block>
 
-      <text class="issues-remind ">您可以加入"一起 "用户反馈QQ群285263346进行即时反馈。</text>
-      <button class="submit-btn" loading="{{isLoading}}" hover-start-time="200" disabled="{{isdisabled}}" formType="submit">提交反馈</button>
+      <text class="issues-remind ">您可以加入"一起 "用户反馈QQ群103172845进行即时反馈。</text>
+      <button class="start-button" loading="{{isLoading}}" hover-start-time="200" disabled="{{isdisabled}}" formType="submit">提交反馈</button>
     </form>
   </block>
-</view>
+<!-- </view> -->

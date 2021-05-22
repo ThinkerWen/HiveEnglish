@@ -195,7 +195,7 @@ Page({
     if (title == "") {
       this.setData({
         showTopTips: true,
-        TopTips: '请输入反馈标题'
+        TopTips: '请输入您的邮箱'
       });
     } else if (content == "") {
       this.setData({

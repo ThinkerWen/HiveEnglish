@@ -18,7 +18,7 @@ var getFakeUserInfo = () => {
       "zh_CN",
     nickName
       :
-      "Rollback",
+      "Rollbback",
     province
       :
       "Shandong"

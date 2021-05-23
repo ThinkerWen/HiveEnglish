@@ -21,20 +21,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.dataPull()
+    // this.dataPull()
     that = this
   },
 
   dataPull: function(){
     var bookInfo = {}
     var that = this
-    console.log(app.globalData.openId)
     db.collection('userLearned').where({
       userId: app.globalData.openId
     })
     .get({
       success: function(res) {
-        console.log(res.data[0])
+        bookInfo.studiedNum = res.data[0].learnedSequence
         db.collection('Booklist').where({
           id: res.data[0].bookId
         })
@@ -42,18 +41,18 @@ Page({
           success: function(res) {
             bookInfo.name = res.data[0].title
             bookInfo.totalNum = res.data[0].wordNum
+            bookInfo.percentage = ((bookInfo.studiedNum / bookInfo.totalNum) * 100).toFixed(2)
+            that.setData({
+              bookInfo: bookInfo
+            })
           }
         })
-        bookInfo.studiedNum = res.data[0].learnedSequence
-        bookInfo.percentage = (bookInfo.studiedNum / bookInfo.totalNumz) * 100
         that.setData({
           pullData: res.data[0],
           newWordsNum: res.data[0].newWord.length,
           oldWordsNum: res.data[0].reviewWord.length,
-          unstudyWordsNum: res.data[0].newWord.length + res.data[0].reviewWord.length,
-          bookInfo: bookInfo
+          unstudyWordsNum: res.data[0].newWord.length + res.data[0].reviewWord.length
         })
-        console.log(that.data.bookInfo)
       }
     })
   },

@@ -1,10 +1,13 @@
 // miniprogram/pages/home/home.js
+const db = wx.cloud.database()
+const app = getApp()
 var that
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    pullData: {},
     searchText: "",
     signedNum: 0,
     newWordsNum: 0,
@@ -18,7 +21,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.dataPull()
     that = this
+  },
+
+  dataPull: function(){
+    var that = this
+    console.log(app.globalData.openId)
+    db.collection('userLearned').where({
+      userId: app.globalData.openId
+    })
+    .get({
+      success: function(res) {
+        that.setData({
+          pullData: res.data[0]
+        })
+      }
+    })
   },
 
   setTaskInfo: function(){
@@ -83,6 +102,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.dataPull()
     this.setTaskInfo()
     this.setSignedNum()
     this.setBookInfo()

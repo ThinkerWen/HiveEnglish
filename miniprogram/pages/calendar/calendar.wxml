@@ -2,12 +2,12 @@
 <view style="height:100%;">
 <picker-view indicator-class="indicator" mask-class="mask" class="picker-view" value="{{[1]}}">
   <picker-view-column>
-    <view class='calendar' wx:for="{{monthArr}}" wx:key="">
+    <view class='calendar' wx:for="{{monthArr}}" wx:key="item">
       <view class="calendar-titles">
          <text class="calendar-title-text">{{item.year}}.{{item.month+1}}</text>
       </view>
       <view class='date-box'>
-        <block wx:for='{{item.dateArr}}' wx:key='{{}}'>
+        <block wx:for='{{item.dateArr}}' wx:key='item'>
            <view wx:if="{{item.status==2}}" class="nowDay">
             <view class='date-head' data-year='{{year}}' data-month='{{month}}' data-datenum='{{item.dateNum}}'>
               <view>{{item.dateNum}}</view>
@@ -25,12 +25,14 @@
 </picker-view>
 </view>
 <view class="top-block">
+  <!-- 天数 -->
   <view class="days-block">
-    <text class="days-text">0</text>
+    <text class="days-text">{{continueDays}}</text>
     <text class="days-assist-text">天</text>
   </view>
+  <!-- 星期 -->
   <view class='header'>
-    <view wx:for='{{date}}' wx:key='{{}}'>{{item}}
+    <view wx:for='{{date}}' wx:key='item'>{{item}}
     </view>
   </view>
 </view>

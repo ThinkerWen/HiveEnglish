@@ -18,11 +18,42 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var monthArr = this.monthInit()
     this.setData({
       userInfo: app.globalData.userInfo,
-      hasUserInfo: app.globalData.hasUserInfo
+      hasUserInfo: app.globalData.hasUserInfo,
+      monthArr: monthArr
     })
-  }, 
+  },
+
+  getMonthStartDay: function(year, month) {
+    return new Date(year, month-1,1).getDay()
+  },
+
+
+  monthInit: function(){
+    var monthArr = []
+    var tempArr = {}
+    var dateArr = []
+    var now = new Date()
+    var y = now.getFullYear()
+    var m = now.getMonth()
+    const getMonthStartDay = (year, month) => new Date(year, month-1,1).getDay()
+    const getMonthCountDay = (year, month) => new Date(year, month, 0).getDate()
+    var num = getMonthStartDay(y,m+1)
+    var dayNUm = getMonthCountDay(y, m+1)
+    monthArr.year = y
+    monthArr.month = m
+    for(let i=0; i<num; i++){
+      dateArr.push({})
+    }
+    for(let i=1; i<=dayNUm; i++){
+      dateArr.push({"dateNum": i})
+    }
+    tempArr.dateArr = dateArr
+    monthArr.push(tempArr)
+    return monthArr
+  },
 
   getOpenId() {
     wx.showLoading({
@@ -42,6 +73,7 @@ Page({
         openId: resp.result.openid
       })
       getApp().globalData.openId = this.data.openId
+      console.log(this.data.openId)
       this.pushDatabase()
     }).catch((e) => {
       this.setData({
@@ -49,14 +81,11 @@ Page({
       })
     }).finally(() => {
       wx.hideLoading()
-      // console.log(app.globalData.openId)
     })
   },
 
   pushDatabase: function() {
-    // console.log(this.data)
-    // var openId = this.data.openId
-    console.log(this.data.openId)
+    var that = this
     db.collection('userInfo').where({
       _openid: this.data.openId // 填入当前用户 openid
     }).get().then(res => {
@@ -67,9 +96,42 @@ Page({
             userName: this.data.userInfo.nickName,
             userPic: this.data.userInfo.avatarUrl,
             userAddress: this.data.userInfo.city,
-            registerDay: new Date()
+            registerDay: new Date(),
+            reminderTime: "",
+            continueDays: 0,
+            day1: 0,
+            day2: 0,
+            day3: 0,
+            day4: 0,
+            day5: 0,
+            dayWords: 0,
+            learnedDays: this.data.monthArr
           }
         })
+      }
+      else{
+        var now = new Date()
+        var y = now.getFullYear()
+        var m = now.getMonth()
+        var d = now.getDate()
+        var monthArr = res.data[0].learnedDays
+
+        for(let j of monthArr){
+          if(y != j.year) continue;
+          if(m != j.month) continue;
+          else{
+            var k = 0
+            while(!(j.dateArr[k].dateNum)) k++
+            j.dateArr[k-1+d].status = 1
+          }
+        }
+        
+        db.collection('userInfo').doc(that.data.openId).update({
+          data: {
+            learnedDays: monthArr
+          }
+        })
+
       }
     })
   },
@@ -85,8 +147,6 @@ Page({
           hasUserInfo: true
         })
         this.getOpenId()
-        // console.log(this.data)
-        // console.log(res.userInfo)
       }
     })
   },

@@ -1,4 +1,6 @@
 // miniprogram/pages/remind/remind.js
+const db = wx.cloud.database()
+const app = getApp()
 Page({
 
   /**
@@ -9,11 +11,29 @@ Page({
     time: '12:01'
   },
 
+  pushDatabase: function() {
+    var that = this
+    db.collection('userInfo').where({
+      _openid: app.globalData.openId // 填入当前用户 openid
+    }).get().then(res => {
+      if(res.data.length == 1){
+        db.collection('userInfo').doc(app.globalData.openId).update({
+          // data 传入需要局部更新的数据
+          data: {
+            // 表示将 done 字段置为 true
+            reminderTime: that.data.time
+          }
+        })
+      }
+    })
+  },
+
   bindTimeChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.currentTarget.dataset.time)
     this.setData({
       time: e.currentTarget.dataset.time
     })
+    this.pushDatabase()
     wx.navigateBack({
       delta: 1
     })

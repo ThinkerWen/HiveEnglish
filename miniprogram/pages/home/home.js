@@ -26,6 +26,7 @@ Page({
   },
 
   dataPull: function(){
+    var bookInfo = {}
     var that = this
     console.log(app.globalData.openId)
     db.collection('userLearned').where({
@@ -33,9 +34,26 @@ Page({
     })
     .get({
       success: function(res) {
-        that.setData({
-          pullData: res.data[0]
+        console.log(res.data[0])
+        db.collection('Booklist').where({
+          id: res.data[0].bookId
         })
+        .get({
+          success: function(res) {
+            bookInfo.name = res.data[0].title
+            bookInfo.totalNum = res.data[0].wordNum
+          }
+        })
+        bookInfo.studiedNum = res.data[0].learnedSequence
+        bookInfo.percentage = (bookInfo.studiedNum / bookInfo.totalNumz) * 100
+        that.setData({
+          pullData: res.data[0],
+          newWordsNum: res.data[0].newWord.length,
+          oldWordsNum: res.data[0].reviewWord.length,
+          unstudyWordsNum: res.data[0].newWord.length + res.data[0].reviewWord.length,
+          bookInfo: bookInfo
+        })
+        console.log(that.data.bookInfo)
       }
     })
   },
@@ -103,9 +121,9 @@ Page({
    */
   onShow: function () {
     this.dataPull()
-    this.setTaskInfo()
-    this.setSignedNum()
-    this.setBookInfo()
+    // this.setTaskInfo()
+    // this.setSignedNum()
+    // this.setBookInfo()
   },
 
   /**

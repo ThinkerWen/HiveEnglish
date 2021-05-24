@@ -1,6 +1,8 @@
 // miniprogram/pages/main/main.js
 var utils = require("../../utils/utils");
-var that;
+const db = wx.cloud.database()
+const API = "https://dict.youdao.com/dictvoice?audio="
+var that
 var isFirst = true;
 var progress = {};
 var progress1;
@@ -15,8 +17,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    wordInfo: {},
+    wordSequence: 0,
+    myWordList: [],
     pattern: 0,
-    wordInfo: [],
+    // wordInfo: [],
     queryWordInfo: [],
     isUnknown: false,
     isEasy: false,
@@ -42,8 +47,8 @@ Page({
     eventChannel.on('acceptDataFromOpenerPage', function(data) {
       console.log(data)
       var formated = that.formatData(data);
-      // that.getWords(data);
-      that.initProgress(formated); 
+      that.getWords(data);
+      // that.initProgress(formated); 
       // this.initWordInfo();
       // this.pronounce();
     })
@@ -71,7 +76,8 @@ Page({
       that.setData({
         own2: data.reviewWord.length,
         nwn2: data.newWord.length,
-        wordInfo: unstudyWords[0],
+        myWordList: unstudyWords,
+        wordInfo: unstudyWords[that.data.wordSequence],
         newWordsList: data.newWord,
         oldWordsList: data.reviewWord,
       })
@@ -87,11 +93,22 @@ Page({
     }
   },
 
-  pronounce: function(){
+  pronounce: function(e){
+    console.log(e)
     const innerAudioContext = wx.createInnerAudioContext()
     innerAudioContext.autoplay = true
-    innerAudioContext.src = that.data.wordInfo.audioUrl
-    innerAudioContext.onPlay(()=>{})
+    innerAudioContext.src = API+e.currentTarget.dataset.word
+    innerAudioContext.onPlay(() => {
+      console.log('开始播放')
+    })
+    innerAudioContext.onError((res) => {
+      console.log(res.errMsg)
+      console.log(res.errCode)
+    })
+    // const innerAudioContext = wx.createInnerAudioContext()
+    // innerAudioContext.autoplay = true
+    // innerAudioContext.src = that.data.wordInfo.audioUrl
+    // innerAudioContext.onPlay(()=>{})
   },
 
   changePattern: function() {
@@ -374,12 +391,28 @@ Page({
   },
 
   knownHandle: function() {
-    if(!that.data.isUnknown){
-      that.setData({
-        isUnknown: false
+    if(this.data.wordSequence<this.data.myWordList.length){
+      if(this.data.wordSequence<this.data.oldWordsList.length){
+        this.setData({
+          own1: that.data.own1+1
+        })
+      }
+      else{
+        this.setData({
+          nwn1: that.data.nwn1+1
+        })
+      }
+      this.setData({
+        wordInfo: that.data.myWordList[that.data.wordSequence+1],
+        wordSequence: that.data.wordSequence+1
       })
     }
-    this.changePattern();
+    // if(!that.data.isUnknown){
+    //   that.setData({
+    //     isUnknown: false
+    //   })
+    // }
+    // this.changePattern();
   },
 
   unknownHandle: function(e) {

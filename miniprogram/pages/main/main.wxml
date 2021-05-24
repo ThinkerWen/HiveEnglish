@@ -28,12 +28,14 @@
             <text class="text-easymark">标记为太简单</text>
         </view>
         <!-- <text wx:if="{{!isChinese}}" class="text-word">{{wordInfo.name}}</text> -->
-        <text wx:if="{{!isChinese}}" class="text-word">{{wordInfo.name}}</text>
-        <text wx:else class="text-word-ch">{{wordInfo.meaning[0]}}</text>
+        <text wx:if="{{!isChinese}}" class="text-word">{{wordInfo.wordHead}}</text>
+        <!-- <text wx:else class="text-word-ch">{{wordInfo.meaning[0]}}</text> -->
+        <text wx:else class="text-word-ch">{{wordInfo.trans[0].pos}}. {{wordInfo.trans[0].tranCn}}</text>
         <view class="pronouncation">
-            <image catchtap='pronounce' class="icon-pronouncation" src="../../images/icons/sound.png/"/>
+            <image data-word="{{wordInfo.ukspeech}}" catchtap='pronounce' class="icon-pronouncation" src="../../images/icons/sound.png/"/>
             <!-- <text class="icon-pronouncation">[--]</text> -->
-            <text class="text-soundmark">{{wordInfo.soundmark}}</text>
+            <!-- <text class="text-soundmark">{{wordInfo.soundmark}}</text> -->
+            <text class="text-soundmark">[{{wordInfo.ukphone}}]</text>
         </view>
         <view wx:if="{{isUnknown || isReviewing}}">
             <text class="text-hint">根据例句，判断释义</text>

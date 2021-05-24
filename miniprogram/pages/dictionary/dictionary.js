@@ -79,7 +79,8 @@ Page({
     var that = this
     db.collection(this.data.id).count().then(async res =>{
       const MAX_LIMIT = 20;
-      let total = res.total;
+      let total = 20;
+      // let total = res.total;
       // 计算需分几次取
       const batchTimes = Math.ceil(total / MAX_LIMIT)
       // 承载所有读操作的 promise 的数组

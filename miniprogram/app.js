@@ -18,7 +18,7 @@ App({
         traceUser: true,
       })
     }
-    this.initTask();
+    // this.initTask();
     // this.globalData = {}
   },
 

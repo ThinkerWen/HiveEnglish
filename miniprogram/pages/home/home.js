@@ -22,7 +22,19 @@ Page({
    */
   onLoad: function (options) {
     // this.dataPull()
-    that = this
+    db.collection('userInfo').where({
+      _id: app.globalData.openId
+    })
+    .get({
+      success: function(res) {
+        registerDay = res.data[0].registerDay
+        nowDay = new Date()
+        console.log(registerDay - nowDay)
+        that.setData({
+          signedNum : registerDay - nowDay
+        })
+      }
+    })
   },
 
   dataPull: function(){
@@ -119,6 +131,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this
+    console.log(app.globalData.openId)
+    db.collection('userInfo').where({
+      _id: app.globalData.openId
+    })
+    .get({
+      success: function(res) {
+        var registerDay = res.data[0].registerDay
+        var nowDay = new Date()
+        var day = parseInt((Date.parse(nowDay)-Date.parse(registerDay))/ (1000 * 60 * 60 * 24))+1;
+        that.setData({
+          signedNum : day
+        })
+      }
+    })
     this.dataPull()
     // this.setTaskInfo()
     // this.setSignedNum()

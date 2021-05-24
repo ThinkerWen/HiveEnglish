@@ -38,10 +38,15 @@ Page({
   onLoad: function (options) {
     that = this;
     var date = new Date()
-    this.initProgress(); 
-    this.initWordInfo();
-    this.pronounce();
-    console.log(this.data.wordInfo)
+    const eventChannel = this.getOpenerEventChannel()
+    eventChannel.on('acceptDataFromOpenerPage', function(data) {
+      console.log(data)
+      var formated = that.formatData(data);
+      // that.getWords(data);
+      that.initProgress(formated); 
+      // this.initWordInfo();
+      // this.pronounce();
+    })
     timeIntv = setInterval(()=>{
       var timeMinute = that.data.time
       var timeMinuteNow = ((new Date()).getTime() - progress.startTime) / 60000
@@ -57,6 +62,20 @@ Page({
   onUnload: function (){
     this.saveProgress();
     clearInterval(timeIntv)
+  },
+
+  getWords: function(data){
+    // eventChannel.on('acceptDataFromOpenerPage', function(data) {
+      console.log(data)
+      var unstudyWords = data.newWord.concat(data.reviewWord)
+      that.setData({
+        own2: data.reviewWord.length,
+        nwn2: data.newWord.length,
+        wordInfo: unstudyWords[0],
+        newWordsList: data.newWord,
+        oldWordsList: data.reviewWord,
+      })
+    // })
   },
 
   saveProgress: function(){
@@ -198,10 +217,46 @@ Page({
     })
   },
 
-  initProgress: function(){
+  formatData: function(data){
+    var myProgress = []
+    var tempProgress = {}
+    var tempData = data
+    var easyWords = []
+    tempProgress.type = 0
+    tempProgress.complete = 0
+    tempProgress.studiedWords = data.reviewWord
+    for(let i=0; i<data.reviewWord.length; i++){
+      if(data.reviewWord[i].simple){
+        easyWords.push(data.reviewWord[i])
+      }
+    }
+    tempProgress.easyWords = easyWords
+    myProgress.push(tempProgress)
+    var tempProgress = {}
+    tempProgress.type = 1
+    tempProgress.complete = 0
+    tempProgress.studingWords = data.newWord
+    for(let i=0; i<data.reviewWord.length; i++){
+      if(data.newWord[i].simple){
+        easyWords.push(data.reviewWord[i])
+      }
+    }
+    tempProgress.easyWords = easyWords
+    myProgress.push(tempProgress)
+    return myProgress
+  },
+
+  initProgress: function(data){
     maxSum = 7;
-    progress1 = wx.getStorageSync('newWordsProgress');
-    progress2 = wx.getStorageSync('oldWordsProgress');
+    console.log(data)
+    var tempData
+    for(let i=0; i<data[0].studiedWords.length; i++){
+      data[0].studiedWords[i].name = data[0].studiedWords[i].wordHead
+    }
+    progress1 = data[0]
+    progress2 = data[1]
+    // progress1 = wx.getStorageSync('newWordsProgress');
+    // progress2 = wx.getStorageSync('oldWordsProgress');
     if (!(progress1.complete)){
       progress = progress1;
       this.updateTopBar()
@@ -213,8 +268,10 @@ Page({
   },
 
   updateTopBar: function(){
-    var numNew = progress1.totalNum
-    var numOld = progress2.totalNum
+    // var numNew = progress1.totalNum
+    // var numOld = progress2.totalNum
+    var numNew = progress1.studiedWords.length
+    var numOld = progress2.studingWords.length
     if(progress.type==0){
       that.setData({
         own1: 0,

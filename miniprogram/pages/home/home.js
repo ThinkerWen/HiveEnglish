@@ -188,6 +188,7 @@ Page({
   },
 
   startMain: function() {
+    var that = this
     wx.navigateTo({
       url: '../main/main',
       success: function(res) {

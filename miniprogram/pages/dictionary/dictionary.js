@@ -43,11 +43,11 @@ Page({
     var currentWordsList
     if(that.data.type){
       eventChannel.on('acceptDataFromOpenerPage', function(data) {
-      that.setData({
-        newWordsList: data.newWord,
-        oldWordsList: data.reviewWord,
+        that.setData({
+          newWordsList: data.newWord,
+          oldWordsList: data.reviewWord,
+        })
       })
-    })
       this.setCurrentList(4)
     }
     else{

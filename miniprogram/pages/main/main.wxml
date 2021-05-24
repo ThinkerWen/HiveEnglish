@@ -27,6 +27,7 @@
             <image class="icon-easymark" src="../../images/icons/easymark.png"/>
             <text class="text-easymark">标记为太简单</text>
         </view>
+        <!-- <text wx:if="{{!isChinese}}" class="text-word">{{wordInfo.name}}</text> -->
         <text wx:if="{{!isChinese}}" class="text-word">{{wordInfo.name}}</text>
         <text wx:else class="text-word-ch">{{wordInfo.meaning[0]}}</text>
         <view class="pronouncation">

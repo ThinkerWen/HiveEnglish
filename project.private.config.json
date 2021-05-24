@@ -95,6 +95,18 @@
           "pathName": "pages/calendar/calendar",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/dictionary/dictionary",
+          "pathName": "pages/dictionary/dictionary",
+          "query": "id=CET6luan_1",
+          "scene": null
+        },
+        {
+          "name": "pages/library/library",
+          "pathName": "pages/library/library",
+          "query": "",
+          "scene": null
         }
       ]
     }

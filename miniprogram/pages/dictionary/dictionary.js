@@ -27,7 +27,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this.data.Databased)
+    const eventChannel = this.getOpenerEventChannel()
+    console.log(options)
     that = this
     that.setData({
       id : options.id,
@@ -35,28 +36,39 @@ Page({
     })
     
     console.log(this.data.allWordList)
-    if(!this.data.Databased){
+    if(options.id){
       this.getWord()
     }
 
     var currentWordsList
     if(that.data.type){
-      var task = wx.getStorageSync('task');
+      eventChannel.on('acceptDataFromOpenerPage', function(data) {
       that.setData({
-        newWordsList: task.newWords,
-        oldWordsList: task.oldWords,
+        newWordsList: data.newWord,
+        oldWordsList: data.reviewWord,
       })
+    })
       this.setCurrentList(4)
     }
     else{
-      var dictionary = wx.getStorageSync('newWordsProgress')
-      that.setData({
-        unstudyWordsList: dictionary.unstudyWords,
-        studiedWordsList: dictionary.studiedWords,
-        studingWordsList: dictionary.studingWords,
-        easyWordsList: dictionary.easyWords,
+      eventChannel.on('acceptDataFromOpenerPage', function(data) {
+        console.log(data)
+        var unstudyWords = data.newWord.concat(data.reviewWord)
+        var easyWords = []
+        for(let i=0; i<unstudyWords.length; i++){
+          if(unstudyWords[i].simple){
+            easyWords.push(unstudyWords[i])
+          }
+        }
+        that.setData({
+          unstudyWordsList: unstudyWords,
+          studiedWordsList: data.reviewWord,
+          studingWordsList: data.newWord,
+          easyWordsList: easyWords,
+        })
+        that.setCurrentList(0)
       })
-      this.setCurrentList(0)
+      console.log(options)
     }
   },
 
@@ -74,14 +86,15 @@ Page({
       for (let i = 0; i < batchTimes; i++) {
         await db.collection(this.data.id).skip(i * MAX_LIMIT).limit(MAX_LIMIT).get().then(async res => {
           let new_data = res.data
-          let old_data = that.data.allWordList
+          let old_data = that.data.currentWordsList
           that.setData({
-            allWordList : old_data.concat(new_data),
+            // allWordList : old_data.concat(new_data),
+            currentWordsList : old_data.concat(new_data),
             // Databased : true
           })
         })
       }
-      console.log(this.data.allWordList)
+      console.log(this.data.currentWordsList)
     })
   },
 
@@ -151,15 +164,15 @@ Page({
   },
 
   wordMask: function(e){
-    var currentWordsList = that.data.allWordList
+    var currentWordsList = that.data.currentWordsList
     currentWordsList[e.currentTarget.dataset.index].mask = currentWordsList[e.currentTarget.dataset.index].mask==1 ? 0 : 1
     that.setData({
-      allWordList: currentWordsList
+      currentWordsList: currentWordsList
     })
   },
 
   maskSwitchChange: function(e){      //改变遮挡状态
-    var currentWordsList = that.data.allWordList
+    var currentWordsList = that.data.currentWordsList
     var mask = e.detail.value
     console.log(e)
     for( let i of currentWordsList){
@@ -167,7 +180,7 @@ Page({
     }
     that.setData({
       isMask: mask,
-      allWordList: currentWordsList
+      currentWordsList: currentWordsList
     })
   },
 

@@ -46,9 +46,9 @@
         <view wx:else class="word-meaning">{{item.meaning[0]}}</view>
     </view>
 </view> -->
-<view class="word" data-index="{{index}}"  wx:for="{{allWordList}}" wx:key="{{item.wordHead}}">
+<view class="word" data-index="{{index}}"  wx:for="{{currentWordsList}}" wx:key="{{item.wordHead}}">
     <view class="word-top" catchtap="viewWordInfo" data-index="{{index}}">
-        <text class="word-text">{{item.wordHead}}</text>
+        <text class="word-text">{{item.wordHead}}</text><text class="search-input">[{{item.ukphone}}]</text>
         <view class="word-icon-container" data-word="{{item.ukspeech}}" catchtap="pronounce" data-index="{{index}}">
             <image class="word-icon" src="../../images/icons/sound.png"/>
         </view>
@@ -58,3 +58,15 @@
         <view wx:else class="word-meaning">{{item.trans[0].pos}}. {{item.trans[0].tranCn}}</view>
     </view>
 </view>
+<!-- <view class="word" data-index="{{index}}"  wx:for="{{allWordList}}" wx:key="{{item.wordHead}}">
+    <view class="word-top" catchtap="viewWordInfo" data-index="{{index}}">
+        <text class="word-text">{{item.wordHead}}</text><text class="search-input">[{{item.ukphone}}]</text>
+        <view class="word-icon-container" data-word="{{item.ukspeech}}" catchtap="pronounce" data-index="{{index}}">
+            <image class="word-icon" src="../../images/icons/sound.png"/>
+        </view>
+    </view>
+    <view catchtap="wordMask" data-index="{{index}}">
+        <view wx:if="{{item.mask}}" class="word-mask" />
+        <view wx:else class="word-meaning">{{item.trans[0].pos}}. {{item.trans[0].tranCn}}</view>
+    </view>
+</view> -->

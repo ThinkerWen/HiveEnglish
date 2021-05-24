@@ -162,7 +162,11 @@ Page({
 
   startMain: function() {
     wx.navigateTo({
-      url: '../main/main'
+      url: '../main/main',
+      success: function(res) {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromOpenerPage', that.data.pullData)
+      }
     })
   },
 
@@ -173,8 +177,13 @@ Page({
   },
 
   toDictionary: function(e){
+    var that = this
     wx.navigateTo({
       url: '../dictionary/dictionary?type='+e.currentTarget.dataset.type,
+      success: function(res) {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromOpenerPage', that.data.pullData)
+      }
     })
   }
 })

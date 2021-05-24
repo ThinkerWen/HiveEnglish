@@ -15,7 +15,7 @@
             <image class="calendar-icon" src="../../images/icons/calendar.png"/>
         </view>
     </view>
-    <view class="vocabulary-container" data-type="{{0}}" bindtap="toDictionary">
+    <view class="vocabulary-container" data-type="0" bindtap="toDictionary">
         <image class="vocabulary-background-image" src="../../images/backgrounds/nature.jpg"/>
         <text class="vocabulary-name-text">{{bookInfo.name}}</text>
         <view class="vocabulary-guide">
@@ -33,7 +33,7 @@
             </view>
         </view>
     </view>
-    <view class="task-container" data-type="{{1}}" bindtap="toDictionary">
+    <view class="task-container" data-type="1" bindtap="toDictionary">
         <text class="task-guide-text">· 今日任务 ·</text>
         <view class="task-info">
             <view class="task-info-trisection">

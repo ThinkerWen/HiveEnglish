@@ -1,4 +1,13 @@
 /* miniprogram/pages/dictionary/dictionary.wxss */
+.search-input{
+    /* float: left; */
+    padding-left: 10px;
+    height: 80%;
+    font-size: 13px;
+    background: rgb(255, 255, 255);
+    color: rgb(82, 82, 82);
+}
+
 .top-bar{
     margin: auto;
     margin-top: 20rpx;

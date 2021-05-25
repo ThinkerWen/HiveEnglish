@@ -39,7 +39,7 @@
         </view>
         <view wx:if="{{isUnknown || isReviewing}}">
             <text class="text-hint">根据例句，判断释义</text>
-            <view class="text-sentence">{{wordInfo.sentence}}</view>
+            <view class="text-sentence">例句[英]：{{wordInfo.sentence}}</view>
         </view>
         <view class="button-container">
             <view class="button-remember" catchtap="knownHandle">想起来了</view>
@@ -48,6 +48,51 @@
     </view>
 
     <view class="memory-pattern" wx:elif="{{pattern==1}}">
+        <view class="backout-container" catchtap="uneasymark" wx:if="{{isEasy}}">
+            <text class="text-backout-grey">该词今后将不再学习.</text>
+            <text class="text-backout-green">撤销</text>
+        </view>
+        <view class="backout-container" catchtap="unknownmark" wx:if="{{!isUnknown&&!isReviewing}}">
+            <text class="text-backout-grey">该词今天不再安排复习.</text>
+            <text class="text-backout-green">撤销</text>
+        </view>
+        <view class="wordinfo-container">
+            <text class="text-word-m">{{wordInfo.headWord}}</text>
+            <image data-word="{{wordInfo.content.word.content.ukspeech}}" catchtap='pronounce' class="icon-pronouncation-m" src="../../images/icons/sound.png/"/>
+            <text class="text-soundmark-m">[{{wordInfo.content.word.content.ukphone}}]</text>
+        </view>
+        <view class="dictionary-container">
+            <text class="text-title">词典释义</text>
+            <text wx:for="{{wordInfo.content.word.content.trans}}" class="text-content">[{{item.descCn}}]：{{item.pos}}. {{item.tranCn}}\n[{{item.descOther}}]：{{item.tranOther}}</text>
+            <view class="dictionary-container"></view>
+            <text class="text-title">例句</text>
+            <view class="text-content">
+                <view wx:for="{{wordInfo.content.word.content.sentence.sentences}}" wx:key="item">
+                    <text class="text-content-sentence-word" data-index="{{index}}" catchtap='selectWord'>{{item.sContent}}\n{{item.sCn}}\n</text>
+                    <text class="text-content-sentence-word" decode='true'>&nbsp;</text>
+                </view>
+                <view wx:for="{{wordInfo.content.word.content.realExamSentence.sentences}}" wx:key="item">
+                    <!-- <text class="text-content-sentence-word-major" data-index="{{index}}" catchtap='selectWord'>{{item.sContent}}\n{{item.sourceInfo.year}} {{item.sourceInfo.level}} {{item.sourceInfo.paper}} {{item.sourceInfo.type}}</text> -->
+                    <text class="text-content-sentence-word-major" data-index="{{index}}" catchtap='selectWord'>{{item.sContent}}\n</text>
+                    <text class="text-content-sentence-word-selected" data-index="{{index}}" catchtap='selectWord'>{{item.sourceInfo.year}} {{item.sourceInfo.level}} {{item.sourceInfo.paper}} {{item.sourceInfo.type}}</text>
+                    <text class="text-content-sentence-word" decode='true'>\n&nbsp;</text>
+                </view>
+            </view>
+            <view class="text-content">{{wordInfo.sentenceMeaning}}</view>
+        </view>
+        <view class="blank"/>
+        <view class="button-next" catchtap="nextHandle">下一个</view>
+        <view class="query-container" wx:if="{{isQuery}}" catchtap='viewQueryWordInfo'>
+            <view class="query-wordinfo-container">
+                <text class="query-name-text">{{queryWordInfo.name}}</text>
+                <image catchtap="exitQuery" class="icon-close-m" src="../../images/icons/exit.png"/>
+                <text class="query-soundmark-text">{{queryWordInfo.soundmark}}</text>
+            </view>
+            <text class="query-meaning-text">{{queryWordInfo.meaning[0]}}</text>
+        </view>
+
+    </view>
+    <!-- <view class="memory-pattern" wx:elif="{{pattern==1}}">
         <view class="backout-container" catchtap="uneasymark" wx:if="{{isEasy}}">
             <text class="text-backout-grey">该词今后将不再学习.</text>
             <text class="text-backout-green">撤销</text>
@@ -87,7 +132,7 @@
             <text class="query-meaning-text">{{queryWordInfo.meaning[0]}}</text>
         </view>
 
-    </view>
+    </view> -->
 
     <view class="summary-pattern" wx:else>
         <view class="summary-top">

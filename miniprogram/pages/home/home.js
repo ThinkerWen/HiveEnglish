@@ -138,6 +138,7 @@ Page({
     })
     .get({
       success: function(res) {
+        console.log(res.data)
         var registerDay = res.data[0].registerDay
         var nowDay = new Date()
         var day = parseInt((Date.parse(nowDay)-Date.parse(registerDay))/ (1000 * 60 * 60 * 24))+1;

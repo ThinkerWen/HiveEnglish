@@ -97,6 +97,9 @@ Page({
     })
     .get({
       success: function(res) {
+        that.setData({
+          wordInfo: res.data[0]
+        })
         console.log(res.data)
       }
     })

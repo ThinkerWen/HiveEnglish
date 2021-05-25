@@ -107,6 +107,12 @@
           "pathName": "pages/library/library",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/library/library",
+          "pathName": "pages/library/library",
+          "query": "",
+          "scene": null
         }
       ]
     }

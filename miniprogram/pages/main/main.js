@@ -17,6 +17,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    myData: {},
     wordInfo: {},
     wordSequence: 0,
     myWordList: [],
@@ -45,10 +46,13 @@ Page({
     var date = new Date()
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('acceptDataFromOpenerPage', function(data) {
+      that.setData({
+        myData: data
+      })
       console.log(data)
       var formated = that.formatData(data);
       that.getWords(data);
-      // that.initProgress(formated); 
+      // that.initProgress(formated);
       // this.initWordInfo();
       // this.pronounce();
     })
@@ -73,6 +77,8 @@ Page({
     // eventChannel.on('acceptDataFromOpenerPage', function(data) {
       console.log(data)
       var unstudyWords = data.newWord.concat(data.reviewWord)
+      var tempWords = unstudyWords
+      console.log(tempWords)
       that.setData({
         own2: data.reviewWord.length,
         nwn2: data.newWord.length,
@@ -82,6 +88,18 @@ Page({
         oldWordsList: data.reviewWord,
       })
     // })
+  },
+
+  atLarge: function(){
+    that = this
+    db.collection(this.data.myData.bookId + '_all').where({
+      headWord: that.data.myWordList[that.data.wordSequence].wordHead
+    })
+    .get({
+      success: function(res) {
+        console.log(res.data)
+      }
+    })
   },
 
   saveProgress: function(){
@@ -412,11 +430,18 @@ Page({
     //     isUnknown: false
     //   })
     // }
+    if(that.data.isUnknown){
+      that.setData({
+        isUnknown: false,
+        isReviewing: false
+      })
+    }
     // this.changePattern();
   },
 
   unknownHandle: function(e) {
     if(that.data.isReviewing || that.data.isUnknown){
+      this.atLarge()
       that.setData({
         isUnknown: true
       })

@@ -8,7 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    total: 0,
     id: "",
+    loaded: false,
     Databased: false,
     isMask: 1,
     type: 0,
@@ -74,12 +76,13 @@ Page({
 
   getWord: function(){
     this.setData({
-      Databased: true
+     total: this.data.total + 20
     })
     var that = this
+    var first = true
     db.collection(this.data.id).count().then(async res =>{
       const MAX_LIMIT = 20;
-      let total = 20;
+      let total = this.data.total;
       // let total = res.total;
       // 计算需分几次取
       const batchTimes = Math.ceil(total / MAX_LIMIT)
@@ -88,11 +91,21 @@ Page({
         await db.collection(this.data.id).skip(i * MAX_LIMIT).limit(MAX_LIMIT).get().then(async res => {
           let new_data = res.data
           let old_data = that.data.currentWordsList
-          that.setData({
-            // allWordList : old_data.concat(new_data),
-            currentWordsList : old_data.concat(new_data),
-            // Databased : true
-          })
+          // if(!first){
+          //   old_data = that.data.currentWordsList
+          // }
+          // else{
+          //   old_data = []
+          //   first = false
+          // }
+          if(i >= that.data.total/20 - 1){
+            that.setData({
+              // allWordList : old_data.concat(new_data),
+              currentWordsList : old_data.concat(new_data),
+              loaded:true
+              // Databased : true
+            })
+          }
         })
       }
       console.log(this.data.currentWordsList)

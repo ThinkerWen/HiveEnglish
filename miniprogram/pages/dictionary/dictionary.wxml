@@ -1,4 +1,5 @@
 <!--miniprogram/pages/dictionary/dictionary.wxml-->
+<view class="container">
 <view class="top-bar">
     <view wx:if="{{type == 0}}">
         <view class="top-bar-element" bindtap="changeList" data-index="0">
@@ -57,6 +58,8 @@
         <view wx:if="{{item.mask}}" class="word-mask" />
         <view wx:else class="word-meaning">{{item.trans[0].pos}}. {{item.trans[0].tranCn}}</view>
     </view>
+</view>
+    <view wx:if="{{loaded}}" class="start-button" bindtap="getWord">加载更多</view>
 </view>
 <!-- <view class="word" data-index="{{index}}"  wx:for="{{allWordList}}" wx:key="{{item.wordHead}}">
     <view class="word-top" catchtap="viewWordInfo" data-index="{{index}}">

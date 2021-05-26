@@ -20,14 +20,30 @@
         </view>
     </view>
     <view wx:else>
-        <view class="top-bar-element" style="width:50%" bindtap="changeList" data-index="0">
+        <view wx:if="{{isLibrary}}" style="text-align:center">
+            <view class="top-bar-element" style="width:50%">
+                <text class="top-bar-element-text">词库列表</text>
+                <view wx:if="{{tabIndex==0}}" class="top-bar-bottom"/>
+            </view>
+        </view>
+        <view wx:else>
+            <view class="top-bar-element" style="width:50%" bindtap="changeList" data-index="0">
+                <text class="top-bar-element-text">今日新词</text>
+                <view wx:if="{{tabIndex==0}}" class="top-bar-bottom"/>
+            </view>
+            <view class="top-bar-element" style="width:50%" bindtap="changeList" data-index="1">
+                <text class="top-bar-element-text">今日复习</text>
+                <view wx:if="{{tabIndex==1}}" class="top-bar-bottom"/>
+            </view>
+        </view>
+        <!-- <view class="top-bar-element" style="width:50%" bindtap="changeList" data-index="0">
             <text class="top-bar-element-text">今日新词</text>
             <view wx:if="{{tabIndex==0}}" class="top-bar-bottom"/>
         </view>
         <view class="top-bar-element" style="width:50%" bindtap="changeList" data-index="1">
             <text class="top-bar-element-text">今日复习</text>
             <view wx:if="{{tabIndex==1}}" class="top-bar-bottom"/>
-        </view>
+        </view> -->
     </view>
     <view class="summary-switch-container">
         <text class="summary-switch-text">释义遮挡</text>

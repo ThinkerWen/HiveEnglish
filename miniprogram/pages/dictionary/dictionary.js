@@ -39,6 +39,9 @@ Page({
     
     console.log(this.data.allWordList)
     if(options.id){
+      this.setData({
+        isLibrary: true
+      })
       this.getWord()
     }
 

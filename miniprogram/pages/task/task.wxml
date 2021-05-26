@@ -9,11 +9,6 @@
             </view>
             <view class="plan-now-book-info">
                 <view class="plan-now-book-name-text">{{currentBookInfo.name}}</view>
-                <view class="plan-now-text-container">
-                    <text class="plan-now-text">每天</text>
-                    <text class="plan-now-text">{{currentBookInfo.plan.new}}</text>
-                    <text class="plan-now-text">新词</text>
-                </view>
                 <view class="plan-now-change-icon-container">
                     <image class="plan-now-change-icon" src="../../images/icons/email.png" catchtap='toPlanPage'/>
                 </view>
@@ -38,7 +33,7 @@
             <text class="books-guide-text">我的单词书</text>
             <view class="books-add-button" catchtap="toLibrary">添加新书</view>
         </view>
-        <view class="books-container" wx:for="{{myBooksList}}" wx:key="{{item.name}}">
+        <view class="books-container" wx:for="{{myBooksList}}" wx:key="item">
             <view class="books-image-container" bindtap="toDictionary">
                 <image class="books-image" src="{{item.imgUrl}}" />
             </view>

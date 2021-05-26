@@ -18,7 +18,7 @@ Page({
   onLoad: function (options) {
     that = this
     this.getBook()
-    this.refresh()
+    // this.refresh()
   },
 
   /**
@@ -26,21 +26,46 @@ Page({
    */
 
   getBook: function(){
+    var that = this
+    var myBookInfo = {}
+    var myBooksList = []
+    var dataFirstList = []
     db.collection('userLearned').where({
       userId: app.globalData.openId // 填入当前用户 openid
-    }).get().then(res => {
+    }).get().then(res => {          // 第一次调用结果
+      dataFirstList = res.data
+      for(let i=0; i<dataFirstList.length; i++){
+        myBookInfo.studiedNum = res.data[i].learnedSequence
+        if(i == 0){
+          db.collection('Booklist').where({
+            id: res.data[i].bookId
+          }).get().then(res => {     // 第二次调用结果
+            myBookInfo.name = res.data[0].title
+            myBookInfo.totalNum = res.data[0].wordNum
+            myBookInfo.imgUrl = res.data[0].cover
+            myBooksList.push(myBookInfo)
+            that.setData({
+              currentBookInfo: myBookInfo,
+              myBooksList: myBooksList
+            })
+          })
+        }else{
+          db.collection('Booklist').where({
+            id: res.data[i].bookId
+          }).get().then(res => {     // 第二次调用结果
+            myBookInfo.name = res.data[0].title
+            myBookInfo.totalNum = res.data[0].wordNum
+            myBookInfo.imgUrl = res.data[0].cover
+            myBooksList.push(myBookInfo)
+            that.setData({
+              myBooksList: myBooksList
+            })
+          })
+        }
+      }
+      console.log(myBooksList)
       console.log(res.data)
     })
-    // db.collection("userLearned").aggregate()
-    //   .lookup({
-    //     from: 'Booklist',
-    //     localField: 'bookId',
-    //     foreignField: 'id',
-    //     as: 'BookInfo',
-    //   })
-    //   .end()
-    //   .then(res => console.log(res))
-    //   .catch(err => console.error(err))
   },
 
   refresh: function(){

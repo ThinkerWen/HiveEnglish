@@ -1,4 +1,6 @@
 // miniprogram/pages/task/task.js
+const db = wx.cloud.database()
+const app = getApp()
 var that
 Page({
 
@@ -15,12 +17,32 @@ Page({
    */
   onLoad: function (options) {
     that = this
+    this.getBook()
     this.refresh()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
+
+  getBook: function(){
+    db.collection('userLearned').where({
+      userId: app.globalData.openId // 填入当前用户 openid
+    }).get().then(res => {
+      console.log(res.data)
+    })
+    // db.collection("userLearned").aggregate()
+    //   .lookup({
+    //     from: 'Booklist',
+    //     localField: 'bookId',
+    //     foreignField: 'id',
+    //     as: 'BookInfo',
+    //   })
+    //   .end()
+    //   .then(res => console.log(res))
+    //   .catch(err => console.error(err))
+  },
+
   refresh: function(){
     var cBookInfo = {
       name: "六级考纲词汇",

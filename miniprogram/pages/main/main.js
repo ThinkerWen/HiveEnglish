@@ -471,9 +471,13 @@ Page({
   },
 
   nextHandle: function(e) {
-    that.updateWordInfo()
-    that.changePattern()
-    that.updateTopBar()
+    this.knownHandle()
+    this.setData({
+      pattern:0
+    })
+    // that.updateWordInfo()
+    // that.changePattern()
+    // that.updateTopBar()
   },
 
   createSummaryList: function(){

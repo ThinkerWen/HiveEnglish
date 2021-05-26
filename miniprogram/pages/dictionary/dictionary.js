@@ -75,41 +75,53 @@ Page({
   },
 
   getWord: function(){
+    
     this.setData({
      total: this.data.total + 20
     })
     var that = this
     var first = true
-    db.collection(this.data.id).count().then(async res =>{
-      const MAX_LIMIT = 20;
-      let total = this.data.total;
-      // let total = res.total;
-      // 计算需分几次取
-      const batchTimes = Math.ceil(total / MAX_LIMIT)
-      // 承载所有读操作的 promise 的数组
-      for (let i = 0; i < batchTimes; i++) {
-        await db.collection(this.data.id).skip(i * MAX_LIMIT).limit(MAX_LIMIT).get().then(async res => {
-          let new_data = res.data
-          let old_data = that.data.currentWordsList
-          // if(!first){
-          //   old_data = that.data.currentWordsList
-          // }
-          // else{
-          //   old_data = []
-          //   first = false
-          // }
-          if(i >= that.data.total/20 - 1){
-            that.setData({
-              // allWordList : old_data.concat(new_data),
-              currentWordsList : old_data.concat(new_data),
-              loaded:true
-              // Databased : true
-            })
-          }
+    const _ = db.command
+    db.collection(this.data.id).where({
+      // gt 方法用于指定一个 "大于" 条件，此处 _.gt(30) 是一个 "大于 30" 的条件
+      wordRank: _.gte(this.data.total)
+    })
+    .get({
+      success: function(res) {
+        console.log(res.data)
+        let new_data = res.data
+        let old_data = that.data.currentWordsList
+        that.setData({
+          // allWordList : old_data.concat(new_data),
+          currentWordsList : old_data.concat(new_data),
+          loaded:true
+          // Databased : true
         })
       }
-      console.log(this.data.currentWordsList)
     })
+    // db.collection(this.data.id).count().then(async res =>{
+    //   const MAX_LIMIT = 20;
+    //   let total = this.data.total;
+    //   // let total = res.total;
+    //   // 计算需分几次取
+    //   const batchTimes = Math.ceil(total / MAX_LIMIT)
+    //   // 承载所有读操作的 promise 的数组
+    //   for (let i = 0; i < batchTimes; i++) {
+    //     await db.collection(this.data.id).skip(i * MAX_LIMIT).limit(MAX_LIMIT).get().then(async res => {
+    //       let new_data = res.data
+    //       let old_data = that.data.currentWordsList
+    //       if(i >= that.data.total/20 - 1){
+    //         that.setData({
+    //           // allWordList : old_data.concat(new_data),
+    //           currentWordsList : old_data.concat(new_data),
+    //           loaded:true
+    //           // Databased : true
+    //         })
+    //       }
+    //     })
+    //   }
+    //   console.log(this.data.currentWordsList)
+    // })
   },
 
   changeList: function(e){

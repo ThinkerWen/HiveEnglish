@@ -26,6 +26,33 @@
     </view>
     <canvas canvas-id="canvas1" />
 </view>
+<view class="separator"/>
+<view style="padding-top:20px">
+    <view class="trisaction" bindtap="toTaskPage">
+        <view class="trisaction-top-container">
+            <image  class="trisaction-top-icon" src="../../images/icons/photo.png"/>
+        </view>
+        <text class="trisaction-bottom-text">拍照搜题</text>
+    </view>
+    <view class="trisaction" bindtap="toCalendarPage">
+        <view class="trisaction-top-container">
+            <image  class="trisaction-top-icon" src="../../images/icons/vs.png"/>
+        </view>
+        <text class="trisaction-bottom-text">好友对战</text>
+    </view>
+    <view class="trisaction">
+            <view class="trisaction-top-container" bindtap="toRemindPage">
+                <image  class="trisaction-top-icon" src="../../images/icons/word.png"/>
+            </view>
+            <text class="trisaction-bottom-text">单词接龙</text>
+        </view>
+</view>
+<!-- <view class="trisaction">
+    <view class="trisaction-top-container" bindtap="toRemindPage">
+        <image  class="trisaction-top-icon" src="../../images/icons/message_uc.png"/>
+    </view>
+    <text class="trisaction-bottom-text">打卡提醒</text>
+</view> -->
 <!-- <view class="separator"/>
 <view class="canvas-container">
     <view class="canvas-guide-container">

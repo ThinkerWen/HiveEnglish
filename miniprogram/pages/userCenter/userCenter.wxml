@@ -52,16 +52,16 @@
                 <image  class="option-icon-right" src="../../images/icons/right.png"/>
             </view>
         </view></navigator>
-        <view class="option">
+        <navigator url="./about"><view class="option">
             <view class="option-icon-container">
-                <image class="option-icon" src="../../images/icons/file.png"/>
+                <image class="option-icon" src="../../images/icons/star.png"/>
             </view>
             <text class="option-text">关于我们</text>
             <view class="option-icon-right-container">
                 <image  class="option-icon-right" src="../../images/icons/right.png"/>
             </view>
-        </view>
-        <view class="option">
+        </view></navigator>
+        <!-- <view class="option">
             <view class="option-icon-container">
                 <image class="option-icon" src="../../images/icons/star.png"/>
             </view>
@@ -78,6 +78,6 @@
             <view class="option-icon-right-container">
                 <image  class="option-icon-right" src="../../images/icons/right.png"/>
             </view>
-        </view>
+        </view> -->
     </view>
 </view>

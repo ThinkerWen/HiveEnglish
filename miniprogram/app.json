@@ -12,6 +12,7 @@
     "pages/remind/remind",
     "pages/userCenter/userCenter",
     "pages/userCenter/Feedback",
+    "pages/userCenter/about",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",

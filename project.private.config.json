@@ -119,6 +119,12 @@
           "pathName": "pages/home/home",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/userCenter/about",
+          "pathName": "pages/userCenter/about",
+          "query": "",
+          "scene": null
         }
       ]
     }

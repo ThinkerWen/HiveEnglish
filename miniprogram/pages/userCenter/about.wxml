@@ -1,0 +1,29 @@
+<!--element.wxml-->
+<view class="comp">
+	<view class="comp-top">
+		<view class="page_title">
+			<view class="comp-title">
+				蜂巢单词
+				<view class="tui-badge">v1.0.0</view>
+			</view>
+		</view>
+		<view class="page_desc">开辟免费高效的单词理念</view>
+	</view>
+	<view class="comp-content">
+		<view class="comp-content-title">关于</view>
+		<view class="intro-box">
+			<view class="intro-item">
+				<view class="intro-title">开发者</view>
+				<view class="intro-desc">两位开发者CFH和WXW</view>
+			</view>
+			<view class="intro-item">
+				<view class="intro-title">合作</view>
+				<view class="intro-desc">邮箱：wxw126mail@126.com</view>
+			</view>
+            <view class="intro-item">
+				<view class="intro-title">微信公众号</view>
+				<view class="intro-desc">夜寒信息</view>
+			</view>
+		</view>
+	</view>
+</view>

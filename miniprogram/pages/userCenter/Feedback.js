@@ -7,6 +7,7 @@
 // var username = wx.getStorageSync("my_nick");
 // var openid = wx.getStorageSync("user_openid");
 // var userid = wx.getStorageSync("user_id");
+const MY_API = 'https://www.hive-net.cn:8443/wechat/suggest/'
 Page({
   data: {
     list_remind: '加载中',
@@ -189,6 +190,7 @@ Page({
   },
   //提交表单
   submitForm: function (e) {
+    var that = this
     var title = e.detail.value.title;
     var content = e.detail.value.content;
     //先进行表单非空验证
@@ -207,82 +209,110 @@ Page({
         isLoading: true,
         isdisabled: true
       })
-      wx.showModal({
-        title: '提示',
-        content: '是否确认提交反馈',
-        success: function (res) {
-          if (res.confirm) {
-            wx.getStorage({
-              key: 'user_id',
-              success: function (ress) {
-                var Diary = Bmob.Object.extend("Feedback");
-                var diary = new Diary();
-                var me = new Bmob.User();
-                me.id = ress.data;
-                diary.set("feedUser", me);
-                diary.set("title", title);
-                diary.set("content", content);
-                diary.set("feedinfo", that.data.info);
-                if (that.data.isSrc == true) {
-                  var name = that.data.src; //上传图片的别名
-                  var file = new Bmob.File(name, that.data.src);
-                  file.save();
-                  diary.set("feedpic", file);
-                }
-                diary.save(null, {
-                  success: function (result) {
-                    //该用户的反馈次数加1
-                    wx.getStorage({
-                      key: 'my_username',
-                      success: function (ress) {
-                        var my_username = ress.data;
-                        wx.getStorage({
-                          key: 'user_openid',
-                          success: function (res) { //将该文章的Id添加到我的收藏中，或者删除
-                            var openid = res.data;
-                            var user = Bmob.User.logIn(my_username, openid, {
-                              success: function (user) {
-                                var feednum = user.get("feednum");
-                                user.set("feednum", feednum + 1);
-                                user.save();
-                              }
-                            })
-                          }
-                        });
-                      },
-                    })
-                    console.log("反馈成功");
-                    that.setData({
-                      isLoading: false,
-                      isdisabled: false,
-                      eventId: result.id,
-                      feednum:that.data.feednum+1,
-                    })
-                    //添加成功，返回成功之后的objectId(注意，返回的属性名字是id,而不是objectId)
-                    common.dataLoading("反馈成功", "success", function () {
-                      //重置表单
-                      that.setData({
-                        title: '',
-                        content: "",
-                        src: "",
-                        isSrc: false,
-                      })
-                    });
-                  },
-                  error: function (result, error) {
-                    //添加失败
-                    console.log("反馈失败=" + error);
-                    that.setData({
-                      isLoading: false,
-                      isdisabled: false
-                    })
-                  }
-                })
-              }
-            })
+      wx.request({
+        url: MY_API,
+        method: 'POST',
+        data: {
+          mail: "ss",
+          name: "ss",
+          text: "ss"
+        },
+        success: res => {
+          if (res.statusCode === 200) {
+            if(!res.data){
+              wx.showToast({
+                title: '错误，请联系管理员',
+                icon: 'none',
+                duration: 1000
+              });
+              return;
+            }
+          } else{
+            wx.showToast({
+              title: '错误，请联系管理员',
+              icon: 'none',
+              duration: 1000
+            });
+            console.error('错误，请联系管理员');
           }
-        }
+        },
       })
+      // wx.showModal({
+      //   title: '提示',
+      //   content: '是否确认提交反馈',
+      //   success: function (res) {
+      //     if (res.confirm) {
+      //       wx.getStorage({
+      //         key: 'user_id',
+      //         success: function (ress) {
+      //           var Diary = Bmob.Object.extend("Feedback");
+      //           var diary = new Diary();
+      //           var me = new Bmob.User();
+      //           me.id = ress.data;
+      //           diary.set("feedUser", me);
+      //           diary.set("title", title);
+      //           diary.set("content", content);
+      //           diary.set("feedinfo", that.data.info);
+      //           if (that.data.isSrc == true) {
+      //             var name = that.data.src; //上传图片的别名
+      //             var file = new Bmob.File(name, that.data.src);
+      //             file.save();
+      //             diary.set("feedpic", file);
+      //           }
+      //           diary.save(null, {
+      //             success: function (result) {
+      //               //该用户的反馈次数加1
+      //               wx.getStorage({
+      //                 key: 'my_username',
+      //                 success: function (ress) {
+      //                   var my_username = ress.data;
+      //                   wx.getStorage({
+      //                     key: 'user_openid',
+      //                     success: function (res) { //将该文章的Id添加到我的收藏中，或者删除
+      //                       var openid = res.data;
+      //                       var user = Bmob.User.logIn(my_username, openid, {
+      //                         success: function (user) {
+      //                           var feednum = user.get("feednum");
+      //                           user.set("feednum", feednum + 1);
+      //                           user.save();
+      //                         }
+      //                       })
+      //                     }
+      //                   });
+      //                 },
+      //               })
+      //               console.log("反馈成功");
+      //               that.setData({
+      //                 isLoading: false,
+      //                 isdisabled: false,
+      //                 eventId: result.id,
+      //                 feednum:that.data.feednum+1,
+      //               })
+      //               //添加成功，返回成功之后的objectId(注意，返回的属性名字是id,而不是objectId)
+      //               common.dataLoading("反馈成功", "success", function () {
+      //                 //重置表单
+      //                 that.setData({
+      //                   title: '',
+      //                   content: "",
+      //                   src: "",
+      //                   isSrc: false,
+      //                 })
+      //               });
+      //             },
+      //             error: function (result, error) {
+      //               //添加失败
+      //               console.log("反馈失败=" + error);
+      //               that.setData({
+      //                 isLoading: false,
+      //                 isdisabled: false
+      //               })
+      //             }
+      //           })
+      //         }
+      //       })
+      //     }
+      //   }
+      // })
     }
     setTimeout(function () {
       that.setData({

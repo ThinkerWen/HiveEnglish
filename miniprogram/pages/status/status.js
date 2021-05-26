@@ -59,36 +59,43 @@ Page({
 
   getData: function(){
     var that = this
-    var totalCount = 30
     var masterCount = 0
     var progress = {}
     var master = []
     var total = []
+    var today = new Date()
+    var month = today.getMonth()+1
+    var day = today.getDate()
     db.collection('userInfo').where({
       _id: app.globalData.openId
     })
     .get({
       success: function(res) {
-        master[0] = res.data[0].day1
-        master[1] = res.data[0].day2
-        master[2] = res.data[0].day3
-        master[3] = res.data[0].day4
-        master[4] = res.data[0].day5
-        master[5] = 20
-        master[6] = 25
-        progress.master = master
+        var count = 0
+        var totalCount = 0
         for(let i=0; i<7; i++){
-          masterCount += master[i]
-          total[i] = totalCount
-          totalCount+=30
+          count += res.data[0].days[i]
+          master[i] = count
         }
-        progress.date = ["4.05", "4.06", "4.07", "4.08", "4.09", "4.10", "4.11"]
+        console.log(master)
+        progress.master = master
+        progress.date = []
+        for(let i=0; i<7; i++){
+          totalCount += 20
+          total[i] = totalCount
+        }
+        for(let i=6; i>=0; i--){
+          progress.date.push(month+"."+day)
+          day--
+        }
+        progress.date = progress.date.reverse()
+        console.log(progress.date)
         progress.total = total
         console.log(progress)
         that.setData({
           progress: progress,
           studingNum: totalCount,
-          masterNum: masterCount
+          masterNum: master[6]
         })
         console.log(that.data.progress)
         that.drawCanvas1();

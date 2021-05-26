@@ -8,13 +8,17 @@
             <text class="top-trisection-bottom-text">已掌握</text>
         </view>
         <view class="top-trisection">
+            <text class="top-trisection-top-text"></text>
+            <text class="top-trisection-bottom-text"></text>
+        </view>
+        <view class="top-trisection">
             <text class="top-trisection-top-text">{{studingNum}}</text>
             <text class="top-trisection-bottom-text">正在学</text>
         </view>
-        <view class="top-trisection">
+        <!-- <view class="top-trisection">
             <text class="top-trisection-top-text">{{easyNum}}</text>
             <text class="top-trisection-bottom-text">简单词</text>
-        </view>
+        </view> -->
     </view>
 </view>
 <view class="separator"/>

@@ -10,6 +10,13 @@ var progress2;
 var summaryCount = 0;
 var timeIntv;
 var maxSum;
+var pushuserLearned = {
+  bookId: '',
+  learnedSequence: 20,
+  newWord: [],
+  reviewWord: [],
+  userId: ''
+};
 
 Page({
 
@@ -51,7 +58,10 @@ Page({
       })
       console.log(data)
       var formated = that.formatData(data);
-      that.getWords(data);
+      if(!that.getProgress()){
+        that.getWords(data);
+      }
+      console.log(that.data)
       // that.initProgress(formated);
       // this.initWordInfo();
       // this.pronounce();
@@ -74,8 +84,10 @@ Page({
   },
 
   getWords: function(data){
-    // eventChannel.on('acceptDataFromOpenerPage', function(data) {
       console.log(data)
+      pushuserLearned.bookId = data.bookId
+      pushuserLearned.userId = data.userId
+      pushuserLearned.learnedSequence = data.learnedSequence
       var unstudyWords = data.newWord.concat(data.reviewWord)
       var tempWords = unstudyWords
       console.log(tempWords)
@@ -87,7 +99,6 @@ Page({
         newWordsList: data.newWord,
         oldWordsList: data.reviewWord,
       })
-    // })
   },
 
   atLarge: function(){
@@ -106,12 +117,39 @@ Page({
   },
 
   saveProgress: function(){
-    if (progress.type==0) {
-      wx.setStorageSync('newWordsProgress', progress);
+    wx.setStorageSync('myWordList', that.data.myWordList);
+    wx.setStorageSync('wordSequence', that.data.wordSequence);
+    if(that.data.myWordList[that.data.wordSequence]){
+      wx.setStorageSync('wordInfo', that.data.wordInfo);
+    }else{
+      wx.setStorageSync('wordInfo', that.data.myWordList[that.data.wordSequence-1]);
     }
-    else {
-      wx.setStorageSync('oldWordsProgress', progress);
+    wx.setStorageSync('oldWordsList', that.data.oldWordsList);
+    wx.setStorageSync('newWordsList', that.data.newWordsList);
+    wx.setStorageSync('ow1', that.data.own1);
+    wx.setStorageSync('nw1', that.data.nwn1);
+    wx.setStorageSync('ow2', that.data.own2);
+    wx.setStorageSync('nw2', that.data.nwn2);
+  },
+
+  getProgress: function(){
+    if(wx.getStorageSync('myWordList')){
+      this.setData({
+        myWordList: wx.getStorageSync('myWordList'),
+        wordSequence: wx.getStorageSync('wordSequence'),
+        wordInfo: wx.getStorageSync('wordInfo'),
+        oldWordsList: wx.getStorageSync('oldWordsList'),
+        newWordsList: wx.getStorageSync('newWordsList'),
+        own1: wx.getStorageSync('ow1'),
+        nwn1: wx.getStorageSync('nw1'),
+        own2: wx.getStorageSync('ow2'),
+        nwn2: wx.getStorageSync('nw2')
+      })
+      return true
     }
+    return false
+    // wx.getStorageSync('myWordList')
+    // wx.getStorageSync('wordSequence')
   },
 
   pronounce: function(e){
@@ -382,6 +420,7 @@ Page({
     else if(progress.studingWords.length!=0 ){
       nextWord = progress.studingWords[0];
       progress.studingWords[0].timeCount = progress.globalTimeCount
+      console.log(newWord)
       that.setData({
         isReviewing: true,
         wordInfo: nextWord
@@ -412,6 +451,7 @@ Page({
   },
 
   knownHandle: function() {
+    console.log(pushuserLearned)
     if(this.data.wordSequence<this.data.myWordList.length){
       if(this.data.wordSequence<this.data.oldWordsList.length){
         this.setData({
@@ -419,6 +459,8 @@ Page({
         })
       }
       else{
+        pushuserLearned.learnedSequence = pushuserLearned.learnedSequence+1
+        pushuserLearned.reviewWord.push(that.data.wordInfo)
         this.setData({
           nwn1: that.data.nwn1+1
         })

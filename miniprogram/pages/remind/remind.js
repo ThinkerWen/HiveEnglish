@@ -34,8 +34,13 @@ Page({
       time: e.currentTarget.dataset.time
     })
     this.pushDatabase()
-    wx.navigateBack({
-      delta: 1
+    wx.requestSubscribeMessage({
+      tmplIds: ['SFu0JOESFQy02BohxwyPSbHKVAFOGHQ8Y2Vzcqndcbk'],
+      success (res) {
+        wx.navigateBack({
+          delta: 1
+        })
+      }
     })
   },
 

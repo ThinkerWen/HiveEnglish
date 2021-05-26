@@ -99,11 +99,7 @@ Page({
             registerDay: new Date(),
             reminderTime: "",
             continueDays: 0,
-            day1: 0,
-            day2: 0,
-            day3: 0,
-            day4: 0,
-            day5: 0,
+            days: [0,0,0,0,0,0],
             dayWords: 0,
             learnedDays: this.data.monthArr
           }

@@ -53,7 +53,7 @@
                     <view class="books-delete-icon-container">
                         <image class="books-delete-icon" src="../../images/icons/star.png" />
                     </view>
-                    <view class="books-select-button">切换</view>
+                    <!-- <view class="books-select-button">切换</view> -->
                 </view>
             </view>
         </view>

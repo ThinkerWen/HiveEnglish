@@ -43,7 +43,7 @@
         </view>
     </view>
     <view class="options-block">
-        <navigator url="./Feedback"><view class="option">
+        <!-- <navigator url="./Feedback"><view class="option">
             <view class="option-icon-container">
                 <image class="option-icon" src="../../images/icons/email.png"/>
             </view>
@@ -51,7 +51,7 @@
             <view class="option-icon-right-container">
                 <image  class="option-icon-right" src="../../images/icons/right.png"/>
             </view>
-        </view></navigator>
+        </view></navigator> -->
         <navigator url="./about"><view class="option">
             <view class="option-icon-container">
                 <image class="option-icon" src="../../images/icons/star.png"/>

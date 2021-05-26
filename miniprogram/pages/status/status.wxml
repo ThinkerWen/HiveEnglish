@@ -26,7 +26,7 @@
     </view>
     <canvas canvas-id="canvas1" />
 </view>
-<view class="separator"/>
+<!-- <view class="separator"/>
 <view class="canvas-container">
     <view class="canvas-guide-container">
         <view class="canvas-guide-left" style="border-color:#1dd1a1;">每日单词统计</view>
@@ -34,4 +34,4 @@
         <view class="canvas-guide-right" style="border-color:#e15f41; opacity:0.4;">已学</view>
     </view>
     <canvas canvas-id="canvas2" />
-</view>
+</view> -->

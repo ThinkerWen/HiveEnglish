@@ -1,4 +1,6 @@
 // miniprogram/pages/status/status.js
+const db = wx.cloud.database()
+const app = getApp()
 function rpx2px(rpx) {
   var px = rpx / 750 * wx.getSystemInfoSync().windowWidth
   return px
@@ -39,19 +41,60 @@ Page({
       total:[1200, 1292, 1412, 1532, 1672, 1921, 2100],
       master:[600, 700, 800, 900, 1100, 1200, 1400]
     },
-    stastistics: {
-      date:["4.05", "4.06", "4.07", "4.08", "4.09", "4.10", "4.11"],
-      total:[140, 122, 142, 152, 162, 151, 110],
-      master:[60, 70, 80, 90, 110, 120, 100]
-    }
+    // stastistics: {
+    //   date:["4.05", "4.06", "4.07", "4.08", "4.09", "4.10", "4.11"],
+    //   total:[140, 122, 142, 152, 162, 151, 110],
+    //   master:[60, 70, 80, 90, 110, 120, 100]
+    // }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.drawCanvas1();
-    this.drawCanvas2();
+    this.getData();
+    // this.drawCanvas1();
+    // this.drawCanvas2();
+  },
+
+  getData: function(){
+    var that = this
+    var totalCount = 30
+    var masterCount = 0
+    var progress = {}
+    var master = []
+    var total = []
+    db.collection('userInfo').where({
+      _id: app.globalData.openId
+    })
+    .get({
+      success: function(res) {
+        master[0] = res.data[0].day1
+        master[1] = res.data[0].day2
+        master[2] = res.data[0].day3
+        master[3] = res.data[0].day4
+        master[4] = res.data[0].day5
+        master[5] = 20
+        master[6] = 25
+        progress.master = master
+        for(let i=0; i<7; i++){
+          masterCount += master[i]
+          total[i] = totalCount
+          totalCount+=30
+        }
+        progress.date = ["4.05", "4.06", "4.07", "4.08", "4.09", "4.10", "4.11"]
+        progress.total = total
+        console.log(progress)
+        that.setData({
+          progress: progress,
+          studingNum: totalCount,
+          masterNum: masterCount
+        })
+        console.log(that.data.progress)
+        that.drawCanvas1();
+        // that.drawCanvas2();
+      }
+    })
   },
 
   drawCanvas1: function(e){

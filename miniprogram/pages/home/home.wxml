@@ -1,11 +1,11 @@
 <!--miniprogram/pages/home/home.wxml-->
 <view class="container">
-    <view class="search-container">
+    <!-- <view class="search-container">
         <input class="search-input" bindinput='searchInput' placeholder="输入翻译（右侧支持拍照翻译哦）"  value='{{searchText}}'/>
         <view class="search-icon-container" bindtap='search'>
             <image class="search-icon" src="../../images/icons/photo.png"/>
         </view>
-    </view>
+    </view> -->
     <view class="sign-container">
         <text class="sign-guide-text">我在蜂巢单词学习</text>
         <text class="sign-num-text">{{signedNum}}</text>

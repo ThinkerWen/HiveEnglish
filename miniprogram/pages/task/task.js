@@ -27,23 +27,29 @@ Page({
 
   getBook: function(){
     var that = this
-    var myBookInfo = {}
     var myBooksList = []
     var dataFirstList = []
     db.collection('userLearned').where({
       userId: app.globalData.openId // 填入当前用户 openid
     }).get().then(res => {          // 第一次调用结果
-      dataFirstList = res.data
-      for(let i=0; i<dataFirstList.length; i++){
+      console.log(res.data)
+      var myTempData = res.data
+      for(let i=0; i<res.data.length; i++){
+        var myBookInfo = {}
         myBookInfo.studiedNum = res.data[i].learnedSequence
         if(i == 0){
           db.collection('Booklist').where({
             id: res.data[i].bookId
           }).get().then(res => {     // 第二次调用结果
+            var myBookInfo = {}
+            myBookInfo.studiedNum = myTempData[i].learnedSequence
+            myBookInfo.id = res.data[0].bookId
+            console.log(res.data)
             myBookInfo.name = res.data[0].title
             myBookInfo.totalNum = res.data[0].wordNum
             myBookInfo.imgUrl = res.data[0].cover
             myBooksList.push(myBookInfo)
+            console.log(myBookInfo)
             that.setData({
               currentBookInfo: myBookInfo,
               myBooksList: myBooksList
@@ -53,10 +59,14 @@ Page({
           db.collection('Booklist').where({
             id: res.data[i].bookId
           }).get().then(res => {     // 第二次调用结果
+            var myBookInfo = {}
+            myBookInfo.studiedNum = myTempData[i].learnedSequence
+            myBookInfo.id = res.data[0].bookId
             myBookInfo.name = res.data[0].title
             myBookInfo.totalNum = res.data[0].wordNum
             myBookInfo.imgUrl = res.data[0].cover
             myBooksList.push(myBookInfo)
+            console.log(myBookInfo)
             that.setData({
               myBooksList: myBooksList
             })
@@ -148,7 +158,7 @@ Page({
 
   toDictionary: function () {
     wx.navigateTo({
-      url: '../dictionary/dictionary',
+      url: '../dictionary/dictionary?id={{item.id}}',
     })
   },
 

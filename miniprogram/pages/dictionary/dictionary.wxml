@@ -25,6 +25,10 @@
                 <text class="top-bar-element-text">词库列表</text>
                 <view wx:if="{{tabIndex==0}}" class="top-bar-bottom"/>
             </view>
+            <view class="top-bar-element" style="width:50%">
+                <text class="start-button" style="width:150px" bindtap="addBook">添加</text>
+                <!-- <view wx:if="{{tabIndex==0}}" class="top-bar-bottom"/> -->
+            </view>
         </view>
         <view wx:else>
             <view class="top-bar-element" style="width:50%" bindtap="changeList" data-index="0">

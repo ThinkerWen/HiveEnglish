@@ -5,10 +5,10 @@
         <view class="books-image-container">
             <image class="books-image" src="{{item.cover}}" />
             <view class="books-vocabulary">{{item.wordNum}}</view>
-            <view catchtap="star" data-index="{{index}}">
+            <!-- <view catchtap="star" data-index="{{index}}">
                 <view wx:if="{{item.star}}" class="books-star"/>
                 <view wx:else class="books-unstar"/>
-            </view>
+            </view> -->
         </view>
     </navigator>
     </view>

@@ -1,5 +1,6 @@
 // miniprogram/pages/dictionary/dictionary.js
 const db = wx.cloud.database()
+const app = getApp()
 const API = "https://dict.youdao.com/dictvoice?audio="
 var that
 Page({
@@ -78,7 +79,6 @@ Page({
   },
 
   getWord: function(){
-    
     this.setData({
      total: this.data.total + 20
     })
@@ -95,36 +95,43 @@ Page({
         let new_data = res.data
         let old_data = that.data.currentWordsList
         that.setData({
-          // allWordList : old_data.concat(new_data),
           currentWordsList : old_data.concat(new_data),
           loaded:true
-          // Databased : true
         })
       }
     })
-    // db.collection(this.data.id).count().then(async res =>{
-    //   const MAX_LIMIT = 20;
-    //   let total = this.data.total;
-    //   // let total = res.total;
-    //   // 计算需分几次取
-    //   const batchTimes = Math.ceil(total / MAX_LIMIT)
-    //   // 承载所有读操作的 promise 的数组
-    //   for (let i = 0; i < batchTimes; i++) {
-    //     await db.collection(this.data.id).skip(i * MAX_LIMIT).limit(MAX_LIMIT).get().then(async res => {
-    //       let new_data = res.data
-    //       let old_data = that.data.currentWordsList
-    //       if(i >= that.data.total/20 - 1){
-    //         that.setData({
-    //           // allWordList : old_data.concat(new_data),
-    //           currentWordsList : old_data.concat(new_data),
-    //           loaded:true
-    //           // Databased : true
-    //         })
-    //       }
-    //     })
-    //   }
-    //   console.log(this.data.currentWordsList)
-    // })
+  },
+
+  addBook: function(){
+    var that = this
+    var newWord = []
+    db.collection('userLearned').where({
+      userId: app.globalData.openId,
+      bookId: that.data.id
+    })
+    .get({
+      success: function(res) {
+        if(res.data.length == 0){
+          db.collection(that.data.id).get({
+            success: function(res) {
+              newWord = res.data
+              db.collection('userLearned').add({
+                data: {
+                  bookId: that.data.id,
+                  learnedSequence: 20,
+                  newWord: newWord,
+                  reviewWord: [],
+                  userId: app.globalData.openId,
+                },
+                success: function(res) {
+                  console.log(res)
+                }
+              })
+            }
+          })
+        }
+      }
+    })
   },
 
   changeList: function(e){

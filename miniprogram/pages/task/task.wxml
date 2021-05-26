@@ -34,9 +34,12 @@
             <view class="books-add-button" catchtap="toLibrary">添加新书</view>
         </view>
         <view class="books-container" wx:for="{{myBooksList}}" wx:key="item">
-            <view class="books-image-container" bindtap="toDictionary">
+            <!-- <view class="books-image-container" bindtap="toDictionary">
                 <image class="books-image" src="{{item.imgUrl}}" />
-            </view>
+            </view> -->
+            <navigator url="../dictionary/dictionary?id={{item.id}}"><view class="books-image-container">
+                <image class="books-image" src="{{item.imgUrl}}" />
+            </view></navigator>
             <view class="books-info-container">
                 <view class="books-name-text">{{item.name}}</view>
                 <view class="books-progress-text">

@@ -12,7 +12,6 @@
     <view wx:if="{{!hasUserInfo}}" class="userinfo-block">
         <view class="userinfo-avatar-container">
           <image bindtap="getUserProfile" class="userinfo-avatar-image" src="https://www.hive-net.cn/HiveEnglish/images/icons/login.png" />
-          <text class="userinfo-nickname-text">sss</text>
         </view>
     </view>
     <view wx:else class="userinfo-block">

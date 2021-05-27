@@ -2,25 +2,21 @@ const MY_API = 'https://www.hive-net.cn:8443/wechat/suggest/'
 const app = getApp()
 Page({
   data: {
-    list_remind: '加载中',
-    status: false,  //是否显示列表
-    itemopen:false,
-    feednum: 0, //反馈的次数
-    hasFeed: false,
-    email: '',
-    content: '',
-    info: '',
-    showTopTips: false,
-    TopTips: '',
+    email: '',          // 反馈邮箱
+    content: '',        // 反馈内容
+    src: "",            // 反馈图片路径
+    isSrc: false,       // 反馈图片是否存在
+    isLoading: false,   // 提交按钮是否加载
+    isdisabled: false   // 提交按钮是否可点击提交
   },
   onLoad: function () {
-    if(!app.globalData.openId){
+    if(!app.globalData.openId){   //未登录跳转登录
       wx.showToast({
          title: '请授权登录！',
          icon: 'none',
          duration: 1500,
          success: function () {
-         setTimeout(function () {
+         setTimeout(function () { // 等待1.5秒后跳转到userCenter
          wx.reLaunch({
          url: '../userCenter/userCenter',
             })
@@ -28,16 +24,6 @@ Page({
          }
       })
     }
-    var that = this;
-    that.setData({//初始化数据
-      src: "",
-      isSrc: false,
-      ishide: "0",
-      autoFocus: true,
-      isLoading: false,
-      loading: true,
-      isdisabled: false
-    })
   },
 
   /**
@@ -46,9 +32,7 @@ Page({
   onReady: function () {
   },
   onShow:function(){
-    console.log("调用onShow")
   },
-  //获取评论信息
 
   //上传图片
   uploadPic: function () {
@@ -81,19 +65,19 @@ Page({
   //提交表单
   submitForm: function (e) {
     var that = this
-    var email = e.detail.value.email;
-    var content = e.detail.value.content;
+    var email = e.detail.value.email;     // 反馈邮箱
+    var content = e.detail.value.content; // 反馈内容
     //先进行表单非空验证
     if (email == "") {
       that.showWarning("请输入您的邮箱")
     } else if (content == "") {
       that.showWarning("请输入反馈内容")
-    } else {
-      that.setData({
+    } else {                // 表单不为空
+      that.setData({        // 按钮不可点击，加载转圈
         isLoading: true,
         isdisabled: true
       })
-      wx.request({
+      wx.request({          // 发送邮件到后台
         url: MY_API,
         method: 'POST',
         data: {
@@ -102,19 +86,19 @@ Page({
           text: content
         },
         success: res => {
-          if (res.statusCode === 200) {
-            setTimeout(function () {}, 1500);
+          if (res.statusCode === 200) {   //发送成功
+            setTimeout(function () {}, 1500);     // 按键不缓冲，设置可用
             that.setData({
               isLoading: false,
               isdisabled: false
             })
             that.showWarning("您的反馈已提交，感谢您的支持!")
-            setTimeout(function () {
+            setTimeout(function () {              // 等待1.5秒返回上一页
               wx.navigateBack({
                 delta: 1,
               })
             }, 1500);
-            if(!res.data){
+            if(!res.data){                  // 后端返回false
               wx.showToast({
                 title: '错误，请联系管理员',
                 icon: 'none',
@@ -122,7 +106,7 @@ Page({
               });
               return;
             }
-          } else{
+          } else{                           // 返回状态码不是200
             wx.showToast({
               title: '错误，请联系管理员',
               icon: 'none',
@@ -135,12 +119,11 @@ Page({
     }
   },
   
-  showWarning: function(title){
+  showWarning: function(title){     // 提示弹窗，传入title为提示内容
     wx.showToast({
        title: title,
        icon: 'none',
        duration: 500
     })
   }
-
 });

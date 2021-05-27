@@ -3,7 +3,7 @@
     <view class="plan-block">
         <view class="plan-now-block">
             <view class="plan-now-book-image-container">
-                <image class="plan-now-book-image" src="../../images/books/book1.png"/>
+                <image class="plan-now-book-image" src="https://www.hive-net.cn/HiveEnglish/images/books/book1.png"/>
             </view>
             <view class="plan-now-book-info">
                 <view class="plan-now-book-name-text">六级考纲词汇</view>

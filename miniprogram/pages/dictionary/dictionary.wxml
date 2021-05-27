@@ -40,14 +40,6 @@
                 <view wx:if="{{tabIndex==1}}" class="top-bar-bottom"/>
             </view>
         </view>
-        <!-- <view class="top-bar-element" style="width:50%" bindtap="changeList" data-index="0">
-            <text class="top-bar-element-text">今日新词</text>
-            <view wx:if="{{tabIndex==0}}" class="top-bar-bottom"/>
-        </view>
-        <view class="top-bar-element" style="width:50%" bindtap="changeList" data-index="1">
-            <text class="top-bar-element-text">今日复习</text>
-            <view wx:if="{{tabIndex==1}}" class="top-bar-bottom"/>
-        </view> -->
     </view>
     <view class="summary-switch-container">
         <text class="summary-switch-text">释义遮挡</text>
@@ -55,23 +47,12 @@
     </view>
 </view>
 
-<!-- <view class="word" data-index="{{index}}"  wx:for="{{currentWordsList}}" wx:key="{{item.word}}">
-    <view class="word-top" catchtap="viewWordInfo" data-index="{{index}}">
-        <text class="word-text">{{item.name}}</text>
-        <view class="word-icon-container" catchtap="pronounce" data-index="{{index}}">
-            <image class="word-icon" src="../../images/icons/sound.png"/>
-        </view>
-    </view>
-    <view catchtap="wordMask" data-index="{{index}}">
-        <view wx:if="{{item.mask}}" class="word-mask" />
-        <view wx:else class="word-meaning">{{item.meaning[0]}}</view>
-    </view>
-</view> -->
 <view class="word" data-index="{{index}}"  wx:for="{{currentWordsList}}" wx:key="{{item.wordHead}}">
-    <view class="word-top" catchtap="viewWordInfo" data-index="{{index}}">
+    <!-- <view class="word-top" catchtap="viewWordInfo" data-word="{{item.wordHead}}"> -->
+    <view class="word-top">
         <text class="word-text">{{item.wordHead}}</text><text class="search-input">[{{item.ukphone}}]</text>
         <view class="word-icon-container" data-word="{{item.ukspeech}}" catchtap="pronounce" data-index="{{index}}">
-            <image class="word-icon" src="../../images/icons/sound.png"/>
+            <image class="word-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/sound.png"/>
         </view>
     </view>
     <view catchtap="wordMask" data-index="{{index}}">
@@ -81,15 +62,3 @@
 </view>
     <view wx:if="{{loaded}}" class="start-button" bindtap="getWord">加载更多</view>
 </view>
-<!-- <view class="word" data-index="{{index}}"  wx:for="{{allWordList}}" wx:key="{{item.wordHead}}">
-    <view class="word-top" catchtap="viewWordInfo" data-index="{{index}}">
-        <text class="word-text">{{item.wordHead}}</text><text class="search-input">[{{item.ukphone}}]</text>
-        <view class="word-icon-container" data-word="{{item.ukspeech}}" catchtap="pronounce" data-index="{{index}}">
-            <image class="word-icon" src="../../images/icons/sound.png"/>
-        </view>
-    </view>
-    <view catchtap="wordMask" data-index="{{index}}">
-        <view wx:if="{{item.mask}}" class="word-mask" />
-        <view wx:else class="word-meaning">{{item.trans[0].pos}}. {{item.trans[0].tranCn}}</view>
-    </view>
-</view> -->

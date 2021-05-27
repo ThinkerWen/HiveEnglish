@@ -34,19 +34,19 @@
 <view style="padding-top:20px;">
     <view class="trisaction" bindtap="toTaskPage">
         <view class="trisaction-top-container">
-            <image  class="trisaction-top-icon" src="../../images/icons/photo.png"/>
+            <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/photo.png"/>
         </view>
         <text class="trisaction-bottom-text">拍照翻译</text>
     </view>
     <view class="trisaction" bindtap="toCalendarPage">
         <view class="trisaction-top-container">
-            <image  class="trisaction-top-icon" src="../../images/icons/vs.png"/>
+            <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/vs.png"/>
         </view>
         <text class="trisaction-bottom-text">好友对战</text>
     </view>
     <view class="trisaction" style=" padding-bottom:20px">
         <view class="trisaction-top-container" bindtap="toRemindPage">
-            <image  class="trisaction-top-icon" src="../../images/icons/word.png"/>
+            <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/word.png"/>
         </view>
         <text class="trisaction-bottom-text">单词接龙</text>
     </view>
@@ -60,13 +60,13 @@
     <view class="word-top">
         <text class="word-text">{{searchReasult.wordHead}}</text>
         <view class="word-icon-container" data-type="0" data-word="{{searchReasult.fromspeech}}" catchtap="pronounce">
-            <image class="word-icon" src="../../images/icons/sound.png"/>
+            <image class="word-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/sound.png"/>
         </view>
     </view>
     <view class="word-top">
         <text class="word-meaning">{{searchReasult.tranCn}}</text>
         <view class="word-icon-container" data-type="1" data-word="{{searchReasult.tospeech}}" catchtap="pronounce">
-            <image class="word-icon" src="../../images/icons/sound.png"/>
+            <image class="word-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/sound.png"/>
         </view>
     </view>
 </view>

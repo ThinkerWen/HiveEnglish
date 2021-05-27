@@ -33,9 +33,9 @@
   <view class="guide" wx:if="{{step === 2}}">
     <text class="headline">新建集合</text>
     <text class="p">1. 打开云开发控制台，进入到数据库管理页</text>
-    <image class="image1" src="../../images/console-entrance.png" mode="aspectFit"></image>
+    <image class="image1" src="https://www.hive-net.cn/HiveEnglish/images/console-entrance.png" mode="aspectFit"></image>
     <text class="p">2. 选择添加集合，集合名为 counters</text>
-    <image class="flat-image" src="../../images/create-collection.png" mode="aspectFit"></image>
+    <image class="flat-image" src="https://www.hive-net.cn/HiveEnglish/images/create-collection.png" mode="aspectFit"></image>
     <text class="p">3. 可以看到 counters 集合出现在左侧集合列表中</text>
     <text class="p">注：集合必须在云开发控制台中创建</text>
 
@@ -50,7 +50,7 @@
     <text class="headline">新增记录</text>
     <text class="p">1. 打开 pages/databaseGuide/databaseGuide.js 文件，定位到 onAdd 方法</text>
     <text class="p">2. 把注释掉的代码解除注释</text>
-    <image class="code-image" src="../../images/code-db-onAdd.png" mode="aspectFit"></image>
+    <image class="code-image" src="https://www.hive-net.cn/HiveEnglish/images/code-db-onAdd.png" mode="aspectFit"></image>
     <text class="p">3. onAdd 方法会往 counters 集合新增一个记录，新增如下格式的一个 JSON 记录</text>
     <text class="code">
     {
@@ -75,7 +75,7 @@
     <text class="headline">查询记录</text>
     <text class="p">1. 打开 pages/databaseGuide/databaseGuide.js 文件，定位到 onQuery 方法</text>
     <text class="p">2. 把注释掉的代码解除注释，onQuery 方法会在下方按钮被点击时触发</text>
-    <image class="code-image" src="../../images/code-db-onQuery.png" mode="aspectFit"></image>
+    <image class="code-image" src="https://www.hive-net.cn/HiveEnglish/images/code-db-onQuery.png" mode="aspectFit"></image>
     <text class="p">3. 点击按钮</text>
     <button size="mini" type="default" bindtap="onQuery">查询记录</button>
     <text class="code" wx:if="{{queryResult}}">{{queryResult}}</text>
@@ -91,7 +91,7 @@
     <text class="headline">更新记录</text>
     <text class="p">1. 打开 pages/databaseGuide/databaseGuide.js 文件，定位到 onCounterInc 和 onCounterDec 方法</text>
     <text class="p">2. 把注释掉的代码解除注释</text>
-    <image class="code-image" src="../../images/code-db-inc-dec.png" mode="aspectFit"></image>
+    <image class="code-image" src="https://www.hive-net.cn/HiveEnglish/images/code-db-inc-dec.png" mode="aspectFit"></image>
     <text class="p">3. 点击下方按钮更新计数器</text>
     <div class="counter">
       <button class="minus" size="mini" type="default" bindtap="onCounterDec">-</button>
@@ -110,7 +110,7 @@
     <text class="headline">删除记录</text>
     <text class="p">1. 打开 pages/databaseGuide/databaseGuide.js 文件，定位到 onRemove 方法</text>
     <text class="p">2. 把注释掉的代码解除注释</text>
-    <image class="code-image" src="../../images/code-db-onRemove.png" mode="aspectFit"></image>
+    <image class="code-image" src="https://www.hive-net.cn/HiveEnglish/images/code-db-onRemove.png" mode="aspectFit"></image>
     <text class="p">3. 点击下方按钮删除计数器</text>
     <button size="mini" type="default" bindtap="onRemove">删除记录</button>
 

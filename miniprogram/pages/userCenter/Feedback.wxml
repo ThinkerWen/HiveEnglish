@@ -4,10 +4,9 @@
   <block class="test">
     <view class="tips"><text class="issues-label">我们会认真处理您的反馈，并将结果发送给您的邮箱</text></view>
     <form bindsubmit="submitForm">
-      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{TopTips}}</view>
       <view class="issues-panel">
         <view class="issues-input">
-          <input placeholder="请输入您的邮箱" type="email" name="title" value="{{title}}" />
+          <input placeholder="请输入您的邮箱" type="email" name="email" value="{{email}}" />
         </view>
         <textarea class="issues-textarea" cursor-spacing="50" placeholder="请输入反馈内容" name="content" value="{{content}}"></textarea>
       </view>

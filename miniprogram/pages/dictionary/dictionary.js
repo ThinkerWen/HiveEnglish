@@ -221,8 +221,10 @@ Page({
   },
 
   viewWordInfo: function(e){
+    console.log(e)
+    console.log(this.data.id)
     wx.navigateTo({
-      url: '../wordInfo/wordInfo?Wid=' + that.data.currentWordsList[e.currentTarget.dataset.index].Wid
+      url: '../wordInfo/wordInfo?wordHead='+e.currentTarget.dataset.word
     })
   },
 

@@ -16,6 +16,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if(!app.globalData.openId){
+      wx.showToast({
+         title: '请授权登录！',
+         icon: 'none',
+         duration: 1500,
+         success: function () {
+         setTimeout(function () {
+         wx.reLaunch({
+         url: '../userCenter/userCenter',
+            })
+          }, 1500);
+         }
+      })
+    }
     that = this
     this.getBook()
     // this.refresh()

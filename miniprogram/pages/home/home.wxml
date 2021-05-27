@@ -12,7 +12,7 @@
         <text class="sign-num-day-text">天</text>
         <view class="calendar" bindtap='toCalendarPage'>
             <text class="calendar-text">打卡日历</text>
-            <image class="calendar-icon" src="../../images/icons/calendar.png"/>
+            <image class="calendar-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/calendar.png"/>
         </view>
     </view>
     <view class="vocabulary-container" data-type="0" bindtap="toDictionary">
@@ -20,7 +20,7 @@
         <image class="vocabulary-background-image" src="https://www.hive-net.cn/HIveEnglish/background/gif.gif"/>
         <text class="vocabulary-name-text">{{bookInfo.name}}</text>
         <view class="vocabulary-guide">
-            <image class="vocabulary-icon" src="../../images/icons/vocabulary.png"/>
+            <image class="vocabulary-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/vocabulary.png"/>
             <text class="vocabulary-guide-text">词表</text>
         </view>
         <view class="vocabulary-progress">

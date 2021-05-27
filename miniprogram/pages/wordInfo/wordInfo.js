@@ -59,6 +59,23 @@ Page({
     })
 
   },
+  
+  atLarge: function(){
+    that = this
+    console.log(this.data.bookId + '_all')
+    console.log(that.data.wordInfo.wordHead)
+    db.collection(this.data.bookId + '_all').where({
+      headWord: that.data.wordInfo.wordHead
+    })
+    .get({
+      success: function(res) {
+        that.setData({
+          wordInfo: res.data[0]
+        })
+        console.log(res.data)
+      }
+    })
+  },
 
   onUnload: function () {
   },

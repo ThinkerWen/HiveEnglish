@@ -10,7 +10,7 @@
             <view class="plan-now-book-info">
                 <view class="plan-now-book-name-text">{{currentBookInfo.name}}</view>
                 <view class="plan-now-change-icon-container">
-                    <image class="plan-now-change-icon" src="../../images/icons/email.png" catchtap='toPlanPage'/>
+                    <image class="plan-now-change-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/email.png" catchtap='toPlanPage'/>
                 </view>
                 <view class="plan-now-progress-text-container">
                     <view class="plan-now-progress-text">
@@ -51,7 +51,7 @@
                 </view>
                 <view class="books-info-bottom">
                     <view class="books-delete-icon-container">
-                        <image class="books-delete-icon" src="../../images/icons/star.png" />
+                        <image class="books-delete-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/star.png" />
                     </view>
                     <!-- <view class="books-select-button">切换</view> -->
                 </view>

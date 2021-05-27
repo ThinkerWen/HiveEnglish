@@ -24,7 +24,23 @@ Page({
     ]
   },
   onLoad: function () {
-    this.dataPull()
+    if(!app.globalData.openId){
+      wx.showToast({
+         title: '请授权登录！',
+         icon: 'none',
+         duration: 1500,
+         success: function () {
+         setTimeout(function () {
+         wx.reLaunch({
+         url: '../userCenter/userCenter',
+            })
+          }, 1500);
+         }
+      })
+    }
+    else{
+      this.dataPull()
+    }
   },
 
   dataPush: function(){

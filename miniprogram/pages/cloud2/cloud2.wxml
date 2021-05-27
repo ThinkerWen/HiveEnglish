@@ -12,7 +12,7 @@
 <view class="query-container" wx:if="{{isQuery}}">
   <view class="query-wordinfo-container">
       <text class="query-name-text">{{queryWordInfo.name}}</text>
-      <image bindtap="exitQuery" class="icon-close-m" src="../../images/icons/exit.png"/>
+      <image bindtap="exitQuery" class="icon-close-m" src="https://www.hive-net.cn/HiveEnglish/images/icons/exit.png"/>
       <text class="query-soundmark-text">{{queryWordInfo.soundmark}}</text>
   </view>
   <text class="query-meaning-text">{{queryWordInfo.meaning}}</text>

@@ -20,7 +20,7 @@
     <!-- <image class="image1" src="{{imagePath}}" mode="aspectFit"></image> -->
     <text class="headline">云开发控制台中管理文件</text>
     <text class="p">1. 打开云开发控制台</text>
-    <image class="image1" src="../../images/console-entrance.png" mode="aspectFit"></image>
+    <image class="image1" src="https://www.hive-net.cn/HiveEnglish/images/console-entrance.png" mode="aspectFit"></image>
     <text class="p">2. 切换到文件管理标签页</text>
     <text class="p">3. 可查看文件列表、管理权限</text>
     <text class="p">4. 详细的教程和 API 文件，可点击调试器中打印的链接查看</text>

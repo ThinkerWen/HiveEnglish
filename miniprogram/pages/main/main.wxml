@@ -32,7 +32,7 @@
         <!-- <text wx:else class="text-word-ch">{{wordInfo.meaning[0]}}</text> -->
         <text wx:else class="text-word-ch">{{wordInfo.trans[0].pos}}. {{wordInfo.trans[0].tranCn}}</text>
         <view class="pronouncation">
-            <image data-word="{{wordInfo.ukspeech}}" catchtap='pronounce' class="icon-pronouncation" src="../../images/icons/sound.png"/>
+            <image data-word="{{wordInfo.ukspeech}}" catchtap='pronounce' class="icon-pronouncation" src="https://www.hive-net.cn/HiveEnglish/images/icons/sound.png"/>
             <!-- <text class="icon-pronouncation">[--]</text> -->
             <!-- <text class="text-soundmark">{{wordInfo.soundmark}}</text> -->
             <text class="text-soundmark">[{{wordInfo.ukphone}}]</text>
@@ -58,7 +58,7 @@
         </view>
         <view class="wordinfo-container">
             <text class="text-word-m">{{wordInfo.headWord}}</text>
-            <image data-word="{{wordInfo.content.word.content.ukspeech}}" catchtap='pronounce' class="icon-pronouncation-m" src="../../images/icons/sound.png"/>
+            <image data-word="{{wordInfo.content.word.content.ukspeech}}" catchtap='pronounce' class="icon-pronouncation-m" src="https://www.hive-net.cn/HiveEnglish/images/icons/sound.png"/>
             <text class="text-soundmark-m">[{{wordInfo.content.word.content.ukphone}}]</text>
         </view>
         <view class="dictionary-container">
@@ -85,7 +85,7 @@
         <view class="query-container" wx:if="{{isQuery}}" catchtap='viewQueryWordInfo'>
             <view class="query-wordinfo-container">
                 <text class="query-name-text">{{queryWordInfo.name}}</text>
-                <image catchtap="exitQuery" class="icon-close-m" src="../../images/icons/exit.png"/>
+                <image catchtap="exitQuery" class="icon-close-m" src="https://www.hive-net.cn/HiveEnglish/images/icons/exit.png"/>
                 <text class="query-soundmark-text">{{queryWordInfo.soundmark}}</text>
             </view>
             <text class="query-meaning-text">{{queryWordInfo.meaning[0]}}</text>
@@ -147,7 +147,7 @@
                 <view class="summary-word-top">
                     <text class="summary-word-text">{{item.name}}</text>
                     <view class="summary-word-icon-container">
-                        <image class="summary-word-icon" src="../../images/icons/sound.png"/>
+                        <image class="summary-word-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/sound.png"/>
                     </view>
                 </view>
                 <view catchtap="wordMask" data-index="{{index}}">

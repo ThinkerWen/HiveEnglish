@@ -53,8 +53,9 @@
 </view>
 <view class="view-contain-ti">
     <text class="text-ti">单词</text>
-    <input class="input1" placeholder="按下回车输出翻译结果"></input>
+    <input name='searchWord' class="input1" placeholder="按下回车输出翻译结果" bindconfirm="searchWord"></input>
 </view>
+<text class="search-word" wx:if="{{hasSearchReason}}">{{searchReason}}</text>
 
 <!-- <view class="trisaction">
     <view class="trisaction-top-container" bindtap="toRemindPage">

@@ -125,6 +125,12 @@
           "pathName": "pages/userCenter/about",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/status/status",
+          "pathName": "pages/status/status",
+          "query": "",
+          "scene": null
         }
       ]
     }

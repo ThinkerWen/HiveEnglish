@@ -147,3 +147,8 @@ canvas{
     margin:  auto 10px;
   }
   
+  .search-word{
+    margin-top:50px;
+    padding-left:30px;
+    color: rgb(52, 192, 134);
+  }

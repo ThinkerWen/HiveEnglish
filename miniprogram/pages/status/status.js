@@ -1,4 +1,6 @@
 // miniprogram/pages/status/status.js
+var sha256 = require('./sha256.js');
+
 const db = wx.cloud.database()
 const app = getApp()
 function rpx2px(rpx) {
@@ -206,6 +208,50 @@ Page({
     }
     ctx1.fill()
     ctx1.draw(true)
+  },
+
+  searchWord: function(e){
+    var word = e.detail.value
+    console.log(word)
+    var query = word
+    var appKey = '34a69e1ca7b7274f';
+    var key = 'cNh4xArEls6qsF1FnqlgDpbaFNCxT4WC';//注意：暴露appSecret，有被盗用造成损失的风险
+    var salt = (new Date).getTime();
+    var curtime = Math.round(new Date().getTime()/1000);
+    // 多个query可以用\n连接  如 query='apple\norange\nbanana\npear'
+    var from = 'auto';
+    var to = 'auto';
+    var str1 = appKey + this.truncate(query) + salt + curtime + key;
+    // var sign = sha.CryptoJS.SHA256(str1).toString(sha.CryptoJS.enc.Hex);
+    // var sign = sha.CryptoJS.HmacSHA256(query, query).toString()
+    var sign = sha256.sha256_digest(str1).toString()
+    // var sign = appKey + this.truncate(query) + salt + curtime + key;
+    var vocabId =  '您的用户词表ID';
+    wx.request({
+      url: 'https://openapi.youdao.com/api',
+      type: 'post',
+      dataType: 'jsonp',
+      header: {'Content-Type': 'application/x-www-form-urlencoded'},
+      data: {
+          q: query,
+          appKey: appKey,
+          salt: salt,
+          from: from,
+          to: to,
+          sign: sign,
+          signType: "v3",
+          curtime: curtime,
+      },
+      success: function (data) {
+          console.log(data);
+      } 
+    })
+  },
+
+  truncate: function(q){
+    var len = q.length;
+    if(len<=20) return q;
+    return q.substring(0, 10) + len + q.substring(len-10, len);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

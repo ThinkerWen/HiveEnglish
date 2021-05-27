@@ -50,11 +50,6 @@ Page({
       ukspeech: "test",
       ukphone: "test"
     }
-    // stastistics: {
-    //   date:["4.05", "4.06", "4.07", "4.08", "4.09", "4.10", "4.11"],
-    //   total:[140, 122, 142, 152, 162, 151, 110],
-    //   master:[60, 70, 80, 90, 110, 120, 100]
-    // }
   },
 
   /**
@@ -77,8 +72,6 @@ Page({
          }
       })
     }
-    // this.drawCanvas1();
-    // this.drawCanvas2();
   },
 
   getData: function(){
@@ -123,7 +116,6 @@ Page({
         })
         console.log(that.data.progress)
         that.drawCanvas1();
-        // that.drawCanvas2();
       }
     })
   },
@@ -179,55 +171,6 @@ Page({
     }
     ctx1.lineTo(rpx2px(540),rpx2px(300))
     ctx1.lineTo(0,rpx2px(300))
-    ctx1.fill()
-    ctx1.draw(true)
-  },
-
-  drawCanvas2: function(){
-    var progress = this.data.stastistics
-    var yLabelInc = (listMax(progress.total) - listMin(progress.master))/6
-    var ctx1 = wx.createCanvasContext('canvas2');
-    ctx1.translate(rpx2px(75),rpx2px(50))
-    ctx1.setStrokeStyle("#eeeeee")
-    ctx1.setFillStyle('#333333')
-    ctx1.setGlobalAlpha(1)
-    ctx1.setFontSize(rpx2px(20))
-    //init grid
-    for(var i=0; i<7; i++){
-      var x = rpx2px(i*540/6)
-      var y = rpx2px(300)
-      ctx1.moveTo(x, 0)
-      ctx1.lineTo(x, y)
-      ctx1.fillText(progress.date[i], x-ctx1.measureText(progress.date[i]).width/2, y+15)
-    }
-    for(var i=0; i<7; i++){
-      var x = rpx2px(540)
-      var y = rpx2px(i*300/6)
-      ctx1.moveTo(0, y)
-      ctx1.lineTo(x, y)
-      if(i!=6)
-        ctx1.fillText((listMax(progress.total)-yLabelInc*i).toString(), -ctx1.measureText((listMax(progress.total)-yLabelInc*i).toString()).width-5, y+5)
-    } 
-    ctx1.stroke()
-    ctx1.draw()
-    //draw data1
-    ctx1.setGlobalAlpha(0.5)
-    ctx1.setFillStyle('#f3a683')
-    for(var i=1; i<7; i++){
-      var x = rpx2px(i*540/6)
-      var y = rpx2px((1-((progress.total[i]-listMin(progress.master))/parseFloat(yLabelInc*6)))*300)
-      ctx1.rect(x-10, y, 20, rpx2px(300)-y)
-    }
-    ctx1.fill()
-    ctx1.draw(true)
-    //draw data2
-    ctx1.setGlobalAlpha(0.3)
-    ctx1.setFillStyle('#e77f67')
-    for(var i=1; i<7; i++){
-      var x = rpx2px(i*540/6)
-      var y = rpx2px((1-((progress.master[i]-listMin(progress.master))/parseFloat(yLabelInc*6)))*300)
-      ctx1.rect(x-10, y, 20, rpx2px(300)-y)
-    }
     ctx1.fill()
     ctx1.draw(true)
   },
@@ -312,6 +255,7 @@ Page({
     }
     return false
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

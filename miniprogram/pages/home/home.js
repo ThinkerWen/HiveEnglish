@@ -22,19 +22,34 @@ Page({
    */
   onLoad: function (options) {
     // this.dataPull()
-    db.collection('userInfo').where({
-      _id: app.globalData.openId
-    })
-    .get({
-      success: function(res) {
-        registerDay = res.data[0].registerDay
-        nowDay = new Date()
-        console.log(registerDay - nowDay)
-        that.setData({
-          signedNum : registerDay - nowDay
-        })
-      }
-    })
+    if(app.globalData.openId)
+      db.collection('userInfo').where({
+        _id: app.globalData.openId
+      })
+      .get({
+        success: function(res) {
+          registerDay = res.data[0].registerDay
+          nowDay = new Date()
+          console.log(registerDay - nowDay)
+          that.setData({
+            signedNum : registerDay - nowDay
+          })
+        }
+      })
+    else{
+      wx.showToast({
+         title: '请授权登录！',
+         icon: 'none',
+         duration: 1500,
+         success: function () {
+         setTimeout(function () {
+         wx.reLaunch({
+         url: '../userCenter/userCenter',
+            })
+          }, 1500);
+         }
+      })
+    }
   },
 
   dataPull: function(){
@@ -135,20 +150,22 @@ Page({
   onShow: function () {
     var that = this
     console.log(app.globalData.openId)
-    db.collection('userInfo').where({
-      _id: app.globalData.openId
-    })
-    .get({
-      success: function(res) {
-        var registerDay = res.data[0].registerDay
-        var nowDay = new Date()
-        var day = parseInt((Date.parse(nowDay)-Date.parse(registerDay))/ (1000 * 60 * 60 * 24))+1;
-        that.setData({
-          signedNum : day
-        })
-      }
-    })
-    this.dataPull()
+    if(app.globalData.openId){
+      db.collection('userInfo').where({
+        _id: app.globalData.openId
+      })
+      .get({
+        success: function(res) {
+          var registerDay = res.data[0].registerDay
+          var nowDay = new Date()
+          var day = parseInt((Date.parse(nowDay)-Date.parse(registerDay))/ (1000 * 60 * 60 * 24))+1;
+          that.setData({
+            signedNum : day
+          })
+        }
+      })
+      this.dataPull()
+    }
     // this.setTaskInfo()
     // this.setSignedNum()
     // this.setBookInfo()

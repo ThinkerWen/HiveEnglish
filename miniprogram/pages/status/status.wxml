@@ -53,9 +53,23 @@
 </view>
 <view class="view-contain-ti">
     <text class="text-ti">单词</text>
-    <input name='searchWord' class="input1" placeholder="按下回车输出翻译结果" bindconfirm="searchWord"></input>
+    <input name='searchWord' class="input1" placeholder="按下回车输出翻译结果" bindconfirm="translate"></input>
 </view>
-<text class="search-word" wx:if="{{hasSearchReason}}">{{searchReason}}</text>
+<!-- <text class="search-word" wx:if="{{hasSearchReason}}">{{searchReason}}</text> -->
+<view class="word" style="margin-left:30px" wx:if="{{hasReasult}}">
+    <view class="word-top">
+        <text class="word-text">{{searchReasult.wordHead}}</text>
+        <view class="word-icon-container" data-type="0" data-word="{{searchReasult.fromspeech}}" catchtap="pronounce">
+            <image class="word-icon" src="../../images/icons/sound.png"/>
+        </view>
+    </view>
+    <view class="word-top">
+        <text class="word-meaning">{{searchReasult.tranCn}}</text>
+        <view class="word-icon-container" data-type="1" data-word="{{searchReasult.tospeech}}" catchtap="pronounce">
+            <image class="word-icon" src="../../images/icons/sound.png"/>
+        </view>
+    </view>
+</view>
 
 <!-- <view class="trisaction">
     <view class="trisaction-top-container" bindtap="toRemindPage">

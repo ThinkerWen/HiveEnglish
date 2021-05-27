@@ -1,6 +1,6 @@
 // miniprogram/pages/status/status.js
-var sha256 = require('./sha256.js');
-
+var CryptoJS = require('../../utils/crypto-js.js');
+const API = "https://dict.youdao.com/dictvoice?audio="
 const db = wx.cloud.database()
 const app = getApp()
 function rpx2px(rpx) {
@@ -34,15 +34,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    totalNum: 8110,
-    masterNum: 7559,
-    studingNum: 249,
-    easyNum: 559,
+    totalNum: 0,
+    masterNum: 0,
+    studingNum: 0,
+    easyNum: 0,
     progress: {
       date:["4.05", "4.06", "4.07", "4.08", "4.09", "4.10", "4.11"],
       total:[1200, 1292, 1412, 1532, 1672, 1921, 2100],
       master:[600, 700, 800, 900, 1100, 1200, 1400]
     },
+    hasReasult: false,
+    searchReasult: {
+      wordHead: "tset",
+      tranCn: "测试",
+      ukspeech: "test",
+      ukphone: "test"
+    }
     // stastistics: {
     //   date:["4.05", "4.06", "4.07", "4.08", "4.09", "4.10", "4.11"],
     //   total:[140, 122, 142, 152, 162, 151, 110],
@@ -54,7 +61,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getData();
+    if(app.globalData.openId){
+      this.getData();
+    }else{
+      wx.showToast({
+         title: '请授权登录！',
+         icon: 'none',
+         duration: 1500,
+         success: function () {
+         setTimeout(function () {
+         wx.reLaunch({
+         url: '../userCenter/userCenter',
+            })
+          }, 1500);
+         }
+      })
+    }
     // this.drawCanvas1();
     // this.drawCanvas2();
   },
@@ -210,41 +232,47 @@ Page({
     ctx1.draw(true)
   },
 
-  searchWord: function(e){
-    var word = e.detail.value
-    console.log(word)
-    var query = word
+  translate:function(e){
+    var that = this
     var appKey = '34a69e1ca7b7274f';
-    var key = 'cNh4xArEls6qsF1FnqlgDpbaFNCxT4WC';//注意：暴露appSecret，有被盗用造成损失的风险
+    var key = 'cNh4xArEls6qsF1FnqlgDpbaFNCxT4WC';
     var salt = (new Date).getTime();
     var curtime = Math.round(new Date().getTime()/1000);
-    // 多个query可以用\n连接  如 query='apple\norange\nbanana\npear'
+    var query = e.detail.value;
     var from = 'auto';
     var to = 'auto';
     var str1 = appKey + this.truncate(query) + salt + curtime + key;
-    // var sign = sha.CryptoJS.SHA256(str1).toString(sha.CryptoJS.enc.Hex);
-    // var sign = sha.CryptoJS.HmacSHA256(query, query).toString()
-    var sign = sha256.sha256_digest(str1).toString()
-    // var sign = appKey + this.truncate(query) + salt + curtime + key;
     var vocabId =  '您的用户词表ID';
+
+    var sign = CryptoJS.SHA256(str1).toString(CryptoJS.enc.Hex);
     wx.request({
       url: 'https://openapi.youdao.com/api',
-      type: 'post',
-      dataType: 'jsonp',
-      header: {'Content-Type': 'application/x-www-form-urlencoded'},
       data: {
-          q: query,
-          appKey: appKey,
-          salt: salt,
-          from: from,
-          to: to,
-          sign: sign,
-          signType: "v3",
-          curtime: curtime,
+        q: query,
+        appKey: appKey,
+        salt: salt,
+        from: from,
+        to: to,
+        sign: sign,
+        signType: "v3",
+        curtime: curtime,
+        vocabId: vocabId,
       },
-      success: function (data) {
-          console.log(data);
-      } 
+      success:res=>{
+        var result = {}
+        console.log(res.data.tSpeakUrl)
+        result.wordHead = res.data.query
+        result.tranCn = res.data.translation[0]
+        result.tospeech = res.data.tSpeakUrl
+        result.fromspeech = res.data.speakUrl
+        that.setData({
+          hasReasult: true,
+          searchReasult:result
+        })
+      },
+      fail:res=>{
+        console.log('fail:',res)
+      }
     })
   },
 
@@ -252,6 +280,37 @@ Page({
     var len = q.length;
     if(len<=20) return q;
     return q.substring(0, 10) + len + q.substring(len-10, len);
+  },
+
+  pronounce: function(e){
+    const innerAudioContext = wx.createInnerAudioContext()
+    innerAudioContext.autoplay = true
+    if(e.currentTarget.dataset.type == 0){
+      if(this.testHans(this.data.searchReasult.wordHead)){
+        innerAudioContext.src = API + this.data.searchReasult.wordHead + "&type=1"
+      }
+    }else{
+      if(this.testHans(this.data.searchReasult.tranCn)){
+        innerAudioContext.src = API + this.data.searchReasult.tranCn + "&type=1"
+      }
+    }
+    innerAudioContext.onPlay(() => {
+      console.log('开始播放')
+    })
+    innerAudioContext.onError((res) => {
+      console.log(res.errMsg)
+      console.log(res.errCode)
+    })
+  },
+
+  testHans: function(str){
+    for (var i in str) {
+      var asc = str.charCodeAt(i);
+      if ((asc >= 65 && asc <= 90 || asc >= 97 && asc <= 122)) {
+          return true;
+      }
+    }
+    return false
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -90,6 +90,7 @@ Page({
       _openid: this.data.openId // 填入当前用户 openid
     }).get().then(res => {
       if(res.data.length == 0){
+        this.addBook()
         db.collection('userInfo').add({
           data: {
             _id:this.data.openId,
@@ -143,6 +144,38 @@ Page({
           hasUserInfo: true
         })
         this.getOpenId()
+      }
+    })
+  },
+
+  addBook: function(){
+    var that = this
+    var newWord = []
+    db.collection('userLearned').where({
+      userId: app.globalData.openId,
+      bookId: 'CET6luan_1'
+    })
+    .get({
+      success: function(res) {
+        if(res.data.length == 0){
+          db.collection('CET6luan_1').get({
+            success: function(res) {
+              newWord = res.data
+              db.collection('userLearned').add({
+                data: {
+                  bookId: 'CET6luan_1',
+                  learnedSequence: 20,
+                  newWord: newWord,
+                  reviewWord: [],
+                  userId: app.globalData.openId,
+                },
+                success: function(res) {
+                  console.log(res)
+                }
+              })
+            }
+          })
+        }
       }
     })
   },

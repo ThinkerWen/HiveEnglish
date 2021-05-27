@@ -1,4 +1,6 @@
 /* miniprogram/pages/status/status.wxss */
+@import "../dictionary/dictionary.wxss";
+
 .separator{
     width: 100%;
     height: 8rpx;

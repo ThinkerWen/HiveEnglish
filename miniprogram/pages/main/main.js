@@ -57,7 +57,7 @@ Page({
         myData: data
       })
       console.log(data)
-      var formated = that.formatData(data);
+      // var formated = that.formatData(data);
       if(!that.getProgress()){
         that.getWords(data);
       }
@@ -87,11 +87,14 @@ Page({
       console.log(data)
       pushuserLearned.bookId = data.bookId
       pushuserLearned.userId = data.userId
+      pushuserLearned.newWord = data.newWord
       pushuserLearned.learnedSequence = data.learnedSequence
       var unstudyWords = data.newWord.concat(data.reviewWord)
       var tempWords = unstudyWords
       console.log(tempWords)
       that.setData({
+        doc_id: data._id,
+        bookId: data.bookId,
         own2: data.reviewWord.length,
         nwn2: data.newWord.length,
         myWordList: unstudyWords,
@@ -103,8 +106,10 @@ Page({
 
   atLarge: function(){
     that = this
-    db.collection(this.data.myData.bookId + '_all').where({
-      headWord: that.data.myWordList[that.data.wordSequence].wordHead
+    console.log(this.data.bookId + '_all')
+    console.log(that.data.wordInfo.wordHead)
+    db.collection(this.data.bookId + '_all').where({
+      headWord: that.data.wordInfo.wordHead
     })
     .get({
       success: function(res) {
@@ -117,6 +122,27 @@ Page({
   },
 
   saveProgress: function(){
+    var that = this
+    console.log(this.data.doc_id)
+    // pushuserLearned.newWord = []
+    // for(let i=this.data.wordSequence; i<this.data.myWordList; i++){
+    //   pushuserLearned.newWord.push(this.data.myWordList[i])
+    // }
+    db.collection('userLearned').doc(that.data.doc_id).update({
+      data: {
+        bookId:pushuserLearned.bookId,
+        learnedSequence:pushuserLearned.learnedSequence,
+        newWord:pushuserLearned.newWord,
+        reviewWord:pushuserLearned.reviewWord,
+        userId:pushuserLearned.userId,
+      },
+      success: function(res) {
+        console.log(res.data)
+      }
+    })
+    wx.setStorageSync('doc_id', that.data.doc_id);
+    wx.setStorageSync('bookId', that.data.bookId);
+    wx.setStorageSync('pushuserLearned', pushuserLearned);
     wx.setStorageSync('myWordList', that.data.myWordList);
     wx.setStorageSync('wordSequence', that.data.wordSequence);
     if(that.data.myWordList[that.data.wordSequence]){
@@ -133,8 +159,12 @@ Page({
   },
 
   getProgress: function(){
+    console.log("pro")
     if(wx.getStorageSync('myWordList')){
+      pushuserLearned =  wx.getStorageSync('pushuserLearned')
       this.setData({
+        doc_id: wx.getStorageSync('doc_id'),
+        bookId: wx.getStorageSync('bookId'),
         myWordList: wx.getStorageSync('myWordList'),
         wordSequence: wx.getStorageSync('wordSequence'),
         wordInfo: wx.getStorageSync('wordInfo'),
@@ -451,6 +481,7 @@ Page({
   },
 
   knownHandle: function() {
+    console.log(this.data.doc_id)
     console.log(pushuserLearned)
     if(this.data.wordSequence<this.data.myWordList.length){
       if(this.data.wordSequence<this.data.oldWordsList.length){
@@ -461,6 +492,7 @@ Page({
       else{
         pushuserLearned.learnedSequence = pushuserLearned.learnedSequence+1
         pushuserLearned.reviewWord.push(that.data.wordInfo)
+        pushuserLearned.newWord.shift()
         this.setData({
           nwn1: that.data.nwn1+1
         })
@@ -513,7 +545,14 @@ Page({
   },
 
   nextHandle: function(e) {
-    this.knownHandle()
+    if(this.data.wordSequence<this.data.myWordList.length){
+      this.knownHandle()
+    }
+    else{
+      wx.navigateBack({
+        delta: 1
+      })
+    }
     this.setData({
       pattern:0
     })

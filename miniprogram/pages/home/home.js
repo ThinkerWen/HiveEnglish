@@ -40,11 +40,13 @@ Page({
   dataPull: function(){
     var bookInfo = {}
     var that = this
+    console.log(app.globalData.openId)
     db.collection('userLearned').where({
       userId: app.globalData.openId
     })
     .get({
       success: function(res) {
+        console.log(res.data)
         bookInfo.studiedNum = res.data[0].learnedSequence
         db.collection('Booklist').where({
           id: res.data[0].bookId

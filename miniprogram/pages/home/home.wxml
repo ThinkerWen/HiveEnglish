@@ -47,7 +47,7 @@
             </view>
             <view class="task-info-trisection">
                 <text class="task-info-trisection-top-text">{{unstudyWordsNum}}</text>
-                <text class="task-info-trisection-bottom-text">未学单词</text>
+                <text class="task-info-trisection-bottom-text">总单词</text>
             </view>
         </view>
     </view>

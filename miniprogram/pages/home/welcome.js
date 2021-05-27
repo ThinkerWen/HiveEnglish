@@ -55,7 +55,7 @@ Page({
         wx.switchTab({
           url: './home',
         })
-      }, 1500)
+      }, 500)
     }).catch((e) => {
       this.setData({
         showUploadTip: true
@@ -72,6 +72,7 @@ Page({
       _openid: this.data.openId // 填入当前用户 openid
     }).get().then(res => {
       if(res.data.length == 0){
+        this.addBook()
         db.collection('userInfo').add({
           data: {
             _id:this.data.openId,
@@ -81,12 +82,8 @@ Page({
             registerDay: new Date(),
             reminderTime: "",
             continueDays: 0,
-            day1: 0,
-            day2: 0,
-            day3: 0,
-            day4: 0,
-            day5: 0,
-            dayWords: 0,
+            days: [0,0,0,0,0,0],
+            dayWords: 20,
             learnedDays: this.data.monthArr
           }
         })
@@ -117,6 +114,38 @@ Page({
       }
     })
     console.log("3")
+  },
+
+  addBook: function(){
+    var that = this
+    var newWord = []
+    db.collection('userLearned').where({
+      userId: app.globalData.openId,
+      bookId: 'CET6luan_1'
+    })
+    .get({
+      success: function(res) {
+        if(res.data.length == 0){
+          db.collection('CET6luan_1').get({
+            success: function(res) {
+              newWord = res.data
+              db.collection('userLearned').add({
+                data: {
+                  bookId: 'CET6luan_1',
+                  learnedSequence: 20,
+                  newWord: newWord,
+                  reviewWord: [],
+                  userId: app.globalData.openId,
+                },
+                success: function(res) {
+                  console.log(res)
+                }
+              })
+            }
+          })
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

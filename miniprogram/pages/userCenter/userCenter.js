@@ -100,7 +100,7 @@ Page({
             reminderTime: "",
             continueDays: 0,
             days: [0,0,0,0,0,0],
-            dayWords: 0,
+            dayWords: 20,
             learnedDays: this.data.monthArr
           }
         })

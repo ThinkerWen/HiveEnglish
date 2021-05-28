@@ -206,6 +206,9 @@ Page({
 
   toWordGame: function(){
     if(!this.loginTest()) return;
+    wx.navigateTo({
+      url: '../game/game',
+    })
   },
 
   // Canvas绘制

@@ -131,6 +131,18 @@
           "pathName": "pages/status/status",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/game/game",
+          "pathName": "pages/game/game",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/game/game",
+          "pathName": "pages/game/game",
+          "query": "",
+          "scene": null
         }
       ]
     }

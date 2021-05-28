@@ -6,6 +6,7 @@
     "pages/calendar/calendar",
     "pages/main/main",
     "pages/status/status",
+    "pages/game/game",
     "pages/dictionary/dictionary",
     "pages/wordInfo/wordInfo",
     "pages/remind/remind",

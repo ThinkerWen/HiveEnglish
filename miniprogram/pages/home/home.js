@@ -36,20 +36,6 @@ Page({
           })
         }
       })
-    else{
-      wx.showToast({
-         title: '请授权登录！',
-         icon: 'none',
-         duration: 1500,
-         success: function () {
-         setTimeout(function () {
-         wx.reLaunch({
-         url: '../userCenter/userCenter',
-            })
-          }, 1500);
-         }
-      })
-    }
   },
 
   dataPull: function(){
@@ -207,6 +193,7 @@ Page({
   },
 
   startMain: function() {
+    if(!this.loginTest()) return;
     var that = this
     wx.navigateTo({
       url: '../main/main',
@@ -232,5 +219,24 @@ Page({
         res.eventChannel.emit('acceptDataFromOpenerPage', that.data.pullData)
       }
     })
-  }
+  },
+  
+  loginTest: function(){
+    if(!app.globalData.openId){   //未登录跳转登录
+      wx.showToast({
+         title: '请授权登录！',
+         icon: 'none',
+         duration: 1500,
+         success: function () {
+         setTimeout(function () { // 等待1.5秒后跳转到userCenter
+         wx.reLaunch({
+         url: '../userCenter/userCenter',
+            })
+          }, 1500);
+         }
+      })
+      return false
+    }
+    return true
+  },
 })

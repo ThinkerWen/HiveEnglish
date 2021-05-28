@@ -13,16 +13,16 @@
 		<view class="comp-content-title">关于</view>
 		<view class="intro-box">
 			<view class="intro-item">
-				<view class="intro-title">开发者</view>
-				<view class="intro-desc">两位开发者CFH和WXW</view>
+				<view class="intro-title">介绍：</view>
+				<view class="intro-desc">英语单词背记小程序，内含小学到高中课本的所有单词，同时包括雅思、托福、英语四六级，专四专八等词库。提供拍照翻译，语音翻译等工具。同时为大家提供好友单词对战，单词接龙，等小游戏供大家娱乐。</view>
 			</view>
 			<view class="intro-item">
-				<view class="intro-title">合作</view>
+				<view class="intro-title">合作：</view>
 				<view class="intro-desc">邮箱：wxw126mail@126.com</view>
 			</view>
             <view class="intro-item">
-				<view class="intro-title">微信公众号</view>
-				<view class="intro-desc">夜寒信息</view>
+				<view class="intro-title">交流：</view>
+				<view class="intro-desc"><text>公众号：夜寒信息\nQQ 群：103172845</text></view>
 			</view>
 		</view>
 	</view>

@@ -22,22 +22,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(!app.globalData.openId){     // 检测是否登录，未登录跳转登录
-      wx.showToast({
-         title: '请授权登录！',
-         icon: 'none',
-         duration: 1500,
-         success: function () {
-         setTimeout(function () {
-         wx.reLaunch({
-         url: '../userCenter/userCenter',
-            })
-          }, 1500);
-         }
-      })
-    }else{
-      this.getBook()      // 获取用户书籍列表
-    }
+    if(app.globalData.openId) this.getBook()      // 获取用户书籍列表
   },
 
   getBook: function(){

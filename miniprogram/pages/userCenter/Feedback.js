@@ -10,25 +10,7 @@ Page({
     isdisabled: false   // 提交按钮是否可点击提交
   },
   onLoad: function () {
-    if(!app.globalData.openId){   //未登录跳转登录
-      wx.showToast({
-         title: '请授权登录！',
-         icon: 'none',
-         duration: 1500,
-         success: function () {
-         setTimeout(function () { // 等待1.5秒后跳转到userCenter
-         wx.reLaunch({
-         url: '../userCenter/userCenter',
-            })
-          }, 1500);
-         }
-      })
-    }
   },
-
-  /**
-  * 生命周期函数--监听页面初次渲染完成
-  */
   onReady: function () {
   },
   onShow:function(){
@@ -36,6 +18,7 @@ Page({
 
   //上传图片
   uploadPic: function () {
+    if(!this.loginTest()) return;
     var that = this;
     wx.showModal({
       title: '提示',
@@ -64,6 +47,7 @@ Page({
   
   //提交表单
   submitForm: function (e) {
+    if(!this.loginTest()) return;
     var that = this
     var email = e.detail.value.email;     // 反馈邮箱
     var content = e.detail.value.content; // 反馈内容
@@ -125,5 +109,24 @@ Page({
        icon: 'none',
        duration: 500
     })
+  },
+
+  loginTest: function(){
+    if(!app.globalData.openId){   //未登录跳转登录
+      wx.showToast({
+         title: '请授权登录！',
+         icon: 'none',
+         duration: 1500,
+         success: function () {
+         setTimeout(function () { // 等待1.5秒后跳转到userCenter
+         wx.reLaunch({
+         url: '../userCenter/userCenter',
+            })
+          }, 1500);
+         }
+      })
+      return false
+    }
+    return true
   }
 });

@@ -103,6 +103,7 @@ Page({
   },
 
   addBook: function(){
+    if(!this.loginTest()) return;
     var that = this
     var newWord = []
     db.collection('userLearned').where({
@@ -240,6 +241,25 @@ Page({
       console.log(res.errMsg)
       console.log(res.errCode)
     })
+  },
+  
+  loginTest: function(){
+    if(!app.globalData.openId){   //未登录跳转登录
+      wx.showToast({
+         title: '请授权登录！',
+         icon: 'none',
+         duration: 1500,
+         success: function () {
+         setTimeout(function () { // 等待1.5秒后跳转到userCenter
+         wx.reLaunch({
+         url: '../userCenter/userCenter',
+            })
+          }, 1500);
+         }
+      })
+      return false
+    }
+    return true
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

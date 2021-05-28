@@ -57,7 +57,6 @@ Page({
         myData: data
       })
       console.log(data)
-      // var formated = that.formatData(data);
       if(!that.getProgress()){
         that.getWords(data);
       }

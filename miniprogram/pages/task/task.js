@@ -7,15 +7,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentBookInfo:{}, // 正在学的书信息
-    myBooksList:[],     // 用户所有书籍
-    myBookInfo: {       // myBookList数组中的每一个bookInfo，此项无用（示例）
-      studiedNum: 20,   // 已学单词数
-      id: "CET4",       // 书籍bookId
-      name: "四级书",   // 书籍名
-      totalNum: 1555,   // 书籍总单词数
-      imgUrl: "https://imgUrl.cover"    // 书籍封面
-    }
+    currentBookInfo:{                     // 正在学的书信息
+      studiedNum: 20,                     // 已学单词数
+        id: "CET4luan_1",                 // 书籍bookId
+        name: "四级真题核心词（图片记忆）", // 书籍名
+        totalNum: 1162,                   // 书籍总单词数
+        imgUrl: "https://nos.netease.com/ydschool-online/1496632727200CET4luan_1.jpg"    // 书籍封面
+    },
+    myBooksList:[                         // 下方展示书籍列表
+      {                                   // 书籍渲染信息(myBookInfo)
+        studiedNum: 20,                   // 已学单词数
+        id: "CET4luan_1",                 // 书籍bookId
+        name: "四级真题核心词（图片记忆）", // 书籍名
+        totalNum: 1162,                   // 书籍总单词数
+        imgUrl: "https://nos.netease.com/ydschool-online/1496632727200CET4luan_1.jpg"    // 书籍封面
+      },
+    ],
   },
 
   /**

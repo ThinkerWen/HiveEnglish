@@ -40,9 +40,9 @@ Page({
     masterNum: 0,       // 已掌握单词数
     studingNum: 0,      // 正在学单词数
     progress: {
-      date:["4.05", "4.06", "4.07", "4.08", "4.09", "4.10", "4.11"],    // 绘制日期
-      total:[1200, 1292, 1412, 1532, 1672, 1921, 2100],         // 绘制单词总数
-      master:[600, 700, 800, 900, 1100, 1200, 1400]             // 绘制学习单词数
+      date:["Day1", "Day2", "Day3", "Day4", "Day5", "Day6", "Day7"],    // 绘制日期
+      total:[0, 25, 50, 75, 100, 125, 150],         // 绘制单词总数
+      master:[0, 0, 0, 0, 0, 0, 0]             // 绘制学习单词数
     },
     hasReasult: false,  // 是否有单词翻译
     searchReasult: {
@@ -53,12 +53,12 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    if(app.globalData.openId)
-      this.getData();     // 获取用户学习数据
+  onShow: function () {
+    if(!app.globalData.openId){   // 检测是否登录
+      this.drawCanvas1();         // 为登录绘制默认数据
+      return;
+    }
+    this.getData();     // 获取用户学习数据
   },
 
   // 获取用户学习数据
@@ -105,15 +105,21 @@ Page({
     })
   },
 
+  // 获取要翻译的单词
+  bindInput: function (e) {
+    this.setData({
+      query: e.detail.value
+    })
+  },
+
   // 翻译获取接口
   translate:function(e){
-    if(!this.loginTest()) return;
+    var query = e.detail.value ? e.detail.value : this.data.query
     var that = this
     var appKey = '34a69e1ca7b7274f';
     var key = 'cNh4xArEls6qsF1FnqlgDpbaFNCxT4WC';
     var salt = (new Date).getTime();
     var curtime = Math.round(new Date().getTime()/1000);
-    var query = e.detail.value;
     var from = 'auto';
     var to = 'auto';
     var str1 = appKey + this.truncate(query) + salt + curtime + key;
@@ -162,13 +168,13 @@ Page({
     const innerAudioContext = wx.createInnerAudioContext()
     innerAudioContext.autoplay = true
     if(e.currentTarget.dataset.type == 0){      // 读来源
-      if(this.testHans(this.data.searchReasult.wordHead)){
+      if(this.testHans(this.data.searchReasult.wordHead)){    // 含英文
         innerAudioContext.src = API + this.data.searchReasult.wordHead + "&type=1"
-      }
+      }else wx.showToast({title: '暂不支持非英文', icon: 'none', duration: 1500,})
     }else{                                      // 读结果
-      if(this.testHans(this.data.searchReasult.tranCn)){
+      if(this.testHans(this.data.searchReasult.tranCn)){      // 含英文
         innerAudioContext.src = API + this.data.searchReasult.tranCn + "&type=1"
-      }
+      }else wx.showToast({title: '暂不支持非英文', icon: 'none', duration: 1500,})
     }
     innerAudioContext.onPlay(() => {
       console.log('开始播放')
@@ -188,6 +194,18 @@ Page({
       }
     }
     return false
+  },
+
+  toPhotoTrans: function(){
+    if(!this.loginTest()) return;
+  },
+
+  toVsFriends: function(){
+    if(!this.loginTest()) return;
+  },
+
+  toWordGame: function(){
+    if(!this.loginTest()) return;
   },
 
   // Canvas绘制
@@ -274,9 +292,6 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
 
   /**
    * 生命周期函数--监听页面隐藏

@@ -38,7 +38,6 @@ Page({
       type : parseInt(options.type)
     })
     
-    console.log(this.data.allWordList)
     if(options.id){
       this.setData({
         isLibrary: true
@@ -74,7 +73,6 @@ Page({
         })
         that.setCurrentList(0)
       })
-      console.log(options)
     }
   },
 
@@ -91,7 +89,6 @@ Page({
     })
     .get({
       success: function(res) {
-        console.log(res.data)
         let new_data = res.data
         let old_data = that.data.currentWordsList
         that.setData({

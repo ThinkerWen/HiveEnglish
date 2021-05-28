@@ -36,6 +36,7 @@ Page({
           })
         }
       })
+    else this.unLoginStatus()
   },
 
   dataPull: function(){
@@ -57,11 +58,13 @@ Page({
             bookInfo.name = res.data[0].title
             bookInfo.totalNum = res.data[0].wordNum
             bookInfo.percentage = ((bookInfo.studiedNum / bookInfo.totalNum) * 100).toFixed(2)
+            console.log(bookInfo)
             that.setData({
               bookInfo: bookInfo
             })
           }
         })
+        console.log(res.data[0])
         that.setData({
           pullData: res.data[0],
           newWordsNum: res.data[0].newWord.length,
@@ -96,18 +99,6 @@ Page({
     var signedNum = 12
     that.setData({
       signedNum : signedNum
-    })
-  },
-
-  setBookInfo: function(){
-    var bookInfo = {
-      totalNum: 2340,
-      studiedNum: 242,
-      name : "六级考纲词汇(2019版)",
-      percentage: 12
-    }
-    that.setData({
-      bookInfo: bookInfo
     })
   },
 
@@ -151,49 +142,14 @@ Page({
         }
       })
       this.dataPull()
-    }
+    }else this.unLoginStatus()
     // this.setTaskInfo()
     // this.setSignedNum()
     // this.setBookInfo()
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
   startMain: function() {
-    if(!this.loginTest()) return;
+    // if(!this.loginTest()) return;
     var that = this
     wx.navigateTo({
       url: '../main/main',
@@ -238,5 +194,68 @@ Page({
       return false
     }
     return true
+  },
+
+  unLoginStatus: function(){
+    var that = this
+    var bookInfo = {}
+    bookInfo.name = "六级真题核心词（图片记忆）"
+    bookInfo.percentage = "0.00"
+    bookInfo.studiedNum = 0
+    bookInfo.totalNum = 1228
+    db.collection('userLearned').doc('3f1caf5060b0b45101f1404a0ed9734d').get({
+      success: function(res) {
+        if(wx.getStorageSync('myWordList')){
+          that.setData({
+            wordSequence: wx.getStorageSync('wordSequence'),
+            oldWordsNum: wx.getStorageSync('oldWordsList').length,
+            newWordsNum: wx.getStorageSync('newWordsList').length,
+            unstudyWordsNum: wx.getStorageSync('newWordsList').length,
+            bookInfo: bookInfo
+          })
+        }else that.setData({
+          pullData: res.data,
+          newWordsNum: res.data.newWord.length,
+          oldWordsNum: res.data.reviewWord.length,
+          unstudyWordsNum: res.data.newWord.length + res.data.reviewWord.length,
+          bookInfo: bookInfo
+        })
+      }
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   },
 })

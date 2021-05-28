@@ -154,3 +154,13 @@ canvas{
     padding-left:30px;
     color: rgb(52, 192, 134);
   }
+  
+/* start */
+
+.start-button{
+    margin-right: 20px;
+    background-image: linear-gradient(-20deg, #00cdac 0%, #8dda85 100%);
+    width: 62px;
+    color: white;
+    text-align: center;
+}

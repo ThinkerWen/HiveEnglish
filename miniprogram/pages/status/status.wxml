@@ -28,20 +28,20 @@
 </view>
 <view class="separator"/>
 <view style="padding-top:20px;">
-    <view class="trisaction" bindtap="toTaskPage">
+    <view class="trisaction" bindtap="toPhotoTrans">
         <view class="trisaction-top-container">
             <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/photo.png"/>
         </view>
         <text class="trisaction-bottom-text">拍照翻译</text>
     </view>
-    <view class="trisaction" bindtap="toCalendarPage">
+    <view class="trisaction" bindtap="toVsFriends">
         <view class="trisaction-top-container">
             <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/vs.png"/>
         </view>
         <text class="trisaction-bottom-text">好友对战</text>
     </view>
     <view class="trisaction" style=" padding-bottom:20px">
-        <view class="trisaction-top-container" bindtap="toRemindPage">
+        <view class="trisaction-top-container" bindtap="toWordGame">
             <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/word.png"/>
         </view>
         <text class="trisaction-bottom-text">单词接龙</text>
@@ -49,7 +49,8 @@
 </view>
 <view class="view-contain-ti">
     <text class="text-ti">单词</text>
-    <input name='searchWord' class="input1" placeholder="按下回车输出翻译结果" bindconfirm="translate"></input>
+    <input name='searchWord' class="input1" placeholder="在这里输入" bindinput="bindInput" bindconfirm="translate"></input>
+    <button class="start-button" bindtap="translate">翻译</button>
 </view>
 <view class="word" style="margin-left:30px" wx:if="{{hasReasult}}">
     <view class="word-top">

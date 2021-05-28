@@ -7,6 +7,7 @@ Page({
     date: ['日', '一', '二', '三', '四', '五', '六'],
     dateArr: [],
     monthArr: [],
+    continueDays: 0,
     isToday: 0,
     isTodayWeek: false,
     todayIndex: 0,
@@ -25,20 +26,10 @@ Page({
   },
   onLoad: function () {
     if(!app.globalData.openId){
-      wx.showToast({
-         title: '请授权登录！',
-         icon: 'none',
-         duration: 1500,
-         success: function () {
-         setTimeout(function () {
-         wx.reLaunch({
-         url: '../userCenter/userCenter',
-            })
-          }, 1500);
-         }
+      this.setData({
+        monthArr: this.monthInit()
       })
-    }
-    else{
+    }else{
       this.dataPull()
     }
   },
@@ -84,5 +75,37 @@ Page({
         that.countDays()
       }
     })
-  }
+  },
+
+  // 未登录时初始化当前月份列表，无需改动
+  monthInit: function(){
+    var monthArr = []
+    var tempArr = {}
+    var dateArr = []
+    var now = new Date()
+    var y = now.getFullYear()
+    var m = now.getMonth()
+    var d = now.getDate()
+    const getMonthStartDay = (year, month) => new Date(year, month-1,1).getDay()
+    const getMonthCountDay = (year, month) => new Date(year, month, 0).getDate()
+    var num = getMonthStartDay(y,m+1)
+    var dayNUm = getMonthCountDay(y, m+1)
+    tempArr.year = y
+    tempArr.month = m
+    for(let i=0; i<num; i++){
+      dateArr.push({})
+    }
+    for(let i=1; i<=dayNUm; i++){
+      dateArr.push({"dateNum": i})
+    }
+    for(let j=0; j<dateArr.length; j++){
+      if(!dateArr[j]) continue;
+      else{
+        if(dateArr[j].dateNum == d) dateArr[j].status=2
+      }
+    }
+    tempArr.dateArr = dateArr
+    monthArr.push(tempArr)
+    return monthArr
+  },
 })

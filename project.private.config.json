@@ -143,6 +143,42 @@
           "pathName": "pages/game/game",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/fightHome/fightHome",
+          "pathName": "pages/fightHome/fightHome",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/sign/sign",
+          "pathName": "pages/sign/sign",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/userWords/userWords",
+          "pathName": "pages/userWords/userWords",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/wordChallenge/wordChallenge",
+          "pathName": "pages/wordChallenge/wordChallenge",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/combat/combat",
+          "pathName": "pages/combat/combat",
+          "query": "roomId=b00064a760b342cf1c6abe01710fdc82",
+          "scene": null
+        },
+        {
+          "name": "pages/userCenter/Feedback",
+          "pathName": "pages/userCenter/Feedback",
+          "query": "",
+          "scene": null
         }
       ]
     }

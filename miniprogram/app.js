@@ -10,7 +10,36 @@ App({
     hasUserInfo: false,
   },
 
+  initUiGlobal() {
+    wx.getSystemInfo({
+      success: e => {
+        const { statusBarHeight: StatusBar, screenHeight, windowWidth } = e
+        this.store.StatusBar = StatusBar
+        this.store.screenHeight = screenHeight
+        this.store.windowWidth = windowWidth
+        const capsule = wx.getMenuButtonBoundingClientRect()
+        if (capsule) {
+          this.store.Custom = capsule
+          this.store.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight
+        } else {
+          this.store.CustomBar = StatusBar + 50
+        }
+      }
+    })
+  },
+
+  initEnv() {
+    const env = "wxw-9gxxtesw2e0f452a"
+    wx.cloud.init({
+      env,
+      traceUser: true
+    })
+    this.store.env = env
+  },
+
   onLaunch: function () {
+    this.initEnv()
+    this.initUiGlobal()
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -20,6 +49,17 @@ App({
     }
     // this.initTask();
     // this.globalData = {}
+  },
+
+  
+  store: {
+    StatusBar: null,
+    Custom: null,
+    CustomBar: null,
+    screenHeight: null,
+    windowWidth: null,
+    env: '',
+    adState: true
   },
 
   initTask: function() {

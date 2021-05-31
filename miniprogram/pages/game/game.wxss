@@ -349,7 +349,7 @@ width: 100%;
 text-align: center;
 font-size: 30px;
 font-weight: bold;
-color:rgb(159, 184, 138);
+color:rgb(0, 195, 221);
 }
 
 .modal-content {
@@ -361,10 +361,11 @@ margin: 0 auto;
 padding: 30px 0 20px;
 width: 90%;
 background-color: #fff;
+border-radius: 20%;
 text-align: center;
 z-index: 2;
-border-radius: 5px;
-color:rgb(159, 184, 138);
+/* border-radius: 5px; */
+color:rgb(0, 195, 221);
 }
 
 .modal-content .score {
@@ -377,12 +378,12 @@ margin-top: 12px;
 margin-top: 30px;
 width: 36%;
 height: 30px;
-line-height: 30px;
+line-height: 15px;
 color: #fff;
 outline: none;
 border: none;
 border-radius: 15px;
-background-color: rgb(159, 184, 138);
+background-color: rgb(0, 195, 221);
 }
 
 .end-modal:before {

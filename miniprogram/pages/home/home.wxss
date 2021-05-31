@@ -207,7 +207,7 @@
 /* start */
 
 .start-button{
-    margin-top: 100rpx;
+    margin-top: 90rpx;
     background-image: linear-gradient(-20deg, #00cdac 0%, #8dda85 100%);
     width: 65%;
     color: white;
@@ -216,4 +216,38 @@
     line-height: 90rpx;
     font-size: 35rpx;
     border-radius: 8% / 50%;
+}
+.trisaction-block{
+    margin-top: 50rpx;
+    display: block;
+    width: 85%;
+    /* background: #ff9494; */
+    border-bottom: solid;
+    border-color: rgb(236, 236, 236);
+    border-width: 5rpx;
+    padding-bottom: 70rpx;
+}
+
+.trisaction{
+    width: 33.3%;
+    float: left;
+}
+
+.trisaction-top-container{
+    height: 90rpx;
+    width: 90rpx;
+    margin: auto;
+}
+
+.trisaction-top-icon{
+    height: 100%;
+    width: 100%;
+}
+
+.trisaction-bottom-text{
+    margin-top: 15rpx;
+    display: block;
+    text-align: center;
+    font-size: 25rpx;
+    color: #666666;
 }

@@ -27,7 +27,7 @@
     <canvas canvas-id="canvas1" />
 </view>
 <view class="separator"/>
-<view style="padding-top:20px;">
+<!-- <view style="padding-top:20px;">
     <view class="trisaction" bindtap="toPhotoTrans">
         <view class="trisaction-top-container">
             <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/photo.png"/>
@@ -46,11 +46,11 @@
         </view>
         <text class="trisaction-bottom-text">单词接龙</text>
     </view>
-</view>
+</view> -->
 <view class="view-contain-ti">
     <text class="text-ti">单词</text>
     <input name='searchWord' class="input1" placeholder="在这里输入" bindinput="bindInput" bindconfirm="translate"></input>
-    <button class="start-button" bindtap="translate">翻译</button>
+    <button class="start-button-trans" bindtap="translate" style="width: 127rpx; height: 68rpx; display: block; box-sizing: border-box; left: 60rpx; position: relative">翻译</button>
 </view>
 <view class="word" style="margin-left:30px" wx:if="{{hasReasult}}">
     <view class="word-top">

@@ -157,10 +157,22 @@ canvas{
   
 /* start */
 
-.start-button{
+/* .start-button-trans{
     margin-right: 20px;
     background-image: linear-gradient(-20deg, #00cdac 0%, #8dda85 100%);
     width: 62px;
     color: white;
     text-align: center;
+} */
+
+.start-button-trans{
+    background-image: linear-gradient(-20deg, #00cdac 0%, #8dda85 100%);
+    padding: 0;
+    padding-top: 13rpx;
+    width: 60rpx;
+    color: white;
+    text-align: center;
+    font-size: 30rpx;
+    border-radius: 50rpx;
+    align-self: center;
 }

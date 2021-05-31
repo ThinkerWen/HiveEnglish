@@ -202,6 +202,9 @@ Page({
 
   toVsFriends: function(){
     if(!this.loginTest()) return;
+    wx.navigateTo({
+      url: '../fightHome/fightHome',
+    })
   },
 
   toWordGame: function(){

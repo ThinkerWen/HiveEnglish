@@ -177,6 +177,24 @@ Page({
     })
   },
   
+  toPhotoTrans: function(){
+    if(!this.loginTest()) return;
+  },
+
+  toVsFriends: function(){
+    if(!this.loginTest()) return;
+    wx.navigateTo({
+      url: '../fightHome/fightHome',
+    })
+  },
+
+  toWordGame: function(){
+    if(!this.loginTest()) return;
+    wx.navigateTo({
+      url: '../game/game',
+    })
+  },
+  
   loginTest: function(){
     if(!app.globalData.openId){   //未登录跳转登录
       wx.showToast({

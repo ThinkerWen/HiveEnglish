@@ -231,7 +231,8 @@ Page({
           },
           success: function(res) {
             that.setData({
-              hasUpdate: true
+              hasUpdate: true,
+              oldMark: that.data.score>that.data.oldMark ? that.data.score : that.data.oldMark
             })
           }
         })

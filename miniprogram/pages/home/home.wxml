@@ -1,11 +1,6 @@
 <!--miniprogram/pages/home/home.wxml-->
-<view class="container">
-    <!-- <view class="search-container">
-        <input class="search-input" bindinput='searchInput' placeholder="输入翻译（右侧支持拍照翻译哦）"  value='{{searchText}}'/>
-        <view class="search-icon-container" bindtap='search'>
-            <image class="search-icon" src="../../images/icons/photo.png"/>
-        </view>
-    </view> -->
+<view class="container" style="width: 750rpx; display: flex; box-sizing: border-box; left: NaNrpx; top: NaNrpx">
+    <add-tips text="点击「 添加到小程序」,下次学习更方便" />
     <view class="sign-container">
         <text class="sign-guide-text">我在蜂巢单词学习</text>
         <text class="sign-num-text">{{signedNum}}</text>
@@ -53,4 +48,32 @@
     </view>
     <view wx:if="{{!complete}}" class="start-button" bindtap="startMain">开始学习</view>
     <view wx:else class="start-button">已完成</view>
+</view>
+<view style="padding-top:20px;">
+    <view class="trisaction" bindtap="toPhotoTrans">
+        <view class="trisaction-top-container">
+            <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/photo.png"/>
+        </view>
+        <text class="trisaction-bottom-text">拍照翻译</text>
+    </view>
+    <!-- <view class="btn-oneline shadow-lg btn-pk animated infinite slow pulse" hover-class="btn-hover" class="trisaction" bindtap="toVsFriends">
+        <view class="trisaction-top-container">
+            <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/vs.png"/>
+        </view>
+        <text class="trisaction-bottom-text">好友对战</text>
+    </view> -->
+    <view hover-class="btn-hover" class="trisaction btn-oneline btn-pk animated infinite slow pulse" bindtap="toVsFriends">
+        <view class="trisaction-top-container">
+            <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/vs.png"/>
+        </view>
+        <text class="trisaction-bottom-text">好友对战</text>
+    </view>
+    <!-- <button class="btn-oneline shadow-lg btn-pk animated infinite slow pulse" hover-class="btn-hover" open-type="getUserInfo" bindgetuserinfo="onChallengeFriend" style="top: -20rpx">
+</button> -->
+    <view class="trisaction" bindtap="toWordGame">
+        <view class="trisaction-top-container">
+            <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/word.png"/>
+        </view>
+        <text class="trisaction-bottom-text">单词接龙</text>
+    </view>
 </view>

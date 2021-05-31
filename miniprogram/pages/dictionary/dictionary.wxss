@@ -4,15 +4,12 @@
     margin-top: 50rpx;
     margin-bottom: 50rpx;
     background-image: linear-gradient(-20deg, #00cdac 0%, #8dda85 100%);
-    /* background-image: linear-gradient(-20deg, #ffffff 0%, #ffffff 100%); */
-    /* border: 1px solid; */
-    /* width: 30%; */
     width: 100px;
     color: rgb(255, 255, 255);
     text-align: center;
     height: 50rpx;
-    line-height: 50rpx;
-    border-radius: 8% / 50%;
+    line-height: 49rpx;
+    border-radius: 30rpx;
     font-size: 35rpx;
 }
 

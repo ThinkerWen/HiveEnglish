@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "add-tips": "../fightHome/components/home-add-tips/index"
+  }
 }

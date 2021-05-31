@@ -75,8 +75,9 @@
         <view class="modal-header">
         {{resultMsg}}
         </view>
-        <view class="score">{{score}}</view>
         <view>接龙长度</view>
+        <view class="score">{{score}}</view>
+        <view>历史最高分：{{oldMark}}</view>
         <button id="restart" bindtap="restart">再玩一次</button>
     </view>
 </view>

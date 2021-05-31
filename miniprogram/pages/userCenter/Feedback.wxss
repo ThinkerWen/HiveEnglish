@@ -327,8 +327,7 @@
     width: 65%;
     color: white;
     text-align: center;
-    height: 90rpx;
-    line-height: 90rpx;
+    height: 80rpx;
     font-size: 35rpx;
     border-radius: 8% / 50%;
 }

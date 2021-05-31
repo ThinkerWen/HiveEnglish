@@ -8,6 +8,7 @@ App({
     },
     userInfo: {},
     hasUserInfo: false,
+    openId: ""
   },
 
   initUiGlobal() {
@@ -47,8 +48,57 @@ App({
         traceUser: true,
       })
     }
+    var openId = wx.getStorageSync('openId')
+    var userInfo = wx.getStorageSync('userInfo')
+    console.log(openId)
+    if(openId){
+      this.globalData.openId = openId
+      this.globalData.userInfo = userInfo
+      this.globalData.hasUserInfo = true
+      console.log("0")
+    }else{
+      this.getOpenId()
+    }
     // this.initTask();
     // this.globalData = {}
+  },
+
+  // 获取用户openId
+  getOpenId() {
+    wx.showLoading({        // 显示转圈提示
+      title: 'Login',
+    })
+    wx.cloud.callFunction({      // 调用云函数获取openId
+      name: 'functions',
+      config: {
+        env: this.globalData.envId
+      },
+      data: {
+        type: 'getOpenId'
+      }
+    }).then((resp) => {         // 调用后返回值
+        this.getDatabaseOpenId(resp.result.openid)
+      }).catch((e) => {
+      this.setData({
+        showUploadTip: true
+      })
+    }).finally(() => {
+      wx.hideLoading()        // 隐藏转圈提示
+    })
+  },
+
+  getDatabaseOpenId: function(openId){
+    var that = this
+    const db = wx.cloud.database()
+    db.collection('userInfo').where({   // 从用户信息userInfo数据库查询当前登录用户
+      _openid: openId // 填入当前用户 openid
+    }).get().then(res => {
+      if(res.data.length != 0){         // 用户信息userInfo数据库中有当前用户
+        that.globalData.openId = openId
+        that.globalData.userInfo = res.data[0].userInfo
+        that.globalData.hasUserInfo = true        // 在全局设置已获取用户信息为true
+      }
+    })
   },
 
   

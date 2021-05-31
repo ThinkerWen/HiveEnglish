@@ -22,6 +22,8 @@ Page({
    */
   onLoad: function (options) {
     // this.dataPull()
+    setTimeout(function () {}, 1500);
+    console.log("1")
     if(app.globalData.openId)
       db.collection('userInfo').where({
         _id: app.globalData.openId
@@ -30,7 +32,6 @@ Page({
         success: function(res) {
           registerDay = res.data[0].registerDay
           nowDay = new Date()
-          console.log(registerDay - nowDay)
           that.setData({
             signedNum : registerDay - nowDay
           })
@@ -64,7 +65,6 @@ Page({
             })
           }
         })
-        console.log(res.data[0])
         that.setData({
           pullData: res.data[0],
           newWordsNum: res.data[0].newWord.length,
@@ -109,7 +109,6 @@ Page({
   },
 
   search: function(){
-    console.log(this.data.searchText)
     this.setData({
       searchText: "sssss"
     })
@@ -179,6 +178,12 @@ Page({
   
   toPhotoTrans: function(){
     if(!this.loginTest()) return;
+    else{wx.showToast({
+       title: '暂未开放！',
+       icon: 'none',
+       duration: 1000
+    })
+    }
   },
 
   toVsFriends: function(){

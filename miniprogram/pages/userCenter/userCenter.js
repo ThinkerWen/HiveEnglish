@@ -71,6 +71,8 @@ Page({
       this.setData({
         openId: resp.result.openid    // 获取到的openId存储到本页
       })
+      console.log(resp.result.openid)
+      wx.setStorageSync('openId', resp.result.openid)
       getApp().globalData.openId = this.data.openId   // 获取到的openId存储到全局
       console.log(this.data.openId)
       this.pushDatabase()       // 向数据库中添加用户
@@ -96,10 +98,11 @@ Page({
             userName: this.data.userInfo.nickName,
             userPic: this.data.userInfo.avatarUrl,
             userAddress: this.data.userInfo.city,
+            userInfo: this.data.userInfo,
             registerDay: new Date(),
             reminderTime: "",
             continueDays: 0,      // 连续天数
-            days: [0,0,0,0,0,0],  // 近五天学习情况
+            days: [0,0,0,0,0,0,0],  // 近五天学习情况
             dayWords: 20,         // 每日学习单词数规划
             learnedDays: this.data.monthArr   // 当月学习打卡的日期列表
           }
@@ -139,6 +142,7 @@ Page({
       success: (res) => {
         getApp().globalData.userInfo = res.userInfo   // 在全局添加用户信息
         getApp().globalData.hasUserInfo = true        // 在全局设置已获取用户信息为true
+        wx.setStorageSync('userInfo', res.userInfo)
         this.setData({
           userInfo: res.userInfo, // 在本页添加用户信息
           hasUserInfo: true       // 在本页设置已获取用户信息为true

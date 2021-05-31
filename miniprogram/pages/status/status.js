@@ -86,8 +86,8 @@ Page({
         }
         // progress.date = []
         for(let i=0; i<7; i++){       // 循环赋值近七天的每日累计单词理论量，默认每日20
-          totalCount += 20            // 循环计数近七天的单词理论学习总量
           progress.total.push(totalCount)
+          totalCount += 25            // 循环计数近七天的单词理论学习总量
         }
         for(let i=6; i>=0; i--){      // 循环赋值近七天的日期，今天为最后一天
           progress.date.push(month+"."+day)

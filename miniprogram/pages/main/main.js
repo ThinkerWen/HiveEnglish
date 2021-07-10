@@ -38,6 +38,7 @@ Page({
     isChinese: false,
     isQuery: false,
     summaryList: [],
+	learnedPercent: 20,
     nwn1: 0,
     nwn2: 0,
     own1: 0,

@@ -1,68 +1,46 @@
 <!--miniprogram/pages/status/status.wxml-->
 <view class="top-container">
-    <text class="top-total-num-text">{{continueDays}}</text>
-    <text class="top-total-num-guide-text">连续学习</text>
-    <view class="top-trisection-container">
-        <view class="top-trisection">
-            <text class="top-trisection-top-text">{{masterNum}}</text>
-            <text class="top-trisection-bottom-text">已掌握</text>
-        </view>
-        <view class="top-trisection">
-            <text class="top-trisection-top-text"></text>
-            <text class="top-trisection-bottom-text"></text>
-        </view>
-        <view class="top-trisection">
-            <text class="top-trisection-top-text">{{studingNum}}</text>
-            <text class="top-trisection-bottom-text">正在学</text>
-        </view>
-    </view>
+	<view class="top-trisection">
+		<text class="top-trisection-top-text text-black">{{masterNum}}</text>
+		<text class="top-trisection-bottom-text">已掌握</text>
+	</view>
+	<view class="top-trisection">
+		<text class="top-total-num-text text-shadow text-green">{{continueDays}}</text>
+		<text class="top-total-num-guide-text">连续学习</text>
+	</view>
+	<view class="top-trisection">
+		<text class="top-trisection-top-text text-black">{{studingNum}}</text>
+		<text class="top-trisection-bottom-text">正在学</text>
+	</view>
 </view>
-<view class="separator"/>
+
+<view class="separator" />
 <view class="canvas-container">
-    <view class="canvas-guide-container">
-        <view class="canvas-guide-left" style="border-color:#1dd1a1;">进步曲线</view>
-        <view class="canvas-guide-right" style="border-color:#7bed9f; opacity:0.4;">单词总数</view>
-        <view class="canvas-guide-right" style="border-color:#2ed573; opacity:0.4;">已掌握</view>
-    </view>
-    <canvas canvas-id="canvas1" />
+	<view class="canvas-guide-container">
+		<view class="canvas-guide-left" style="border-color:#1dd1a1;">进步曲线</view>
+	</view>
+	<canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchcanvas" />
 </view>
-<view class="separator"/>
-<!-- <view style="padding-top:20px;">
-    <view class="trisaction" bindtap="toPhotoTrans">
-        <view class="trisaction-top-container">
-            <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/photo.png"/>
-        </view>
-        <text class="trisaction-bottom-text">拍照翻译</text>
-    </view>
-    <view class="trisaction" bindtap="toVsFriends">
-        <view class="trisaction-top-container">
-            <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/vs.png"/>
-        </view>
-        <text class="trisaction-bottom-text">好友对战</text>
-    </view>
-    <view class="trisaction" style=" padding-bottom:20px">
-        <view class="trisaction-top-container" bindtap="toWordGame">
-            <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/word.png"/>
-        </view>
-        <text class="trisaction-bottom-text">单词接龙</text>
-    </view>
-</view> -->
-<view class="view-contain-ti">
-    <text class="text-ti">单词</text>
-    <input name='searchWord' class="input1" placeholder="在这里输入" bindinput="bindInput" bindconfirm="translate"></input>
-    <button class="start-button-trans" bindtap="translate" style="width: 127rpx; height: 68rpx; display: block; box-sizing: border-box; left: 60rpx; position: relative">翻译</button>
-</view>
-<view class="word" style="margin-left:30px" wx:if="{{hasReasult}}">
-    <view class="word-top">
-        <text class="word-text">{{searchReasult.wordHead}}</text>
-        <view class="word-icon-container" data-type="0" data-word="{{searchReasult.fromspeech}}" catchtap="pronounce">
-            <image class="word-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/sound.png"/>
-        </view>
-    </view>
-    <view class="word-top">
-        <text class="word-meaning">{{searchReasult.tranCn}}</text>
-        <view class="word-icon-container" data-type="1" data-word="{{searchReasult.tospeech}}" catchtap="pronounce">
-            <image class="word-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/sound.png"/>
-        </view>
-    </view>
+<view class="separator" />
+
+<view style="padding-top:20px;">
+	<view class="trisaction" bindtap="toPhotoTrans">
+		<view class="trisaction-top-container">
+			<image class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/photo.png" />
+		</view>
+		<text class="trisaction-bottom-text">拍照翻译</text>
+	</view>
+	<view hover-class="btn-hover" class="trisaction btn-oneline btn-pk animated infinite slow pulse"
+		bindtap="toVsFriends">
+		<view class="trisaction-top-container">
+			<image class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/vs.png" />
+		</view>
+		<text class="trisaction-bottom-text">好友对战</text>
+	</view>
+	<view class="trisaction" bindtap="toWordGame">
+		<view class="trisaction-top-container">
+			<image class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/word.png" />
+		</view>
+		<text class="trisaction-bottom-text">单词接龙</text>
+	</view>
 </view>

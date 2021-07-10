@@ -1,0 +1,3 @@
+<canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchcanvas"></canvas>
+
+

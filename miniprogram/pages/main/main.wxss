@@ -1,416 +1,443 @@
 /* miniprogram/pages/main/main.wxss */
+/* @import "../../colorui/main.wxss";
+@import "../../colorui/icon.wxss"; */
 
-.blank{
-    height: 200rpx;
-    width: 100%;
+page {
+	background-color: white;
 }
 
-.topbar{
-    height: 90rpx;
-    padding-top: 25rpx;
-    /* background: rgb(234, 204, 252); */
-    border-bottom: solid;
-    border-width: 7rpx;
-    border-color: rgb(247, 247, 247);
+.separator {
+	width: 100%;
+	height: 8rpx;
+	background: #f0f0f0;
 }
 
-.top-block{
-    width: 250rpx;
-    /* height: 100rpx; */
-    float: left;
-    /* background: rgb(255, 181, 120); */
+.hans-switch {
+	width: 30px;
+	height: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
-.text-top-top{
-    text-align: center;
-    display: block;
-    font-size: 27rpx;
-    /* background: rgb(116, 240, 105); */
-    color: rgb(148, 148, 148);
+.blank {
+	height: 200rpx;
+	width: 100%;
 }
 
-.text-top-bottom{
-    margin-top: 5rpx;
-    text-align: center;
-    display: block;
-    font-size: 25rpx;
-    /* background: rgb(105, 214, 233); */
-    color: rgb(85, 85, 85);
-    font-weight: bold;
+.topbar {
+	height: 90rpx;
+	padding-top: 25rpx;
+	/* background: rgb(234, 204, 252); */
+	border-bottom: solid;
+	border-width: 7rpx;
+	border-color: rgb(247, 247, 247);
+}
+
+.top-block {
+	width: 250rpx;
+	/* height: 100rpx; */
+	float: left;
+	/* background: rgb(255, 181, 120); */
+}
+
+.text-top-top {
+	text-align: center;
+	font-weight: 500;
+	/* display: block; */
+	font-size: 27rpx;
+	/* background: rgb(116, 240, 105); */
+	/* color: rgb(148, 148, 148); */
+}
+
+.text-top-bottom {
+	margin-top: 5rpx;
+	text-align: center;
+	display: block;
+	font-size: 25rpx;
+	/* background: rgb(105, 214, 233); */
+	color: rgb(85, 85, 85);
+	font-weight: bold;
 }
 
 /* exam-pattern */
 
-.easymark{
-    width: 35%;
-    right: 0;
-    position: fixed;
-    background: rgb(243, 243, 243);
-    top: 17%;
-    height: 70rpx;
-    border-radius: 15% 0% 0% 15% / 50% 0% 0% 50%;
+.easymark {
+	width: 35%;
+	right: 0;
+	position: fixed;
+	background: rgb(243, 243, 243);
+	top: 17%;
+	height: 70rpx;
+	border-radius: 15% 0% 0% 15% / 50% 0% 0% 50%;
 }
 
-.icon-easymark{
-    position: relative;
-    margin-left: 20rpx;
-    top: 10rpx;
-    width: 40rpx;
-    height: 40rpx;
+.icon-easymark {
+	position: relative;
+	margin-left: 20rpx;
+	top: 10rpx;
+	width: 40rpx;
+	height: 40rpx;
 }
 
-.text-easymark{
-    font-size: 28rpx;
-    line-height: 70rpx;
-    color: rgb(168, 168, 168);
-    margin-left: 10rpx;
+.text-easymark {
+	font-size: 28rpx;
+	line-height: 70rpx;
+	color: rgb(168, 168, 168);
+	margin-left: 10rpx;
 }
 
-.text-word, .text-word-ch{
-    /* background: rgb(255, 218, 218); */
-    color: rgb(49, 49, 49);
-    display: block;
-    width: 90%;
-    margin-left: 5%;
-    text-align: center;
-    margin-top: 30%;
-    font-size: 70rpx;
-    font-weight: bold;
+.text-word,
+.text-word-ch {
+	/* background: rgb(255, 218, 218); */
+	color: rgb(49, 49, 49);
+	display: block;
+	width: 90%;
+	margin-left: 5%;
+	text-align: center;
+	margin-top: 30%;
+	font-size: 70rpx;
+	font-weight: bold;
 }
 
-.text-word-ch{
-    font-size: 50rpx;
+.text-word-ch {
+	font-size: 50rpx;
 }
 
-.pronouncation{
-    height: 50rpx;
-    margin-top: 20rpx;
-    /* background: rgb(224, 255, 180); */
-    text-align: center;
+.pronouncation {
+	height: 50rpx;
+	margin-top: 20rpx;
+	/* background: rgb(224, 255, 180); */
+	text-align: center;
 }
 
-.icon-pronouncation{
-    position: relative;
-    top: 7.5rpx;
-    height: 40rpx;
-    width: 40rpx;
-    /* background: rgb(248, 167, 255); */
+.icon-pronouncation {
+	position: relative;
+	top: 7.5rpx;
+	height: 40rpx;
+	width: 40rpx;
+	/* background: rgb(248, 167, 255); */
 }
 
-.text-soundmark{
-    /* background: rgb(184, 241, 255); */
-    color: rgb(156, 156, 156);
-    font-size: 30rpx;
-    margin-left: 10rpx;
+.text-soundmark {
+	/* background: rgb(184, 241, 255); */
+	color: rgb(156, 156, 156);
+	font-size: 30rpx;
+	margin-left: 10rpx;
 }
 
-.text-hint{
-    /* background: rgb(255, 189, 189); */
-    display: block;
-    text-align: center;
-    margin-top: 15%;
-    font-size: 27rpx;
-    color: rgb(155, 155, 155); 
+.text-hint {
+	/* background: rgb(255, 189, 189); */
+	display: block;
+	text-align: center;
+	margin-top: 15%;
+	font-size: 27rpx;
+	color: rgb(155, 155, 155);
 }
 
-.text-sentence{
-    /* background: #18bd99; */
-    width: 90%;
-    margin: auto;
-    margin-top: 5%;
-    text-align: center;
-    font-size: 32rpx;
-    color: rgb(100, 100, 100);
+.text-sentence {
+	/* background: #18bd99; */
+	width: 90%;
+	margin: auto;
+	margin-top: 5%;
+	text-align: center;
+	font-size: 32rpx;
+	color: rgb(100, 100, 100);
 }
 
-.button-container{
-    position: fixed;
-    height: 18%;
-    bottom: 0;
-    width: 100%;
-    /* background: #ced898; */
+.button-container {
+	position: fixed;
+	height: 18%;
+	bottom: 0;
+	width: 100%;
+	/* background: #ced898; */
 }
 
-.button-bottom, .button-remember, .button-forget{
-    margin: auto;
-    width: 86%;
-    text-align: center;
-    border-radius: 5.5%  / 50% ;
-    line-height: 80rpx;
-    color: white;
-    font-size: 30rpx;
+.button-bottom,
+.button-remember,
+.button-forget {
+	margin: auto;
+	width: 86%;
+	text-align: center;
+	border-radius: 5.5% / 50%;
+	line-height: 80rpx;
+	color: white;
+	font-size: 30rpx;
 }
 
-.button-remember{
-    bottom: 12%;
-    background:#18bd99;
+.button-remember {
+	bottom: 12%;
+	background: #18bd99;
 }
 
-.button-forget{
-    margin-top: 20rpx;
-    bottom: 5%;
-    background: #ff7f50;
+.button-forget {
+	margin-top: 20rpx;
+	bottom: 5%;
+	background: #ff7f50;
 }
 
 /* memory-pattern */
 
-.backout-container{
-    background: rgb(252, 252, 252);
-    height: 70rpx;
-    line-height: 70rpx;
-    font-size: 27rpx;
+.backout-container {
+	background: rgb(252, 252, 252);
+	height: 70rpx;
+	line-height: 70rpx;
+	font-size: 27rpx;
 }
 
-.text-backout-grey{
-    margin-left: 40rpx;
-    color: rgb(212, 212, 212);
-    font-weight: bold;
+.text-backout-grey {
+	margin-left: 40rpx;
+	color: rgb(212, 212, 212);
+	font-weight: bold;
 }
 
-.text-backout-green{
-    margin-left: 20rpx;
-    color: #18bd99;
-    font-weight: bold;
+.text-backout-green {
+	margin-left: 20rpx;
+	color: #18bd99;
+	font-weight: bold;
 }
 
-.wordinfo-container{
-    /* background: rgb(255, 214, 214); */
-    padding: 40rpx;
-    border-bottom: solid;
-    border-width: 4rpx;
-    border-color: rgb(236, 236, 236);
-    overflow: hidden;
+.wordinfo-container {
+	/* background: rgb(255, 214, 214); */
+	padding: 40rpx;
+	border-bottom: solid;
+	border-width: 4rpx;
+	border-color: rgb(236, 236, 236);
+	overflow: hidden;
 }
 
-.text-word-m{
-    /* background: rgb(198, 255, 198); */
-    color: rgb(49, 49, 49);
-    font-size: 65rpx;
-    font-weight: bold;
+.text-word-m {
+	/* background: rgb(198, 255, 198); */
+	color: rgb(49, 49, 49);
+	font-size: 65rpx;
+	font-weight: bold;
 }
 
-.icon-pronouncation-m{
-    /* background: rgb(181, 232, 255); */
-    float: right;
-    height: 55rpx;
-    width: 55rpx;
-    margin-top: 12.5rpx;
+.icon-pronouncation-m {
+	/* background: rgb(181, 232, 255); */
+	float: right;
+	height: 55rpx;
+	width: 55rpx;
+	margin-top: 12.5rpx;
 }
 
-.text-soundmark-m{
-    display: block;
-    /* background: #ffffc6; */
-    margin-top: 10rpx;
-    color: rgb(184, 184, 184);
-    font-size: 35rpx;
+.text-soundmark-m {
+	display: block;
+	/* background: #ffffc6; */
+	margin-top: 10rpx;
+	color: rgb(184, 184, 184);
+	font-size: 35rpx;
 }
 
-.dictionary-container{
-    /* background: rgb(255, 218, 218); */
-    padding: 20rpx 30rpx 50rpx 40rpx;
-    border-bottom: solid;
-    border-width: 6rpx;
-    border-color: rgb(236, 236, 236);
+.dictionary-container {
+	/* background: rgb(255, 218, 218); */
+	padding: 20rpx 30rpx 50rpx 40rpx;
+	border-bottom: solid;
+	border-width: 6rpx;
+	border-color: rgb(236, 236, 236);
 }
 
-.text-title{
-    /* background: rgb(249, 255, 198); */
-    display: block;
-    font-size: 30rpx;
-    color: #18bd99;
-    font-weight: bold;
-    margin-top: 30rpx;
+.text-title {
+	/* background: rgb(249, 255, 198); */
+	display: block;
+	font-size: 30rpx;
+	color: #18bd99;
+	font-weight: bold;
+	margin-top: 30rpx;
 }
 
-.text-content{
-    /* background: rgb(189, 245, 255); */
-    font-size: 31rpx;
-    display: block;
-    margin-top: 20rpx;
-    margin-right: 70rpx;
-    color: rgb(47, 47, 47);
-    overflow: hidden;
+.text-content {
+	/* background: rgb(189, 245, 255); */
+	font-size: 31rpx;
+	display: block;
+	margin-top: 20rpx;
+	margin-right: 70rpx;
+	color: rgb(47, 47, 47);
+	overflow: hidden;
 }
 
-.text-content-sentence-word, .text-content-sentence-word-selected, .text-content-sentence-word-major{
-  float: left;
+.text-content-sentence-word,
+.text-content-sentence-word-selected,
+.text-content-sentence-word-major {
+	float: left;
 }
 
-.text-content-sentence-word-selected{
-  color: rgb(255, 255, 255);
-  font-weight: bold;
-  background: rgb(35, 192, 158);
+.text-content-sentence-word-selected {
+	color: rgb(255, 255, 255);
+	font-weight: bold;
+	background: rgb(35, 192, 158);
 }
 
-.text-content-sentence-word-major{
-  color: rgb(35, 192, 158);
-  font-weight: bold;
+.text-content-sentence-word-major {
+	color: rgb(35, 192, 158);
+	font-weight: bold;
 }
 
-.button-next{
-    width: 86%;
-    text-align: center;
-    border-radius: 5.5%  / 50% ;
-    line-height: 80rpx;
-    color: white;
-    font-size: 30rpx;
-    position: fixed;
-    bottom: 5%;
-    left: 7%;
-    background:#18bd99;
+.button-next {
+	width: 86%;
+	text-align: center;
+	border-radius: 5.5% / 50%;
+	line-height: 80rpx;
+	color: white;
+	font-size: 30rpx;
+	position: fixed;
+	bottom: 5%;
+	left: 7%;
+	background: #18bd99;
 }
 
-.query-container{
-    width: 100%;
-    height: 250rpx;
-    position: fixed;
-    bottom: 0rpx;
-    overflow: hidden;
-    padding-top: 40rpx;
-    box-shadow: 0rpx 10rpx 50rpx rgb(22, 22, 22);
-    background: white;
+.query-container {
+	width: 100%;
+	height: 250rpx;
+	position: fixed;
+	bottom: 0rpx;
+	overflow: hidden;
+	padding-top: 40rpx;
+	box-shadow: 0rpx 10rpx 50rpx rgb(22, 22, 22);
+	background: white;
 }
 
-.query-wordinfo-container{
-    margin-left: 40rpx;
-    overflow: hidden;
+.query-wordinfo-container {
+	margin-left: 40rpx;
+	overflow: hidden;
 }
 
-.query-name-text{
-    float: left;
-    color: rgb(49, 49, 49);
-    font-size: 50rpx;
-    font-weight: bold;
+.query-name-text {
+	float: left;
+	color: rgb(49, 49, 49);
+	font-size: 50rpx;
+	font-weight: bold;
 }
 
-.query-soundmark-text{
-    display: block;
-    clear: both;
-    margin-top: 10rpx;
-    color: rgb(184, 184, 184);
-    font-size: 30rpx;
+.query-soundmark-text {
+	display: block;
+	clear: both;
+	margin-top: 10rpx;
+	color: rgb(184, 184, 184);
+	font-size: 30rpx;
 }
 
-.query-meaning-text{
-    font-size: 31rpx;
-    display: block;
-    margin-top: 20rpx;
-    margin-right: 70rpx;
-    color: rgb(47, 47, 47);
-    overflow: hidden;
-    margin-left: 40rpx;
+.query-meaning-text {
+	font-size: 31rpx;
+	display: block;
+	margin-top: 20rpx;
+	margin-right: 70rpx;
+	color: rgb(47, 47, 47);
+	overflow: hidden;
+	margin-left: 40rpx;
 }
 
-.icon-close-m{
-    width: 50rpx;
-    height: 50rpx;
-    float: right;
-    position: relative;
-    top: 30rpx;
-    right: 30rpx;
+.icon-close-m {
+	width: 50rpx;
+	height: 50rpx;
+	float: right;
+	position: relative;
+	top: 30rpx;
+	right: 30rpx;
 }
 
 /* summary-pattern */
 
 /*swtich整体大小及背景色*/
-.wx-switch-input{
-    width:60rpx !important;
-    height:36rpx !important;
+.wx-switch-input {
+	width: 60rpx !important;
+	height: 36rpx !important;
 }
+
 /*白色样式（false的样式）*/
-.wx-switch-input::before{
-    width:60rpx !important;
-    height: 36rpx !important;
+.wx-switch-input::before {
+	width: 60rpx !important;
+	height: 36rpx !important;
 }
+
 /*绿色样式（true的样式）*/
-.wx-switch-input::after{
-    width: 32rpx !important;
-    height: 32rpx !important;
+.wx-switch-input::after {
+	width: 32rpx !important;
+	height: 32rpx !important;
 }
 
-.summary-top{
-    width: 90%;
-    margin:auto;
-    display: block;
-    /* background: rgb(255, 255, 255); */
-    overflow: hidden;
-    margin-top: 30rpx;
-    padding-bottom: 30rpx;
+.summary-top {
+	width: 90%;
+	margin: auto;
+	display: block;
+	/* background: rgb(255, 255, 255); */
+	overflow: hidden;
+	margin-top: 30rpx;
+	padding-bottom: 30rpx;
 }
 
-.summary-title-text{
-    font-size: 45rpx;
-    float: left;
+.summary-title-text {
+	font-size: 45rpx;
+	float: left;
 }
 
-.summary-switch-container{
-    float: right;
-    position: relative;
-    right: 20rpx;
-    top: 10rpx;
+.summary-switch-container {
+	float: right;
+	position: relative;
+	right: 20rpx;
+	top: 10rpx;
 }
 
-.summary-switch-text{
-    font-size: 30rpx;
-    color: #bbbbbb;
-    margin-right: 15rpx;
+.summary-switch-text {
+	font-size: 30rpx;
+	color: #bbbbbb;
+	margin-right: 15rpx;
 }
 
-.summary-words-container{
-    width: 90%;
-    /* background: #dfff5; */
-    margin: auto;
+.summary-words-container {
+	width: 90%;
+	/* background: #dfff5; */
+	margin: auto;
 }
 
-.summary-word{
-    margin-top: 40rpx;
-    border-bottom: solid;
-    border-width: 5rpx;
-    border-color: #f0f0f0;
+.summary-word {
+	margin-top: 40rpx;
+	border-bottom: solid;
+	border-width: 5rpx;
+	border-color: #f0f0f0;
 }
 
-.summary-word-top{
-    overflow: hidden;
+.summary-word-top {
+	overflow: hidden;
 }
 
-.summary-word-text{
-    font-weight: bold;
-    float: left;
-    /* background: rebeccapurple; */
-    height: 60rpx;
-    line-height: 60rpx;
+.summary-word-text {
+	font-weight: bold;
+	float: left;
+	/* background: rebeccapurple; */
+	height: 60rpx;
+	line-height: 60rpx;
 }
 
-.summary-word-icon-container{
-    width: 60rpx;
-    height: 60rpx;
-    float: right;
+.summary-word-icon-container {
+	width: 60rpx;
+	height: 60rpx;
+	float: right;
 }
 
-.summary-word-icon{
-    height: 70%;
-    width: 80%;
-    margin-top: 15%;
-    margin-left: 10%;
+.summary-word-icon {
+	height: 70%;
+	width: 80%;
+	margin-top: 15%;
+	margin-left: 10%;
 }
 
-.summary-word-mask{
-    border: solid;
-    border-radius: 10rpx;
-    border-width: 1rpx;
-    border-color: #eeeeee;
-    background: #fafafa;
-    height: 50rpx;
-    width: 99%;
-    display: block;
-    margin-top: 10rpx;
-    margin-bottom: 20rpx;
+.summary-word-mask {
+	border: solid;
+	border-radius: 10rpx;
+	border-width: 1rpx;
+	border-color: #eeeeee;
+	background: #fafafa;
+	height: 50rpx;
+	width: 99%;
+	display: block;
+	margin-top: 10rpx;
+	margin-bottom: 20rpx;
 }
 
-.summary-word-meaning{
-    margin-top: 10rpx;
-    font-size: 32rpx;
-    color: #959595;
-    letter-spacing: 0.05rem;
-    margin-bottom: 20rpx;
+.summary-word-meaning {
+	margin-top: 10rpx;
+	font-size: 32rpx;
+	color: #959595;
+	letter-spacing: 0.05rem;
+	margin-bottom: 20rpx;
 }

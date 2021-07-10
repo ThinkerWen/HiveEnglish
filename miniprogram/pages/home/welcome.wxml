@@ -1,6 +1,0 @@
-<!--index.wxml-->
-<view class="indexContainer">
-  <image bindtap="getUserProfile" src="{{hasUserInfo ? userInfo.avatarUrl: defaultImg}}" class="avatar"></image>
-  <text class="userName">Hello {{userInfo.nickName}}</text>
-  <view class="start-button" bindtap="getUserProfile">开启单词之旅</view>
-</view>

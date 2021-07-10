@@ -1,79 +1,87 @@
 <!--miniprogram/pages/home/home.wxml-->
-<view class="container" style="width: 750rpx; display: flex; box-sizing: border-box; left: NaNrpx; top: NaNrpx">
-    <add-tips text="点击「 添加到小程序」,下次学习更方便" />
-    <view class="sign-container">
-        <text class="sign-guide-text">我在蜂巢单词学习</text>
-        <text class="sign-num-text">{{signedNum}}</text>
-        <text class="sign-num-day-text">天</text>
-        <view class="calendar" bindtap='toCalendarPage'>
-            <text class="calendar-text">打卡日历</text>
-            <image class="calendar-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/calendar.png"/>
-        </view>
-    </view>
-    <view class="vocabulary-container" data-type="0" bindtap="toDictionary">
-        <!-- <image class="vocabulary-background-image" src="../../images/backgrounds/nature.jpg"/> -->
-        <image class="vocabulary-background-image" src="https://www.hive-net.cn/HiveEnglish/background/gif.gif"/>
-        <text class="vocabulary-name-text">{{bookInfo.name}}</text>
-        <view class="vocabulary-guide">
-            <image class="vocabulary-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/vocabulary.png"/>
-            <text class="vocabulary-guide-text">词表</text>
-        </view>
-        <view class="vocabulary-progress">
-            <view style="overflow: hidden;">
-                <text class="vocabulary-progress-text-left">已完成{{bookInfo.percentage}}%</text>
-                <text class="vocabulary-progress-text-right">{{bookInfo.studiedNum}}/{{bookInfo.totalNum}}词</text>
-            </view>
-            <view class="vocabulary-progress-bar-container">
-                <view class="vocabulary-progress-bar"/>
-                <view class="vocabulary-progress-bar-mask"/>
-            </view>
-        </view>
-    </view>
-    <view class="task-container" data-type="1" bindtap="toDictionary">
-        <text class="task-guide-text">· 今日任务 ·</text>
-        <view class="task-info">
-            <view class="task-info-trisection">
-                <text class="task-info-trisection-top-text">{{newWordsNum}}</text>
-                <text class="task-info-trisection-bottom-text">新词数</text>
-            </view>
-            <view class="task-info-trisection">
-                <text class="task-info-trisection-top-text">{{oldWordsNum}}</text>
-                <text class="task-info-trisection-bottom-text">复习单词</text>
-            </view>
-            <view class="task-info-trisection">
-                <text class="task-info-trisection-top-text">{{unstudyWordsNum}}</text>
-                <text class="task-info-trisection-bottom-text">总单词</text>
-            </view>
-        </view>
-    </view>
-    <view wx:if="{{!complete}}" class="start-button" bindtap="startMain">开始学习</view>
-    <view wx:else class="start-button">已完成</view>
+<view class="box">
+	<view class="cu-bar search bg-white">
+		<view class="search-form round">
+			<text class="cuIcon-search"></text>
+			<input type="text" placeholder="输入翻译" bindinput="bindInput" confirm-type="search" bindconfirm="showModal"
+				data-target="Modal"></input>
+		</view>
+		<view class="action">
+			<button class="cu-btn bg-green shadow-blur round" bindtap="showModal" data-target="Modal"
+				style="width: 70px;">搜索</button>
+		</view>
+	</view>
 </view>
-<view style="padding-top:20px;">
-    <view class="trisaction" bindtap="toPhotoTrans">
-        <view class="trisaction-top-container">
-            <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/photo.png"/>
-        </view>
-        <text class="trisaction-bottom-text">拍照翻译</text>
-    </view>
-    <!-- <view class="btn-oneline shadow-lg btn-pk animated infinite slow pulse" hover-class="btn-hover" class="trisaction" bindtap="toVsFriends">
-        <view class="trisaction-top-container">
-            <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/vs.png"/>
-        </view>
-        <text class="trisaction-bottom-text">好友对战</text>
-    </view> -->
-    <view hover-class="btn-hover" class="trisaction btn-oneline btn-pk animated infinite slow pulse" bindtap="toVsFriends">
-        <view class="trisaction-top-container">
-            <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/vs.png"/>
-        </view>
-        <text class="trisaction-bottom-text">好友对战</text>
-    </view>
-    <!-- <button class="btn-oneline shadow-lg btn-pk animated infinite slow pulse" hover-class="btn-hover" open-type="getUserInfo" bindgetuserinfo="onChallengeFriend" style="top: -20rpx">
-</button> -->
-    <view class="trisaction" bindtap="toWordGame">
-        <view class="trisaction-top-container">
-            <image  class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/word.png"/>
-        </view>
-        <text class="trisaction-bottom-text">单词接龙</text>
-    </view>
+<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+	<view class="cu-dialog modal-radius">
+		<view class="cu-bar bg-white justify-end">
+			<view class="content">翻译结果</view>
+			<view class="action" bindtap="hideModal">
+				<text class="cuIcon-close text-red"></text>
+			</view>
+		</view>
+		<view class="padding-xl">
+			{{searchReasult.tranCn}}
+		</view>
+	</view>
 </view>
+
+<view class="container"
+	style=" margin-top:10px; width: 750rpx; display: flex; box-sizing: border-box; left: NaNrpx; top: NaNrpx">
+	<add-tips text="点击「 添加到小程序」,下次学习更方便" />
+	<view data-type="0" bindtap="toDictionary">
+		<view class="padding-sm margin-xs">
+			<image class="bookcontin" src="{{bookInfo.cover}}" />
+		</view>
+	</view>
+	<view class="padding">
+		<view style="overflow: hidden;">
+			<text class="vocabulary-progress-text-left progress-text-color">已完成{{bookInfo.percentage}}%</text>
+			<text class="vocabulary-progress-text-right">{{bookInfo.studiedNum}}/{{bookInfo.totalNum}}词</text>
+		</view>
+		<view class="cu-progress round sm striped active inscolor">
+			<view class="bg-green" style="width: {{bookInfo.percentage}}%;"></view>
+		</view>
+	</view>
+	<view class="task-container" data-type="1" bindtap="toDictionary">
+		<text class="task-guide-text">· 今日任务 ·</text>
+		<view class="task-info">
+			<view class="task-info-trisection">
+				<text class="task-info-trisection-top-text text-center text-shadow text-black">{{newWordsNum}}</text>
+				<text class="task-info-trisection-bottom-text">新词数</text>
+			</view>
+			<view class="task-info-trisection">
+				<text class="task-info-trisection-top-text text-center text-shadow text-black">{{oldWordsNum}}</text>
+				<text class="task-info-trisection-bottom-text">复习单词</text>
+			</view>
+			<view class="task-info-trisection">
+				<text
+					class="task-info-trisection-top-text text-center text-shadow text-black">{{unstudyWordsNum}}</text>
+				<text class="task-info-trisection-bottom-text">总单词</text>
+			</view>
+		</view>
+	</view>
+	<view wx:if="{{!complete}}" class="start-button" bindtap="startMain">开始学习</view>
+	<view wx:else class="start-button">已完成</view>
+</view>
+<!-- <view style="padding-top:20px;">
+  <view class="trisaction" bindtap="toPhotoTrans">
+    <view class="trisaction-top-container">
+      <image class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/photo.png" />
+    </view>
+    <text class="trisaction-bottom-text">拍照翻译</text>
+  </view>
+  <view hover-class="btn-hover" class="trisaction btn-oneline btn-pk animated infinite slow pulse"
+    bindtap="toVsFriends">
+    <view class="trisaction-top-container">
+      <image class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/vs.png" />
+    </view>
+    <text class="trisaction-bottom-text">好友对战</text>
+  </view>
+  <view class="trisaction" bindtap="toWordGame">
+    <view class="trisaction-top-container">
+      <image class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/word.png" />
+    </view>
+    <text class="trisaction-bottom-text">单词接龙</text>
+  </view>
+</view> -->

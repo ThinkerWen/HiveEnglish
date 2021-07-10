@@ -6,6 +6,9 @@
   box-sizing: border-box;
 } 
 @import './miniprogram_npm/wxapp-animate/animate.wxss';
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";
+
 
 page {
   --theme-color: #7ECEF7;

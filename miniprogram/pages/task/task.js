@@ -29,7 +29,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(app.globalData.openId) this.getBook()      // 获取用户书籍列表
+    // if(app.globalData.openId) this.getBook()      // 获取用户书籍列表
   },
 
   getBook: function(){
@@ -110,7 +110,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if(app.globalData.openId) this.getBook()      // 获取用户书籍列表
   },
 
   /**

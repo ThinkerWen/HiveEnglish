@@ -21,7 +21,17 @@
 			</view>
 		</view>
 		<view class="padding-xl">
-			{{searchReasult.tranCn}}
+				<view class="text-center text-shadow text-black">
+					<text style="font-size: large; font-weight: 600;">{{searchReasult.fromWord}}\r\n\r\n</text>
+				</view>
+			<view wx:for="{{searchReasult.toWord}}" key="item">
+				{{item}}
+			</view>
+			<view class="pronouncation">
+				<text class="text-soundmark">[{{searchReasult.phonetic}}]</text>
+				<image data-word="{{wordInfo.ukspeech}}" catchtap='pronounce' class="icon-pronouncation"
+					src="https://www.hive-net.cn/HiveEnglish/images/icons/sound.png" />
+			</view>
 		</view>
 	</view>
 </view>
@@ -40,7 +50,7 @@
 			<text class="vocabulary-progress-text-right">{{bookInfo.studiedNum}}/{{bookInfo.totalNum}}词</text>
 		</view>
 		<view class="cu-progress round sm striped active inscolor">
-			<view class="bg-green" style="width: {{bookInfo.percentage}}%;"></view>
+			<view class="bg-green" style= "width: {{bookInfo.percentage}}%;"></view>
 		</view>
 	</view>
 	<view class="task-container" data-type="1" bindtap="toDictionary">
@@ -64,24 +74,3 @@
 	<view wx:if="{{!complete}}" class="start-button" bindtap="startMain">开始学习</view>
 	<view wx:else class="start-button">已完成</view>
 </view>
-<!-- <view style="padding-top:20px;">
-  <view class="trisaction" bindtap="toPhotoTrans">
-    <view class="trisaction-top-container">
-      <image class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/photo.png" />
-    </view>
-    <text class="trisaction-bottom-text">拍照翻译</text>
-  </view>
-  <view hover-class="btn-hover" class="trisaction btn-oneline btn-pk animated infinite slow pulse"
-    bindtap="toVsFriends">
-    <view class="trisaction-top-container">
-      <image class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/vs.png" />
-    </view>
-    <text class="trisaction-bottom-text">好友对战</text>
-  </view>
-  <view class="trisaction" bindtap="toWordGame">
-    <view class="trisaction-top-container">
-      <image class="trisaction-top-icon" src="https://www.hive-net.cn/HiveEnglish/images/icons/word.png" />
-    </view>
-    <text class="trisaction-bottom-text">单词接龙</text>
-  </view>
-</view> -->

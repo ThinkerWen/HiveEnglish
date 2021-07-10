@@ -1,6 +1,7 @@
 // miniprogram/pages/home/home.js
-var sha256 = require('../../utils/sha256.js');
 var myMethod = require('../../utils/myMethod.js');
+var CryptoJS = require('../../utils/crypto-js.js');
+const API = "https://dict.youdao.com/dictvoice?audio="
 const db = wx.cloud.database()
 const app = getApp()
 var that
@@ -30,54 +31,21 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad: function(options) {
-		// this.dataPull()
+	onLoad: function (options) {
 		let that = this;
+		console.log(app.globalData.openId)
 
-		setTimeout(function() {}, 1500);
-		console.log("1")
-		if (app.globalData.openId)
-			db.collection('userInfo').where({
-				_id: app.globalData.openId
-			})
-			.get({
-				success: function(res) {
-					registerDay = res.data[0].registerDay
-					nowDay = new Date()
-					that.setData({
-						signedNum: registerDay - nowDay
-					})
-				}
-			})
-		else this.unLoginStatus()
+		setTimeout(function () { // 等待1.5秒登录
+			if (!app.globalData.openId) that.unLoginStatus()
+			else that.dataPull()
+		}, 1500);
 	},
 
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
-	onShow: function() {
-		var that = this
-		console.log(app.globalData.openId)
-		if (app.globalData.openId) {
-			db.collection('userInfo').where({
-					_id: app.globalData.openId
-				})
-				.get({
-					success: function(res) {
-						var registerDay = res.data[0].registerDay
-						var nowDay = new Date()
-						var day = parseInt((Date.parse(nowDay) - Date.parse(registerDay)) / (1000 *
-							60 * 60 * 24)) + 1;
-						that.setData({
-							signedNum: day
-						})
-					}
-				})
-			this.dataPull()
-		} else this.unLoginStatus()
-		// this.setTaskInfo()
-		// this.setSignedNum()
-		// this.setBookInfo()
+	onShow: function () {
+		if (app.globalData.openId) this.dataPull()
 	},
 
 	showModal(e) {
@@ -92,14 +60,16 @@ Page({
 		})
 	},
 	// 获取要翻译的单词
-	bindInput: function(e) {
+	bindInput: function (e) {
 		this.setData({
 			query: e.detail.value
 		})
 	},
 
-	translate: function(e) {
-		var result = {}
+	translate: function (e) {
+		var result = {
+			toWord: []
+		}
 		var query = e;
 		var that = this;
 		console.log(query)
@@ -109,10 +79,10 @@ Page({
 		var curtime = Math.round(new Date().getTime() / 1000);
 		var from = 'auto';
 		var to = 'auto';
-		var str1 = appKey + myMethod.truncate(query) + salt + curtime + key;
+		var str1 = appKey + this.truncate(query) + salt + curtime + key;
 		var vocabId = '您的用户词表ID';
-		var sign = sha256.sha256_digest(str1)
-		// var sign = CryptoJS.SHA256(str1).toString(CryptoJS.enc.Hex);
+		// var sign = sha256.sha256_digest(str1)
+		var sign = CryptoJS.SHA256(str1).toString(CryptoJS.enc.Hex);
 		wx.request({
 			url: 'https://openapi.youdao.com/api',
 			data: {
@@ -127,6 +97,18 @@ Page({
 				vocabId: vocabId,
 			},
 			success: res => {
+				result.fromWord = query
+				try {
+					result.toWord = res.data.basic.explains
+				} catch (err) {
+					result.toWord.push(res.data.translation[0])
+				}
+				try {
+					result.phonetic = res.data.basic.phonetic ? res.data.basic.phonetic : "暂无音标"
+				} catch (err) {
+					result.phonetic = "暂无音标"
+				}
+				result.type = res.data.l
 				result.wordHead = res.data.query
 				result.tranCn = res.data.translation[0]
 				result.tospeech = res.data.tSpeakUrl
@@ -135,7 +117,6 @@ Page({
 					hasReasult: true,
 					searchReasult: result
 				})
-				console.log(result)
 			},
 			fail: res => {
 				console.log('fail:', res)
@@ -144,7 +125,34 @@ Page({
 		console.log(result)
 	},
 
-	dataPull: function() {
+	// 翻译接口配套加密
+	truncate: function (q) {
+		var len = q.length;
+		if (len <= 20) return q;
+		return q.substring(0, 10) + len + q.substring(len - 10, len);
+	},
+
+	// 朗读
+	pronounce: function (e) {
+		const innerAudioContext = wx.createInnerAudioContext()
+		innerAudioContext.autoplay = true
+		if (this.data.searchReasult.type == "en2zh-CHS") { // 含英文
+			innerAudioContext.src = API + this.data.searchReasult.fromWord + "&type=1"
+		} else wx.showToast({
+			title: '暂不支持非英文',
+			icon: 'none',
+			duration: 1500,
+		})
+		innerAudioContext.onPlay(() => {
+			console.log('开始播放')
+		})
+		innerAudioContext.onError((res) => {
+			console.log(res.errMsg)
+			console.log(res.errCode)
+		})
+	},
+
+	dataPull: function () {
 		var bookInfo = {}
 		var that = this
 		console.log(app.globalData.openId)
@@ -152,14 +160,14 @@ Page({
 				userId: app.globalData.openId
 			})
 			.get({
-				success: function(res) {
+				success: function (res) {
 					console.log(res.data)
 					bookInfo.studiedNum = res.data[0].learnedSequence
 					db.collection('Booklist').where({
 							id: res.data[0].bookId
 						})
 						.get({
-							success: function(res) {
+							success: function (res) {
 								bookInfo.cover = res.data[0].cover
 								bookInfo.name = res.data[0].title
 								bookInfo.totalNum = res.data[0].wordNum
@@ -182,16 +190,13 @@ Page({
 			})
 	},
 
-	setTaskInfo: function() {
-		var newWordsProgress = wx.getStorageSync('newWordsProgress')
-		var oldWordsProgress = wx.getStorageSync('oldWordsProgress')
-		var newWordsNum = newWordsProgress.totalNum
-		var oldWordsNum = oldWordsProgress.totalNum
-		var newWordsUnstudyNum = newWordsProgress.unstudyWords.length + newWordsProgress.studingWords.length
-		var oldWordsUnstudyNum = oldWordsProgress.studingWords.length + oldWordsProgress.unstudyWords.length
-		var unstudyWordsNum = newWordsUnstudyNum + oldWordsUnstudyNum
+	setTaskInfo: function () {
+		var pushuserLearned = wx.getStorageSync('pushuserLearned')
+		var newWordsNum = pushuserLearned.newWord
+		var oldWordsNum = pushuserLearned.reviewWord
+		var unstudyWordsNum = newWordsNum + oldWordsNum
 		var complete = false;
-		if (newWordsProgress.complete && oldWordsProgress.complete) {
+		if (oldWordsNum == unstudyWordsNum) {
 			complete = true;
 		}
 		that.setData({
@@ -202,61 +207,43 @@ Page({
 		})
 	},
 
-	setSignedNum: function() {
-		var signedNum = 12
-		that.setData({
-			signedNum: signedNum
-		})
-	},
-
-	searchInput: function(e) {
+	searchInput: function (e) {
 		this.setData({
 			searchText: e.detail.value
 		})
 	},
 
-	search: function() {
-		this.setData({
-			searchText: "sssss"
-		})
-	},
-	/**
-	 * 生命周期函数--监听页面初次渲染完成
-	 */
-	onReady: function() {
-
-	},
-
-	startMain: function() {
+	startMain: function () {
 		// if(!this.loginTest()) return;
 		var that = this
+		console.log(that.data.pullData)
 		wx.navigateTo({
 			url: '../main/main',
-			success: function(res) {
+			success: function (res) {
 				// 通过eventChannel向被打开页面传送数据
 				res.eventChannel.emit('acceptDataFromOpenerPage', that.data.pullData)
 			}
 		})
 	},
 
-	toCalendarPage: function() {
+	toCalendarPage: function () {
 		wx.navigateTo({
 			url: '../calendar/calendar',
 		})
 	},
 
-	toDictionary: function(e) {
+	toDictionary: function (e) {
 		var that = this
 		wx.navigateTo({
 			url: '../dictionary/dictionary?type=' + e.currentTarget.dataset.type,
-			success: function(res) {
+			success: function (res) {
 				// 通过eventChannel向被打开页面传送数据
 				res.eventChannel.emit('acceptDataFromOpenerPage', that.data.pullData)
 			}
 		})
 	},
 
-	toPhotoTrans: function() {
+	toPhotoTrans: function () {
 		if (!this.loginTest()) return;
 		else {
 			wx.showToast({
@@ -267,28 +254,28 @@ Page({
 		}
 	},
 
-	toVsFriends: function() {
+	toVsFriends: function () {
 		if (!this.loginTest()) return;
 		wx.navigateTo({
 			url: '../fightHome/fightHome',
 		})
 	},
 
-	toWordGame: function() {
+	toWordGame: function () {
 		if (!this.loginTest()) return;
 		wx.navigateTo({
 			url: '../game/game',
 		})
 	},
 
-	loginTest: function() {
+	loginTest: function () {
 		if (!app.globalData.openId) { //未登录跳转登录
 			wx.showToast({
 				title: '请授权登录！',
 				icon: 'none',
 				duration: 1500,
-				success: function() {
-					setTimeout(function() { // 等待1.5秒后跳转到userCenter
+				success: function () {
+					setTimeout(function () { // 等待1.5秒后跳转到userCenter
 						wx.reLaunch({
 							url: '../userCenter/userCenter',
 						})
@@ -300,15 +287,16 @@ Page({
 		return true
 	},
 
-	unLoginStatus: function() {
+	unLoginStatus: function () {
+		console.log("in")
 		var that = this
 		var bookInfo = {}
-		bookInfo.name = "六级真题核心词（图片记忆）"
+		bookInfo.cover = "https://nos.netease.com/ydschool-online/1496655382926CET6luan_1.jpg"
 		bookInfo.percentage = "0.00"
 		bookInfo.studiedNum = 0
 		bookInfo.totalNum = 1228
 		db.collection('userLearned').doc('3f1caf5060b0b45101f1404a0ed9734d').get({
-			success: function(res) {
+			success: function (res) {
 				if (wx.getStorageSync('myWordList')) {
 					that.setData({
 						wordSequence: wx.getStorageSync('wordSequence'),
@@ -330,37 +318,9 @@ Page({
 	},
 
 	/**
-	 * 生命周期函数--监听页面隐藏
-	 */
-	onHide: function() {
-
-	},
-
-	/**
-	 * 生命周期函数--监听页面卸载
-	 */
-	onUnload: function() {
-
-	},
-
-	/**
-	 * 页面相关事件处理函数--监听用户下拉动作
-	 */
-	onPullDownRefresh: function() {
-
-	},
-
-	/**
-	 * 页面上拉触底事件的处理函数
-	 */
-	onReachBottom: function() {
-
-	},
-
-	/**
 	 * 用户点击右上角分享
 	 */
-	onShareAppMessage: function() {
+	onShareAppMessage: function () {
 
 	},
 })

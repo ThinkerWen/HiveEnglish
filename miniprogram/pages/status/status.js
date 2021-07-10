@@ -1,5 +1,4 @@
 // miniprogram/pages/status/status.js
-var sha256 = require('../../utils/sha256.js');
 var wxCharts = require('../../utils/wxcharts.js');
 const API = "https://dict.youdao.com/dictvoice?audio="
 const db = wx.cloud.database()

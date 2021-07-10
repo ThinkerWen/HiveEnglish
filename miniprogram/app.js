@@ -78,6 +78,7 @@ App({
       }
     }).then((resp) => {         // 调用后返回值
         this.getDatabaseOpenId(resp.result.openid)
+        console.log(resp.result.openid)
       }).catch((e) => {
       this.setData({
         showUploadTip: true
@@ -89,6 +90,7 @@ App({
 
   getDatabaseOpenId: function(openId){
     var that = this
+    console.log(openId)
     const db = wx.cloud.database()
     db.collection('userInfo').where({   // 从用户信息userInfo数据库查询当前登录用户
       _openid: openId // 填入当前用户 openid

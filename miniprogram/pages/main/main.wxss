@@ -1,9 +1,18 @@
-/* miniprogram/pages/main/main.wxss */
-/* @import "../../colorui/main.wxss";
-@import "../../colorui/icon.wxss"; */
+@import "../../colorui/icon.wxss";
+@import "../../colorui/animation.wxss";
+
+image[class*="gif-"] {
+  border-radius: 6rpx;
+  display: block;
+}
 
 page {
 	background-color: white;
+}
+
+.my-btn-size{
+	height: 45px;
+	border-radius: 30px;
 }
 
 .separator {

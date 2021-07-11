@@ -26,7 +26,7 @@ Page({
 			tranCn: "测试", // 翻译结果
 			fromspeech: "test", // 翻以前语音
 			tospeech: "test" // 翻译后语音
-		},
+		}
 	},
 	/**
 	 * 生命周期函数--监听页面加载

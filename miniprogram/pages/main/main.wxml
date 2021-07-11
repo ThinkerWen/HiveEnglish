@@ -19,7 +19,7 @@
 				<switch class="hans-switch" checked="{{isChinese}}" color="#7bed9f" bindchange="chineseSwitchChange" />
 			</view>
 		</view>
-		<text wx:if="{{!isChinese}}" class="text-word">{{wordInfo.wordHead}}</text>
+		<text wx:if="{{!isChinese}}" class="text-center text-shadow text-black text-word">{{wordInfo.wordHead}}</text>
 		<text wx:else class="text-word-ch">{{wordInfo.trans[0].pos}}. {{wordInfo.trans[0].tranCn}}</text>
 		<view class="pronouncation">
 			<image data-word="{{wordInfo.ukspeech}}" catchtap='pronounce' class="icon-pronouncation"
@@ -30,9 +30,16 @@
 			<text class="text-hint">根据例句，判断释义</text>
 			<view class="text-sentence">例句[英]：{{wordInfo.sentence}}</view>
 		</view>
+
 		<view class="button-container">
-			<view class="button-remember" catchtap="knownHandle">想起来了</view>
-			<view class="button-forget" catchtap="unknownHandle">没想起来</view>
+			<view class="padding-sm">
+				<view class="flex flex-wrap justify-around">
+					<button
+						class="my-btn-size cu-btn bg-{{item.color}} animation-{{animation==item.name?item.name:''}} margin-sm basis-sm shadow"
+						bindtap="toggle" data-class="{{item.name}}" wx:for="{{list}}"
+						wx:key="{{index}}">{{item.text}}</button>
+				</view>
+			</view>
 		</view>
 	</view>
 

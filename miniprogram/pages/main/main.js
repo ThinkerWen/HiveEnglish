@@ -25,6 +25,17 @@ Page({
 		isUnknown: false,
 		isReviewing: true,
 		isChinese: false,
+		list: [{
+			name: 'fade',
+			color: 'green',
+			text: '想起来了'
+		  },
+		  {
+			name: 'shake',
+			color: 'red',
+			text: '没想起来'
+		  }
+		]
 	},
 
 	/**
@@ -51,6 +62,24 @@ Page({
 	onUnload: function () {
 		this.saveProgress();
 	},
+	
+	toggle(e) {
+		console.log(e);
+		var anmiaton = e.currentTarget.dataset.class;
+		var that = this;
+		if (e.currentTarget.dataset.class == 'fade')
+			this.knownHandle();
+		else if (e.currentTarget.dataset.class == 'shake')
+			this.unknownHandle();
+		that.setData({
+			animation: anmiaton
+		})
+		setTimeout(function () {
+			that.setData({
+				animation: ''
+			})
+		}, 1000)
+	},
 
 	getWords: function (data) {
 		console.log("getWords")
@@ -66,8 +95,8 @@ Page({
 		})
 	},
 
-	mathPercent: function(learn, all){
-		return Math.round(learn/all*100)
+	mathPercent: function (learn, all) {
+		return Math.round(learn / all * 100)
 	},
 
 	atLarge: function () {
@@ -186,7 +215,7 @@ Page({
 				remainPercent: that.mathPercent(pushuserLearned.reviewWord.length + 1, pushuserLearned.newWord.length + pushuserLearned.reviewWord.length)
 			})
 
-			if(this.data.wordSequence != this.data.myWordList.length - 1)
+			if (this.data.wordSequence != this.data.myWordList.length - 1)
 				this.setData({
 					wordInfo: that.data.myWordList[that.data.wordSequence + 1],
 					wordSequence: that.data.wordSequence + 1
